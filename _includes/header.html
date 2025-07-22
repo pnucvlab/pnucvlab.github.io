@@ -8,7 +8,11 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/"> <i class="fa fa-barcode"></i>
+				<a class="navbar-brand" href="{{ '/' | relative_url }}">
+					<img
+						src="{{ '/assets/images/base/logo_text.png' | relative_url }}"
+						alt="{{ site.title }}"
+						class="logo" />
 				</a>
 			</div>
 			<div id="navbar-collapse-menu" class="collapse navbar-collapse">
@@ -43,12 +47,10 @@
 			</div>
 		</div>
 	</nav>
-		{% if page.noimage %}
-		{% else %}
 		<img
-			alt="{{ page.title }}"
-			src="/assets/images/{{page.id}}/top.jpg" class="img-responsive">
-		{% endif %}
+			src="{{ '/assets/images/base/bg.png' | relative_url }}"
+			alt=""
+			class="img-responsive center-block">
 
 	<div class="jumbotron  clearfix">
 
