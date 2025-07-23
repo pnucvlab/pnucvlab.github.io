@@ -1,19 +1,15 @@
 $(document).ready(function() {
+    console.log('Menu.js loaded');
+    
     // 햄버거 버튼 클릭 이벤트
     $('#side-menu-toggle').on('click', function() {
+        console.log('Hamburger button clicked');
         toggleSideMenu();
     });
     
     // 오버레이 클릭시 메뉴 닫기
     $('#menu-overlay').on('click', function() {
         closeSideMenu();
-    });
-    
-    // ESC 키로 메뉴 닫기
-    $(document).on('keydown', function(e) {
-        if (e.keyCode === 27) { // ESC 키
-            closeSideMenu();
-        }
     });
     
     function toggleSideMenu() {

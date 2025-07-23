@@ -204,7 +204,14 @@ h3:before {
 
 /* 사이드 메뉴 스타일 */
 #navbar-collapse-menu {
-    display: none; /* 기본 메뉴 숨기기 */
+    display: block; /* 기본 메뉴 다시 표시 */
+}
+
+/* 모바일에서만 기본 메뉴 숨기고 사이드 메뉴 사용 */
+@media (max-width: 768px) {
+    #navbar-collapse-menu {
+        display: none;
+    }
 }
 
 .side-menu {
