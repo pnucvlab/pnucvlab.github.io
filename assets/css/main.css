@@ -6,8 +6,13 @@ html {
 body {
 	/* Margin bottom by footer height */
 	margin-bottom: 8em;
+	padding-top: 8em;
 	counter-reset: h1counter;
-	background-color: #ffffff;
+	background-image: url('../images/base/bg.png');
+	background-size: auto 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
 }
 
 h1 {
@@ -33,7 +38,7 @@ h3:before {
 }
 
 .jumbotron {
-	background: #8bccda;
+	background: #719d7d;
 	padding: 0.1em;
 	min-height: auto;
 }
@@ -49,7 +54,7 @@ h3:before {
 
 .jumbotron h1 .highlight {
 	background: transparent;
-	color: #40a8bf;
+	color: #12421f;
 	font-size: 1em;
 	font-weight: bold;
 }
@@ -59,13 +64,13 @@ h3:before {
 	bottom: 0;
 	width: 100%;
 	height: 8em;
-	background-color: #8bccda;
+	background-color: #719d7d;
 	padding: 1.5em 1em;
   }
 
 .navbar-default {
-	background-color: #8bccda;
-	border-color: #40a8bf;
+	background-color: #719d7d;
+	border-color: #12421f;
 	text-transform: uppercase;
 	font-size: 1.3em;
 }
@@ -76,13 +81,13 @@ h3:before {
 }
 
 .navbar-default .navbar-brand {
-	height: 40px;
+	height: 50px;
 	display: flex;
 	align-items: center;
 }
 
 .navbar-default .navbar-brand .logo {
-	height: 40px;
+	height: 50px;
 	width: auto;
 }
 
@@ -109,7 +114,7 @@ h3:before {
 .navbar-default .navbar-nav>li>a:focus,
 .navbar-default .navbar-nav>li:hover>a {
 	color: #ffffff;
-	background-color: #40a8bf !important;
+	background-color: #12421f !important;
 }
 
 .navbar-default .navbar-nav>li>.dropdown-menu {
@@ -127,42 +132,42 @@ h3:before {
 .navbar-default .navbar-nav>li>.dropdown-menu>li>a:hover,
 	.navbar-default .navbar-nav>li>.dropdown-menu>li>a:focus {
 	color: #ffffff;
-    background-color: #cccccc;
+    background-color: rgba(128, 128, 128);
 }
 
 .navbar-default .navbar-nav>li>.dropdown-menu>li>.divider {
-	background-color: #40a8bf;
+	background-color: #12421f;
 }
 
 .navbar-default .navbar-nav .open .dropdown-menu>.active>a,
 	.navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover,
 	.navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus {
 	color: #ffffff;
-	background-color: #40a8bf;
+	background-color: #12421f;
 }
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover,
 	.navbar-default .navbar-nav>.active>a:focus {
 	color: #ffffff;
-	background-color: #40a8bf;
+	background-color: #12421f;
 }
 
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover,
 	.navbar-default .navbar-nav>.open>a:focus {
 	color: #ffffff;
-	background-color: #40a8bf;
+	background-color: #12421f;
 }
 
 .navbar-default .navbar-toggle {
-	background-color: #40a8bf;
-	border-color: #8bccda;
+	background-color: #12421f;
+	border-color: #719d7d;
 }
 
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus
 	{
 	opacity: 0.5;
-	background-color: #8bccda;
-	border-color: #40a8bf;
+	background-color: #719d7d;
+	border-color: #12421f;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
@@ -193,8 +198,58 @@ h3:before {
 		.navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover,
 		.navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus {
 		color: #ffffff;
-		background-color: #40a8bf;
+		background-color: #12421f;
 	}
+}
+
+/* 사이드 메뉴 스타일 */
+#navbar-collapse-menu {
+    display: block; /* 기본 메뉴 다시 표시 */
+}
+
+/* 모바일에서만 기본 메뉴 숨기고 사이드 메뉴 사용 */
+@media (max-width: 768px) {
+    #navbar-collapse-menu {
+        display: none;
+    }
+}
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -300px; /* 초기에는 숨김 */
+    width: 300px;
+    height: 100vh;
+    background-color: #719d7d;
+    z-index: 1050;
+    transition: left 0.3s ease;
+    padding-top: 60px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+}
+
+.side-menu.active {
+    left: 0; /* 활성화시 나타남 */
+}
+
+.side-menu .nav {
+    margin: 0;
+    padding: 0;
+}
+
+.side-menu .nav li {
+    border-bottom: 1px solid #12421f;
+}
+
+.side-menu .nav li a {
+    color: #ffffff;
+    padding: 15px 20px;
+    display: block;
+    font-weight: bold;
+}
+
+.side-menu .nav li a:hover {
+    background-color: #12421f;
+    color: #ffffff;
 }
 
 .menu-overlay {
@@ -203,7 +258,7 @@ h3:before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #cccccc;
+    background-color: rgba(0,0,0,0.5);
     z-index: 1040;
     display: none;
 }
