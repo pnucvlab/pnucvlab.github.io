@@ -72,5 +72,21 @@
 
         </div>
         {% include footer.html %}
+        
+        <script>
+        $(document).ready(function() {
+            $('#side-menu-toggle').click(function() {
+                $('#side-menu').toggleClass('open');
+                $('#menu-overlay').toggleClass('open');
+                $(this).toggleClass('active');
+            });
+            
+            $('#menu-overlay').click(function() {
+                $('#side-menu').removeClass('open');
+                $('#menu-overlay').removeClass('open');
+                $('#side-menu-toggle').removeClass('active');
+            });
+        });
+        </script>
     </body>
 </html>
