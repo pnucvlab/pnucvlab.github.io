@@ -170,6 +170,15 @@ h3:before {
 	border-color: #12421f;
 }
 
+/* hover 상태일 때 사이드바 표시 */
+.navbar-default .navbar-toggle:hover ~ .side-menu {
+	left: 0;
+}
+
+.navbar-default .navbar-toggle:hover ~ .menu-overlay {
+	display: block;
+}
+
 .navbar-default .navbar-toggle .icon-bar {
 	background-color: #ffffff;
 }
