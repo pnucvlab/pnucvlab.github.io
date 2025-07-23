@@ -53,27 +53,12 @@ h3:before {
 
 .footer {
 	position: absolute;
-	padding-right: 1em;
-	padding-top: 1.5em;
 	bottom: 0;
 	width: 100%;
-	/* Set the fixed height of the footer here */
 	height: 8em;
-	background-color: black;
-	bottom: 0;
-}
-
-.footer-links {
-	margin: 0 0 0 0em;
-	padding: 0;
-	float: right;
-	text-align: right;
-}
-
-.footer-links>li {
-	padding-right: 1em;
-	display: inline-block;
-}
+	background-color: #719d7d;
+	padding: 1.5em 1em;
+  }
 
 .navbar-default {
 	background-color: #719d7d;
@@ -99,7 +84,7 @@ h3:before {
 }
 
 .navbar-default .navbar-brand .logo:hover {
-	opacity: 0.5;
+	opacity: 0.6;
 	color: #ffffff;
 }
 
