@@ -45,7 +45,7 @@ h3:before {
 }
 
 .jumbotron h1 .highlight {
-	background-color: #719d7d;
+	background: transparent;
 	color: #12421f;
 	font-size: 1em;
 	font-weight: bold;
