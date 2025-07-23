@@ -159,16 +159,55 @@ h3:before {
 }
 
 .navbar-default .navbar-toggle {
-	border-color: #12421f;
+	background-color: #12421f;
+	border-color: #719d7d;
 }
 
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus
 	{
-	background-color: #12421f;
+	background-color: #719d7d;
+	border-color: #12421f;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
 	background-color: #ffffff;
+}
+
+.navbar-default .navbar-toggle.active {
+	opacity: 0.7;
+}
+
+/* 모바일 메뉴가 열렸을 때의 스타일 */
+.navbar-default .navbar-collapse {
+	background-color: rgba(113, 157, 125, 0.95);
+	border: 2px solid #12421f;
+	border-radius: 5px;
+	margin-top: 10px;
+}
+
+.navbar-default .navbar-collapse .navbar-nav {
+	margin: 0;
+	padding: 10px 0;
+}
+
+.navbar-default .navbar-collapse .navbar-nav > li {
+	border-bottom: 1px solid #12421f;
+}
+
+.navbar-default .navbar-collapse .navbar-nav > li:last-child {
+	border-bottom: none;
+}
+
+.navbar-default .navbar-collapse .navbar-nav > li > a {
+	color: #ffffff;
+	font-weight: bold;
+	padding: 15px 20px;
+	text-align: center;
+}
+
+.navbar-default .navbar-collapse .navbar-nav > li > a:hover {
+	background-color: #12421f;
+	color: #ffffff;
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
