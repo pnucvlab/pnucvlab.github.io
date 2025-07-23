@@ -35,7 +35,7 @@ h3:before {
 
 .jumbotron {
 	background: #719d7d;
-	padding: 1;
+	padding: 5;
 }
 
 .jumbotron h1 {
@@ -43,7 +43,7 @@ h3:before {
 	font-size: 5em;
 	text-align: center;
 	font-weight: bold;
-	margin: 1;
+	margin: 0;
 	line-height: 1.2;
 }
 
