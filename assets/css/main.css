@@ -170,81 +170,12 @@ h3:before {
 	border-color: #12421f;
 }
 
-/* hover 상태일 때 사이드바 표시 */
-.navbar-default .navbar-toggle:hover ~ .side-menu {
-	left: 0;
-}
-
-.navbar-default .navbar-toggle:hover ~ .menu-overlay {
-	display: block;
-}
-
 .navbar-default .navbar-toggle .icon-bar {
 	background-color: #ffffff;
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
 	border-color: #ffffff;
-}
-
-/* 사이드 메뉴 스타일 */
-.side-menu {
-	position: fixed;
-	top: 0;
-	left: -300px;
-	width: 300px;
-	height: 100vh;
-	background-color: rgba(113, 157, 125, 0.95);
-	border-right: 2px solid #12421f;
-	z-index: 1050;
-	transition: left 0.3s ease-in-out;
-	box-shadow: 2px 0 8px rgba(0,0,0,0.3);
-}
-
-.side-menu.open {
-	left: 0;
-}
-
-.side-menu .navbar-nav {
-	margin: 60px 0 0 0;
-	padding: 0;
-}
-
-.side-menu .navbar-nav > li {
-	border-bottom: 1px solid #12421f;
-}
-
-.side-menu .navbar-nav > li:last-child {
-	border-bottom: none;
-}
-
-.side-menu .navbar-nav > li > a {
-	color: #ffffff;
-	font-weight: bold;
-	padding: 20px 30px;
-	text-align: left;
-	font-size: 1.2em;
-}
-
-.side-menu .navbar-nav > li > a:hover {
-	background-color: #12421f;
-	color: #ffffff;
-}
-
-/* 오버레이 */
-.menu-overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0,0,0,0.5);
-	z-index: 1040;
-	display: none;
-}
-
-.menu-overlay.open {
-	display: block;
 }
 
 .navbar-default .navbar-link {

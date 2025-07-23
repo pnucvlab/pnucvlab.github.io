@@ -75,16 +75,15 @@
         
         <script>
         $(document).ready(function() {
-            $('#side-menu-toggle').click(function() {
-                $('#side-menu').toggleClass('open');
-                $('#menu-overlay').toggleClass('open');
+            $('#side-menu-toggle').click(function(e) {
+                e.stopPropagation();
                 $(this).toggleClass('active');
             });
             
-            $('#menu-overlay').click(function() {
-                $('#side-menu').removeClass('open');
-                $('#menu-overlay').removeClass('open');
-                $('#side-menu-toggle').removeClass('active');
+            $(document).click(function(e) {
+                if (!$(e.target).closest('#side-menu-toggle, #side-menu').length) {
+                    $('#side-menu-toggle').removeClass('active');
+                }
             });
         });
         </script>
