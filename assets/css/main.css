@@ -35,6 +35,7 @@ h3:before {
 
 .container {
 	font-size: 1.3em;
+	background-color: transparent;
 }
 
 .jumbotron {
