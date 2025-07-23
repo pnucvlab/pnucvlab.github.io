@@ -42,8 +42,7 @@ h3:before {
 	letter-spacing: 0.2em;
 	font-size: 3em;
 	text-align: center;
-	text-transform: uppercase;
-	letter-spacing: 0.2em;
+	font-weight: 700;
 }
 
 .footer {
