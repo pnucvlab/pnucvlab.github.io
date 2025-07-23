@@ -2,7 +2,8 @@ $(document).ready(function() {
     console.log('Menu.js loaded');
     
     // 햄버거 버튼 클릭 이벤트
-    $('#side-menu-toggle').on('click', function() {
+    $('#side-menu-toggle').on('click', function(e) {
+        e.preventDefault();
         console.log('Hamburger button clicked');
         toggleSideMenu();
     });

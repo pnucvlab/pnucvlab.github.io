@@ -74,5 +74,16 @@
         {% include footer.html %}
         
         <script src="{{ '/assets/js/menu.js' | relative_url }}"></script>
+        <script>
+        // 테스트용 스크립트
+        $(document).ready(function() {
+            console.log('Direct script loaded');
+            $('#side-menu-toggle').on('click', function() {
+                console.log('Direct button click');
+                $('#side-menu').toggleClass('active');
+                $('#menu-overlay').toggleClass('active');
+            });
+        });
+        </script>
     </body>
 </html>
