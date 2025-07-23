@@ -4,11 +4,15 @@ html {
 }
 
 body {
-	/* Margin bottom by footer height */
 	margin-bottom: 8em;
 	padding-top: 4.5em;
 	counter-reset: h1counter;
-	
+
+	background-image: url('/assets/images/base/bg.png');
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-attachment: fixed;
+	background-size: auto 100%;
 }
 
 h1 {
