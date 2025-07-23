@@ -33,7 +33,8 @@
                 {% if page.github %}
                     <p>
                         <a href="{{ page.github }}" class="btn btn-default">
-                            <i class="fa fa-github fa-2x"></i> {{ page.github }}
+                            <i class="fa fa-github fa-2x"></i>
+                            {{ page.github }}
                         </a>
                     </p>
                 {% endif %}
@@ -72,18 +73,27 @@
 
         </div>
         {% include footer.html %}
-        
-        <script src="{{ '/assets/js/menu.js' | relative_url }}"></script>
-        <script>
-        // 테스트용 스크립트
-        $(document).ready(function() {
-            console.log('Direct script loaded');
-            $('#side-menu-toggle').on('click', function() {
-                console.log('Direct button click');
-                $('#side-menu').toggleClass('active');
-                $('#menu-overlay').toggleClass('active');
-            });
+
+    <!-- jQuery & Bootstrap JS -->
+    <script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/bootstrap.min.js' | relative_url }}"></script>
+    <!-- 사이드바 토글 스크립트 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn     = document.getElementById('side-menu-toggle');
+            const side    = document.getElementById('side-menu');
+            const overlay = document.getElementById('menu-overlay');
+            if (btn && side && overlay) {
+                btn.addEventListener('click', function() {
+                    side.classList.toggle('active');
+                    overlay.classList.toggle('active');
+                });
+                overlay.addEventListener('click', function() {
+                    side.classList.remove('active');
+                    overlay.classList.remove('active');
+                });
+            }
         });
-        </script>
-    </body>
+    </script>
+</body>
 </html>

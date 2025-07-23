@@ -1,18 +1,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" type="image/png" href="/icon.png" />
+  <link rel="shortcut icon" type="image/png" href="{{ '/icon.png' | relative_url }}" />
 
-  <!-- SEO stuff -->
   <title>{{ page.title | default: site.title }}</title>
   <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
-  <!-- End SEO stuff -->
 
   <link rel="stylesheet" href="{{ '/assets/css/bootstrap.min.css' | relative_url }}" />
   <link rel="stylesheet" href="{{ '/assets/css/font-awesome/css/font-awesome.min.css' | relative_url }}" />
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
   <link rel="stylesheet" href="{{ '/assets/css/syntax.css' | relative_url }}" />
-
-  <script src="/assets/js/jquery.min.js"></script>
-  <script src="/assets/js/bootstrap.min.js"></script>
 </head>
