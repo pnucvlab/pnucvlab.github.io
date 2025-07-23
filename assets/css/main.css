@@ -196,7 +196,7 @@ h3:before {
 	.navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover,
 	.navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus {
 		color: #ffffff;
-		background-color: rgba(128, 128, 128);
+		background-color: #ffffff;
 	}
 }
 
@@ -216,8 +216,8 @@ h3:before {
 .side-menu {
 	position: fixed;
 	top: 0;
-	left: -300px;
-	width: 300px;
+	left: -150px;
+	width: 150px;
 	height: 100vh;
 	background-color: rgba(128, 128, 128, 0.8);
 	z-index: 1050;
@@ -236,7 +236,7 @@ h3:before {
 }
 
 .side-menu .nav li {
-	border-bottom: 1px solid rgba(128, 128, 128);
+	border-bottom: 1px solid #ffffff;
 }
 
 .side-menu .nav li a {
@@ -247,7 +247,7 @@ h3:before {
 }
 
 .side-menu .nav li a:hover {
-	background-color: rgba(128, 128, 128);
+	background-color: #ffffff;
 	color: #000;
 }
 
