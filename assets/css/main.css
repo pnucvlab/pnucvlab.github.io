@@ -39,11 +39,13 @@ h3:before {
 
 .jumbotron h1 {
 	color: white;
-	font-size: 2em;
+	font-size: 3em;
 	text-align: center;
+	font-weight: bold;
 }
 
 .jumbotron h1 .highlight {
+	background: #719d7d;
 	color: #12421f;
 	font-size: 2em;
 	font-weight: bold;
@@ -94,11 +96,10 @@ h3:before {
 .navbar-default .navbar-brand .logo {
 	height: 50px;
 	width: auto;
-	transition: opacity 0.3s ease;
 }
 
 .navbar-default .navbar-brand .logo:hover {
-	opacity: 0.7;
+	opacity: 0.5;
 	color: #ffffff;
 }
 
