@@ -226,6 +226,7 @@ h3:before {
     box-shadow: 2px 0 5px rgba(0,0,0);
     box-sizing: border-box;
     overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .side-menu.active {
@@ -237,7 +238,7 @@ h3:before {
     padding: 0;
 }
 
-.side-menu .nav li {
+.side-menu .nav > li {
     width: 100%;
     box-sizing: border-box;
     border-bottom: 2px solid #40a8bf;
@@ -268,6 +269,7 @@ h3:before {
 .side-menu .nav li .dropdown-menu > li {
     width: 100%;
     box-sizing: border-box;
+    border-bottom: none;
 }
 
 .side-menu .nav li .dropdown-menu > li > a {
