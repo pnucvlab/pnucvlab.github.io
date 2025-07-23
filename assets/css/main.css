@@ -45,7 +45,7 @@ h3:before {
 	font-weight: 700;
 }
 
-.jumbotron h1.highlight {
+.jumbotron h1 .highlight {
 	color: #12421f;
 	font-size: 4em;
 	font-weight: 700;

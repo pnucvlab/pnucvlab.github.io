@@ -1,23 +1,21 @@
 <!doctype html>
 <html lang="en">
-{% include head.html %}
-<body>
-  {% include header.html %}
+  {% include head.html %}
+  <body>
+    {% include header.html %}
 
-  {% if page.url == "/" or page.url == "/index.html" %}
-    {% assign styled = site.title
-      | replace: "Lab", "<span class='highlight'>Lab</span>"
-      | replace: "Pusan", "<span class='highlight'>P</span>usan"
-      | replace: "National", "<span class='highlight'>N</span>ational"
-      | replace: "University", "<span class='highlight'>U</span>niversity"
-      | replace: "Computer", "<span class='highlight'>C</span>omputer"
-      | replace: "Vision", "<span class='highlight'>V</span>ision"
-    %}
-
-    <div class="jumbotron">
-      <h1 class="jumbotron-title">{{ styled | raw }}</h1>
-    </div>
-  {% endif %}
+    {% if page.url == "/" or page.url == "/index.html" %}
+      <div class="jumbotron">
+        <h1 class="jumbotron-title">
+          <span class="highlight">P</span>usan
+          <span class="highlight">N</span>ational
+          <span class="highlight">U</span>niversity
+          <span class="highlight">C</span>omputer
+          <span class="highlight">V</span>ision
+          <span class="highlight">Lab</span>oratory
+        </h1>
+      </div>
+    {% endif %}
 
   <div class="container">
 
