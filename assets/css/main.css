@@ -40,8 +40,14 @@ h3:before {
 .jumbotron h1 {
 	color: white;
 	letter-spacing: 0.2em;
-	font-size: 3em;
+	font-size: 1.5em;
 	text-align: center;
+	font-weight: 700;
+}
+
+.jumbotron h1.highlight {
+	color: #12421f;
+	font-size: 4em;
 	font-weight: 700;
 }
 
