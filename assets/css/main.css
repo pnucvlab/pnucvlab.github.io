@@ -201,3 +201,61 @@ h3:before {
 		background-color: #12421f;
 	}
 }
+
+/* 사이드 메뉴 스타일 */
+#navbar-collapse-menu {
+    display: none; /* 기본 메뉴 숨기기 */
+}
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -300px; /* 초기에는 숨김 */
+    width: 300px;
+    height: 100vh;
+    background-color: #719d7d;
+    z-index: 1050;
+    transition: left 0.3s ease;
+    padding-top: 60px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+}
+
+.side-menu.active {
+    left: 0; /* 활성화시 나타남 */
+}
+
+.side-menu .nav {
+    margin: 0;
+    padding: 0;
+}
+
+.side-menu .nav li {
+    border-bottom: 1px solid #12421f;
+}
+
+.side-menu .nav li a {
+    color: #ffffff;
+    padding: 15px 20px;
+    display: block;
+    font-weight: bold;
+}
+
+.side-menu .nav li a:hover {
+    background-color: #12421f;
+    color: #ffffff;
+}
+
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1040;
+    display: none;
+}
+
+.menu-overlay.active {
+    display: block;
+}

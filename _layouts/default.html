@@ -73,19 +73,6 @@
         </div>
         {% include footer.html %}
         
-        <script>
-        $(document).ready(function() {
-            $('#side-menu-toggle').click(function(e) {
-                e.stopPropagation();
-                $(this).toggleClass('active');
-            });
-            
-            $(document).click(function(e) {
-                if (!$(e.target).closest('#side-menu-toggle, #side-menu').length) {
-                    $('#side-menu-toggle').removeClass('active');
-                }
-            });
-        });
-        </script>
+        <script src="{{ '/assets/js/menu.js' | relative_url }}"></script>
     </body>
 </html>
