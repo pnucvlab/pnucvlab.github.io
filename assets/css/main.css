@@ -165,16 +165,13 @@ h3:before {
 
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus
 	{
+	opacity: 0.5;
 	background-color: #719d7d;
 	border-color: #12421f;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
 	background-color: #ffffff;
-}
-
-.navbar-default .navbar-toggle.active {
-	opacity: 0.7;
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
