@@ -39,15 +39,15 @@ h3:before {
 
 .jumbotron h1 {
 	color: white;
-	font-size: 3em;
+	font-size: 5em;
 	text-align: center;
 	font-weight: bold;
 }
 
 .jumbotron h1 .highlight {
-	background: #719d7d;
+	background-color: #719d7d;
 	color: #12421f;
-	font-size: 2em;
+	font-size: 1em;
 	font-weight: bold;
 }
 
