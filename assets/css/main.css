@@ -223,7 +223,9 @@ h3:before {
     z-index: 1050;
     transition: left 0.3s ease;
     padding-top: 60px;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+    box-shadow: 2px 0 5px rgba(0,0,0);
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .side-menu.active {
@@ -236,7 +238,9 @@ h3:before {
 }
 
 .side-menu .nav li {
-    border-bottom: 1px solid #40a8bf;
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 2px solid #40a8bf;
 }
 
 .side-menu .nav li a {
@@ -261,8 +265,15 @@ h3:before {
     box-shadow: none;
 }
 
+.side-menu .nav li .dropdown-menu > li {
+    width: 100%;
+    box-sizing: border-box;
+}
+
 .side-menu .nav li .dropdown-menu > li > a {
     display: block;
+    width: 100%;
+    box-sizing: border-box;
     padding: 15px 20px 15px 30px;
     color: #000;
     white-space: normal;
