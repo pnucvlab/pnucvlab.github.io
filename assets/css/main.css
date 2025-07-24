@@ -336,8 +336,8 @@ h3:before {
   }
   
   .publication-image {
-	width: 200px;
-	height: auto;
+	max-height: 80px;
+	width: auto;
 	margin-right: 20px;
   }
   
@@ -364,7 +364,7 @@ h3:before {
 	text-decoration: underline;
   }
   
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1000px) {
 	.publication {
 	  display: block;
 	  width: 100%;
@@ -373,7 +373,7 @@ h3:before {
   
 	.publication-image {
 	  width: 100%;
-	  max-width: 200px;
+	  max-height: 80px;
 	  margin: 0 auto 20px;
 	}
   
