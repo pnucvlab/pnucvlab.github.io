@@ -338,9 +338,9 @@ h3:before {
   }
   
   .publication-image img {
-	width: 100px;
-	max-width: 100px;
-	height: auto;
+	height: 100px;
+	max-height: 100px;
+	width: auto;
 	margin-right: 20px;
 	object-fit: cover;
 	border: 1px solid #000;
@@ -377,12 +377,13 @@ h3:before {
 	}
   
 	.publication-image img {
-	  height: 300px;
-	  max-height: 300px;
-	  width: auto;
-	  margin: 0 auto 20px;
-	  object-fit: cover;
-	  border: 1px solid #000;
+		display: block;
+		width: 300px;
+		max-width: 300px;
+		height: auto;
+		margin: 0 auto 20px;
+		object-fit: cover;
+		border: 1px solid #000;
 	}
   
 	.publication-info {
