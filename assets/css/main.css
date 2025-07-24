@@ -276,7 +276,7 @@ h3:before {
 }
 
 .side-menu .nav li .dropdown-menu > li > a:hover {
-    background-color: rgba(204, 204, 204, 0.3);
+    background-color: #8bccda;
     color: #000;
 }
 
