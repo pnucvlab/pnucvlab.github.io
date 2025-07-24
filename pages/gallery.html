@@ -3,3 +3,24 @@ layout: default
 title: Gallery
 permalink: /gallery/
 ---
+
+<p style="font-size:40px; margin-bottom:20px;"><strong>Gallery</strong></p>
+
+<ul class="gallery-list" style="list-style:none; padding:0; margin:0;">
+  {% assign gallery_posts = site.categories.gallery %}
+  {% for post in gallery_posts %}
+    <li class="gallery-item" style="border-bottom:1px solid #e0e0e0; padding:15px 0;">
+      <a href="{{ post.url | relative_url }}" style="font-size:20px; font-weight:bold; text-decoration:none; color:#333;">
+        {{ post.title }}
+      </a>
+      <span style="color:#999; margin-left:10px; font-size:14px;">
+        {{ post.date | date: "%Y-%m-%d" }}
+      </span>
+      {% if post.excerpt %}
+        <p style="margin:8px 0 0; color:#555; font-size:16px;">
+          {{ post.excerpt | strip_html | truncate: 100 }}
+        </p>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
