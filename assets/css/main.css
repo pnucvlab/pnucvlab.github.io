@@ -308,14 +308,18 @@ h3:before {
   }
   
   /* 화면(뷰포트) 너비가 800px 이하일 때 세로 스택으로 전환 */
-  @media screen and (max-width: 180px) {
+  @media screen and (max-width: 800px) {
 	.bio-section {
 	  display: block;
+	  width: 100%;
+	  max-width: 180px;
+	  margin: 0 auto 20px;
 	}
+}
 	.bio-section img.professor-image {
 	  display: block;
 	  width: 100%;
-	  max-width: 90vw;
-	  height: auto;
-	}
+	  max-width: px;
+	  margin: 0 auto 20px;
+
   }
