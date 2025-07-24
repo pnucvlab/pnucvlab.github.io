@@ -10,7 +10,7 @@ permalink: /people/faculty/
   <!-- 이미지 -->
   <img src="{{ site.baseurl }}/assets/images/profiles/srjeon.jpg" alt="Professor Image" class="professor-image">
   <!-- 텍스트 -->
-  <p style="font-size: 30px; margin-bottom: 5px;"><strong>Biography</strong></p>
+  <p style="font-size: 30px; margin-bottom: 5px;"><strong>Biography</strong></p><br>
   I am an Assistant Professor in the [Department of Computer Science and Engineering](https://cse.pusan.ac.kr/cse/index.do) and the [College of BioMedical Convergence Engineering](https://bce.pusan.ac.kr/bce/index.do) at [Pusan National University](https://www.pusan.ac.kr/kor/Main.do). Before joining PNU, I was a Postdoctoral Scholar at UC Berkeley in the EECS Department. I obtained my Ph.D. in Electrical and Electronic Engineering from Yonsei University in 2022 under the guidance of Prof. Kwanghoon Sohn. I received my B.S. in the same department from Yonsei University in 2016. Additionally, I have worked as a research intern at Adobe and have been actively involved in various research collaborations.
 
   You can find my [Curriculum Vitae]({{ site.baseurl }}/assets/files/cv_srj.pdf) here.<br><br>
