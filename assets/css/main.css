@@ -332,18 +332,9 @@ h3:before {
 .publication {
 	display: flex;
 	align-items: flex-start;
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 	padding: 10px;
 	box-sizing: border-box;
-  }
-  
-  .publication-image img {
-	height: 100px;
-	max-height: 100px;
-	width: auto;
-	margin-right: 20px;
-	object-fit: cover;
-	border: 1px solid #000;
   }
   
   .publication-info {
@@ -374,16 +365,6 @@ h3:before {
 	  display: block;
 	  width: 100%;
 	  margin-bottom: 20px;
-	}
-  
-	.publication-image img {
-		display: block;
-		width: 300px;
-		max-width: 300px;
-		height: auto;
-		margin: 0 auto 20px;
-		object-fit: cover;
-		border: 1px solid #000;
 	}
   
 	.publication-info {
