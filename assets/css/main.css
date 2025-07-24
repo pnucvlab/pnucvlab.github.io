@@ -414,7 +414,7 @@ h3:before {
   }
   
   /* on small (mobile) screens: one card per row */
-  @media (max-width: 600px) {
+  @media (max-width: 1000px) {
 	.profile-card {
 	  flex: 0 0 100%;
 	}
