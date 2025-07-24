@@ -292,3 +292,10 @@ h3:before {
 .menu-overlay.active {
     display: block;
 }
+
+.professor-image {
+	max-width: 100%;
+	height: auto;
+	width: 150px;
+	margin-right: 10px;
+  }
