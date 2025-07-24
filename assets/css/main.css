@@ -331,19 +331,25 @@ h3:before {
 /* Publications Page Option */
 .publication {
 	display: flex;
-	align-items: flex-start;
-	margin-bottom: 10px;
+	flex-wrap: nowrap;
+	align-items: center;
+	margin-bottom: 1px;
 	box-sizing: border-box;
   }
   
   .publication-info {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
 	font-size: 13px;
 	flex: 1;
+	white-space: nowrap;
   }
   
   .publication-info p {
-	margin: 0;
-	line-height: 0.5;
+	display: inline-block;
+	margin: 0 10px 0 0;
+	line-height: initial;
   }
   
   .publication-info p strong {
@@ -361,12 +367,11 @@ h3:before {
   
   @media screen and (max-width: 1000px) {
 	.publication {
-	  display: block;
-	  width: 100%;
-	  margin-bottom: 10px;
+	  display: flex;
+	  flex-wrap: nowrap;
 	}
 	.publication-info {
-	  width: 100%;
+	  width: auto;
 	}
   }
   
