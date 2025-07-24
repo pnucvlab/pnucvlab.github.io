@@ -335,17 +335,17 @@ h3:before {
 	margin-bottom: 40px;
   }
   
-  .publication-image {
+  .publication-image img {
 	height: 10px;
 	max-height: 10px;
 	width: auto;
 	margin-right: 20px;
+	object-fit: cover;
   }
   
   .publication-info {
 	font-size: 13px;
 	line-height: 1.6;
-	width: calc(100% - 220px);
   }
   
   .publication-info p {
@@ -372,14 +372,16 @@ h3:before {
 	  margin-bottom: 20px;
 	}
   
-	.publication-image {
-	  width: auto;
+	.publication-image img {
 	  height: 10px;
 	  max-height: 10px;
+	  width: auto;
 	  margin: 0 auto 20px;
+	  object-fit: cover;
 	}
   
 	.publication-info {
 	  width: 100%;
 	}
   }
+  
