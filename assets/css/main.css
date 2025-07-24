@@ -4,6 +4,7 @@ html {
 }
 
 body {
+	letter-spacing: 0.05em;
 	margin-bottom: 8em;
 	padding-top: 8em;
 	counter-reset: h1counter;
@@ -293,9 +294,28 @@ h3:before {
     display: block;
 }
 
-.professor-image {
-	max-width: 100%;
-	height: auto;
-	width: 200px;
-	margin-right: 10px;
-}
+/* Biography 섹션이 담긴 부모에 .bio-section 클래스를 추가해주세요 */
+.bio-section {
+	display: flex;
+	align-items: flex-start;
+	margin-bottom: 40px;
+  }
+  
+  /* 이미지 float 제거 (flex 환경에 float는 필요없으므로) */
+  .bio-section img.professor-image {
+	float: none;
+	margin-right: 20px;
+  }
+  
+  /* 화면(뷰포트) 너비가 800px 이하일 때 세로 스택으로 전환 */
+  @media screen and (max-width: 800px) {
+	.bio-section {
+	  display: block;
+	}
+	.bio-section img.professor-image {
+	  display: block;
+	  width: 100%;
+	  max-width: 180px; /* 원래 width:200px 유지 */
+	  margin: 0 auto 20px; /* 위-오른쪽-아래-왼쪽 */
+	}
+  }
