@@ -312,8 +312,8 @@ h3:before {
 	/* Zoom in biography text */
 	.bio-section {
 	  display: block;
-	  width: 100vw;
 	  margin: 0 auto 20px;
+	  padding: 0 20px;
 	}
 	
   	/* Zoom in prof. img */
