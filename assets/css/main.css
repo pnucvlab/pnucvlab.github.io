@@ -331,33 +331,34 @@ h3:before {
 /* Publications Page Option */
 .publication {
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	margin-bottom: 1px;
-	padding: 0;
 	box-sizing: border-box;
   }
   
   .publication-info {
 	display: flex;
-	align-items: center;
-	gap: 1em;
+	flex-direction: column;
+	gap: 1px;
 	font-size: 13px;
-	white-space: nowrap;
   }
   
   .publication-info p {
 	margin: 0;
 	padding: 0;
+	white-space: normal;
 	line-height: normal;
   }
   
   @media screen and (max-width: 1000px) {
 	.publication {
-	  display: flex;
-	  flex-wrap: nowrap;
+	  display: block;
+	  width: 100%;
+	  margin-bottom: 1px;
 	}
 	.publication-info {
-	  width: auto;
+	  width: 100%;
 	}
   }
+  
   
