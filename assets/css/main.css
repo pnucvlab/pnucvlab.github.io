@@ -361,4 +361,69 @@ h3:before {
 	}
   }
   
+/* Students page responsive layout */
+.student-grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	justify-content: space-between;
+  }
+  
+  .profile-card {
+	box-sizing: border-box;
+	display: flex;
+	align-items: flex-start;
+	padding: 8px;
+	flex: 0 0 100%;
+  }
+  
+  .profile-card img {
+	width: 150px;
+	height: 193px;
+	object-fit: cover;
+  }
+  
+  .profile-info {
+	display: flex;
+	align-items: center;
+	margin-left: 16px;
+  }
+  
+  .profile-info .name {
+	font-weight: bold;
+	font-size: 18px;
+	margin-right: 8px;
+  }
+  
+  .profile-info .home-icon {
+	font-size: 20px;
+	color: #007bff;
+	text-decoration: none;
+	margin-right: 8px;
+  }
+  
+  .profile-info .home-icon:hover {
+	color: #0056b3;
+  }
+  
+  .email-text {
+	display: inline-block;
+	margin-left: 16px;
+	font-size: 14px;
+	color: #333;
+  }
+  
+  /* two columns on medium screens */
+  @media (min-width: 600px) {
+	.profile-card {
+	  flex: 0 0 calc(50% - 8px);
+	}
+  }
+  
+  /* three columns on large screens */
+  @media (min-width: 1024px) {
+	.profile-card {
+	  flex: 0 0 calc(33.333% - 10.666px);
+	}
+  }
   

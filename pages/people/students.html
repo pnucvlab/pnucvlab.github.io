@@ -9,13 +9,14 @@ permalink: /people/students/
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
+    justify-content: space-between;
   }
   .profile-card {
-    flex: 0 0 calc(50% - 8px);
+    box-sizing: border-box;
     display: flex;
     align-items: flex-start;
     padding: 8px;
-    box-sizing: border-box;
+    flex: 0 0 100%;
   }
   .profile-card img {
     width: 150px;
@@ -46,6 +47,18 @@ permalink: /people/students/
     margin-left: 16px;
     font-size: 14px;
     color: #333;
+  }
+
+  @media (min-width: 600px) {
+    .profile-card {
+      flex: 0 0 calc(50% - 8px);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .profile-card {
+      flex: 0 0 calc(33.333% - 10.666px);
+    }
   }
 </style>
 
@@ -105,7 +118,7 @@ permalink: /people/students/
         <a href="https://github.com/gnsl318" class="home-icon" target="_blank" rel="noopener noreferrer">🏠</a>
       </div>
       <br>
-      <span class="email-text">NaN@example.com</span>
+      <span class="email-text">NaN@sample.com</span>
     </div>
   </div>
 </div>
@@ -120,7 +133,7 @@ permalink: /people/students/
         <a href="https://github.com/ksm1626" class="home-icon" target="_blank" rel="noopener noreferrer">🏠</a>
       </div>
       <br>
-      <span class="email-text">NaN@example.com</span>
+      <span class="email-text">NaN@sample.com</span>
     </div>
   </div>
 </div>
