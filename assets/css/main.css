@@ -331,38 +331,24 @@ h3:before {
 /* Publications Page Option */
 .publication {
 	display: flex;
-	flex-wrap: nowrap;
 	align-items: center;
 	margin-bottom: 1px;
+	padding: 0;
 	box-sizing: border-box;
   }
   
   .publication-info {
 	display: flex;
-	flex-wrap: nowrap;
 	align-items: center;
+	gap: 1em;
 	font-size: 13px;
-	flex: 1;
 	white-space: nowrap;
   }
   
   .publication-info p {
-	display: inline-block;
-	margin: 0 10px 0 0;
-	line-height: initial;
-  }
-  
-  .publication-info p strong {
-	font-weight: bold;
-  }
-  
-  .publication-info p a {
-	color: #007bff;
-	text-decoration: none;
-  }
-  
-  .publication-info p a:hover {
-	text-decoration: underline;
+	margin: 0;
+	padding: 0;
+	line-height: normal;
   }
   
   @media screen and (max-width: 1000px) {
