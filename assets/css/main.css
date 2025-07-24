@@ -321,8 +321,8 @@ h3:before {
   	/* Zoom in prof. img */
 	.bio-section img.professor-image {
 	  display: block;
-	  width: 60vw;
-	  max-width: 60vw;
+	  width: 60px;
+	  max-width: 60px;
 	  height: auto;
 	  margin: 0 auto 20px;
 	}
@@ -336,13 +336,13 @@ h3:before {
   }
   
   .publication-image {
-	max-height: 80px;
+	max-height: 50px;
 	width: auto;
 	margin-right: 20px;
   }
   
   .publication-info {
-	font-size: 18px;
+	font-size: 13px;
 	line-height: 1.6;
 	width: calc(100% - 220px);
   }
@@ -373,7 +373,7 @@ h3:before {
   
 	.publication-image {
 	  width: 100%;
-	  max-height: 80px;
+	  max-height: 50px;
 	  margin: 0 auto 20px;
 	}
   
