@@ -311,15 +311,15 @@ h3:before {
 	/* 세로 스택 전환하되, bio-section은 너비 제한하지 않음 */
 	.bio-section {
 	  display: block;
-	  width: 180vw;
-	  max-width: 180vw;
+	  width: 300vw;
+	  max-width: 300vw;
 	  margin: 0 auto 20px;
 	}
   
 	.bio-section img.professor-image {
 	  display: block;
-	  width: 300vw;
-	  max-width: 300vw;
+	  width: 180vw;
+	  max-width: 180vw;
 	  height: auto;
 	  margin: 0 auto 20px;
 	}
