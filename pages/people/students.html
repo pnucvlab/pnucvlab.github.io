@@ -5,85 +5,108 @@ permalink: /people/students/
 ---
 
 <style>
-.student-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-.profile-card {
-  width: calc(50% - 8px);
-  display: flex;
-  align-items: center;
-  padding: 8px;
-  box-sizing: border-box;
-}
-.profile-card img {
-  width: 150px;
-  height: 193px;
-  object-fit: cover;
-}
-.profile-card .profile-info {
-  display: flex;
-  align-items: center;
-  margin-left: 16px;
-}
-.profile-card .profile-info .name {
-  font-weight: bold;
-  margin-right: 8px;
-}
-.profile-card .profile-info .home-icon img {
-  width: 20px;
-  height: 20px;
-}
+  .student-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .profile-card {
+    flex: 0 0 calc(50% - 8px);
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  .profile-card img {
+    width: 150px;
+    height: 193px;
+    object-fit: cover;
+  }
+  .profile-info {
+    display: flex;
+    align-items: center;
+    margin-left: 16px;
+  }
+  .profile-info .name {
+    font-weight: bold;
+    margin-right: 8px;
+  }
+  .profile-info .home-icon {
+    font-size: 20px;
+    text-decoration: none;
+    color: #007bff;
+    margin-right: 8px;
+  }
+  .profile-info .home-icon:hover {
+    color: #0056b3;
+  }
+  .profile-info .email-text {
+    font-size: 14px;
+    color: #333;
+    margin-left: 0;
+  }
 </style>
 
 <p style="font-size:40px; margin-bottom:20px;"><strong>Students</strong></p>
-
 <p style="font-size:30px; margin-bottom:10px;"><strong>M.S. Students</strong></p>
+
 <div class="student-grid">
   <div class="profile-card">
     <img src="{{ site.baseurl }}/assets/images/profiles/bigyeol_choi.jpg" alt="Bigyeol Choi">
     <div class="profile-info">
       <span class="name">Bigyeol Choi</span>
-      <a href="https://github.com/DailyVy" class="home-icon">
-        <img src="{{ site.baseurl }}/assets/images/icons/home.svg" alt="Homepage">
-      </a>
+      <a href="https://github.com/DailyVy" class="home-icon" target="_blank" rel="noopener noreferrer">🏠</a>
+      <span class="email-text">choivy9102@gmail.com</span>
     </div>
   </div>
   <div class="profile-card">
     <img src="{{ site.baseurl }}/assets/images/profiles/bongguk_son.jpg" alt="Bongguk Son">
     <div class="profile-info">
       <span class="name">Bongguk Son</span>
-      <a href="https://github.com/zespy5" class="home-icon">
-        <img src="{{ site.baseurl }}/assets/images/icons/home.svg" alt="Homepage">
-      </a>
+      <a href="https://github.com/zespy5" class="home-icon" target="_blank" rel="noopener noreferrer">🏠</a>
+      <span class="email-text">sonbongguk5@gmail.com</span>
     </div>
   </div>
   <div class="profile-card">
     <img src="{{ site.baseurl }}/assets/images/profiles/jonghwi_lee.jpg" alt="Jonghwi Lee">
     <div class="profile-info">
       <span class="name">Jonghwi Lee</span>
-      <a href="https://github.com/gndldl" class="home-icon">
-        <img src="{{ site.baseurl }}/assets/images/icons/home.svg" alt="Homepage">
-      </a>
+      <a href="https://github.com/gndldl" class="home-icon" target="_blank" rel="noopener noreferrer">🏠</a>
+      <span class="email-text">tmvlzj49@pusan.ac.kr</span>
     </div>
   </div>
   <div class="profile-card">
     <img src="{{ site.baseurl }}/assets/images/profiles/jeonghan_lee.jpg" alt="Jeonghan Lee">
     <div class="profile-info">
       <span class="name">Jeonghan Lee</span>
-      <a href="https://sites.google.com/view/decide02/home" class="home-icon">
-        <img src="{{ site.baseurl }}/assets/images/icons/home.svg" alt="Homepage">
-      </a>
+      <a href="https://sites.google.com/view/decide02/home" class="home-icon" target="_blank" rel="noopener noreferrer">🏠</a>
+      <span class="email-text">jeonghan@pusan.ac.kr</span>
     </div>
   </div>
   <div class="profile-card">
     <img src="{{ site.baseurl }}/assets/images/profiles/taehoon_choi.jpg" alt="Taehoon Choi">
     <div class="profile-info">
       <span class="name">Taehoon Choi</span>
-      <a href="https://github.com/gnsl318" class="home-icon">
-        <img src="{{ site.baseurl }}/assets/images/icons/home.svg" alt="Homepage">
-      </a>
+      <a href="https://github.com/gnsl318" class="home-icon" target="_blank" rel="noopener noreferrer">🏠</a>
+      <span class="email-text">taehoon.choi@example.com</span>
     </div>
   </div>
 </div>
+
+<p style="font-size:30px; margin:20px 0 10px;"><strong>Interns/Undergraduate Students</strong></p>
+<div class="student-grid">
+  <div class="profile-card">
+    <img src="{{ site.baseurl }}/assets/images/profiles/seongmin_kim.jpg" alt="Seongmin Kim">
+    <div class="profile-info">
+      <span class="name">Seongmin Kim</span>
+      <a href="https://github.com/ksm1626" class="home-icon" target="_blank" rel="noopener noreferrer">🏠</a>
+      <span class="email-text">seongmin.kim@pusan.ac.kr</span>
+    </div>
+  </div>
+</div>
+
+<p style="font-size:30px; margin:20px 0 10px;"><strong>Alumni</strong></p>
+<ul style="font-size:18px; line-height:1.4; padding-left:1em;">
+  <li>Keumyong Lee – SomeSome</li>
+  <li>Sihyeong Choi – SomeWhere</li>
+</ul>
