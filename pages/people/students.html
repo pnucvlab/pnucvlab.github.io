@@ -11,18 +11,29 @@ permalink: /people/students/
   gap: 16px;
 }
 .profile-card {
-  width: calc(33.333% - 10.666px);
-  text-align: center;
+  width: calc(50% - 8px);
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  box-sizing: border-box;
 }
 .profile-card img {
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 193px;
   object-fit: cover;
-  border-radius: 50%;
 }
-.profile-card p {
-  margin-top: 8px;
-  font-size: 16px;
+.profile-card .profile-info {
+  display: flex;
+  align-items: center;
+  margin-left: 16px;
+}
+.profile-card .profile-info .name {
+  font-weight: bold;
+  margin-right: 8px;
+}
+.profile-card .profile-info .home-icon img {
+  width: 20px;
+  height: 20px;
 }
 </style>
 
@@ -31,37 +42,48 @@ permalink: /people/students/
 <p style="font-size:30px; margin-bottom:10px;"><strong>M.S. Students</strong></p>
 <div class="student-grid">
   <div class="profile-card">
-    <img src="{{ site.baseurl }}/assets/images/profiles/bigyeol_choi.jpg" alt="Bigyeol">
-    <p>Bigyeol Choi</p>
+    <img src="{{ site.baseurl }}/assets/images/profiles/bigyeol_choi.jpg" alt="Bigyeol Choi">
+    <div class="profile-info">
+      <span class="name">Bigyeol Choi</span>
+      <a href="https://github.com/DailyVy" class="home-icon">
+        <img src="{{ site.baseurl }}/assets/images/icons/home.svg" alt="Homepage">
+      </a>
+    </div>
   </div>
   <div class="profile-card">
-    <img src="{{ site.baseurl }}/assets/images/profiles/bongguk_son.jpg" alt="Bongguk">
-    <p>Bongguk Son</p>
+    <img src="{{ site.baseurl }}/assets/images/profiles/bongguk_son.jpg" alt="Bongguk Son">
+    <div class="profile-info">
+      <span class="name">Bongguk Son</span>
+      <a href="https://github.com/zespy5" class="home-icon">
+        <img src="{{ site.baseurl }}/assets/images/icons/home.svg" alt="Homepage">
+      </a>
+    </div>
   </div>
   <div class="profile-card">
-    <img src="{{ site.baseurl }}/assets/images/profiles/jonghwi_lee.jpg" alt="Jonghwi">
-    <p>Jonghwi Lee</p>
+    <img src="{{ site.baseurl }}/assets/images/profiles/jonghwi_lee.jpg" alt="Jonghwi Lee">
+    <div class="profile-info">
+      <span class="name">Jonghwi Lee</span>
+      <a href="https://github.com/gndldl" class="home-icon">
+        <img src="{{ site.baseurl }}/assets/images/icons/home.svg" alt="Homepage">
+      </a>
+    </div>
   </div>
   <div class="profile-card">
-    <img src="{{ site.baseurl }}/assets/images/profiles/jeonghan_lee.jpg" alt="Jeonghan">
-    <p>Jeonghan Lee</p>
+    <img src="{{ site.baseurl }}/assets/images/profiles/jeonghan_lee.jpg" alt="Jeonghan Lee">
+    <div class="profile-info">
+      <span class="name">Jeonghan Lee</span>
+      <a href="https://sites.google.com/view/decide02/home" class="home-icon">
+        <img src="{{ site.baseurl }}/assets/images/icons/home.svg" alt="Homepage">
+      </a>
+    </div>
   </div>
   <div class="profile-card">
-    <img src="{{ site.baseurl }}/assets/images/profiles/taehoon_choi.jpg" alt="Taehoon">
-    <p>Taehoon Choi</p>
+    <img src="{{ site.baseurl }}/assets/images/profiles/taehoon_choi.jpg" alt="Taehoon Choi">
+    <div class="profile-info">
+      <span class="name">Taehoon Choi</span>
+      <a href="https://github.com/gnsl318" class="home-icon">
+        <img src="{{ site.baseurl }}/assets/images/icons/home.svg" alt="Homepage">
+      </a>
+    </div>
   </div>
 </div>
-
-<p style="font-size:30px; margin:20px 0 10px;"><strong>Interns/Undergraduate Students</strong></p>
-<div class="student-grid">
-  <div class="profile-card">
-    <img src="{{ site.baseurl }}/assets/images/profiles/seongmin_kim.jpg" alt="Seongmin">
-    <p>Seongmin Kim</p>
-  </div>
-</div>
-
-<p style="font-size:30px; margin:20px 0 10px;"><strong>Alumni</strong></p>
-<ul style="font-size:18px; line-height:1.4; padding-left:1em;">
-  <li>Keumyong Lee – </li>
-  <li>Sihyeong Choi – </li>
-</ul>
