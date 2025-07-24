@@ -4,23 +4,106 @@ title: Gallery
 permalink: /gallery/
 ---
 
+<style>
+/* 3×3 그리드 레이아웃 */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+/* 썸네일 이미지 */
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  object-fit: cover;
+}
+/* 제목 */
+.gallery-title {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 16px;
+}
+/* 페이징 버튼 */
+.pagination {
+  text-align: center;
+  margin: 30px 0;
+}
+.pagination button {
+  padding: 8px 16px;
+  margin: 0 5px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.pagination button:disabled {
+  background: #ccc;
+  cursor: default;
+}
+</style>
+
 <p style="font-size:40px; margin-bottom:20px;"><strong>Gallery</strong></p>
 
-<ul class="gallery-list" style="list-style:none; padding:0; margin:0;">
-  {% assign gallery_posts = site.categories.gallery %}
-  {% for post in gallery_posts %}
-    <li class="gallery-item" style="border-bottom:1px solid #e0e0e0; padding:15px 0;">
-      <a href="{{ post.url | relative_url }}" style="font-size:20px; font-weight:bold; text-decoration:none; color:#333;">
-        {{ post.title }}
-      </a>
-      <span style="color:#999; margin-left:10px; font-size:14px;">
-        {{ post.date | date: "%Y-%m-%d" }}
-      </span>
-      {% if post.excerpt %}
-        <p style="margin:8px 0 0; color:#555; font-size:16px;">
-          {{ post.excerpt | strip_html | truncate: 100 }}
-        </p>
-      {% endif %}
-    </li>
-  {% endfor %}
-</ul>
+<div id="gallery">
+
+  <!-- 1) 그리드 영역: 모든 gallery 포스트 순회 -->
+  <div class="gallery-grid">
+    {% assign gallery_posts = site.categories.gallery %}
+    {% for post in gallery_posts %}
+      <div class="gallery-item">
+        <a href="{{ post.url | relative_url }}">
+          {% if post.images and post.images.size > 0 %}
+            <img
+              src="{{ post.images[0] | relative_url }}"
+              alt="{{ post.title }}"
+            >
+          {% else %}
+            <img
+              src="/assets/images/placeholder.png"
+              alt="No image"
+            >
+          {% endif %}
+          <div class="gallery-title">{{ post.title }}</div>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- 2) 페이징 버튼 -->
+  <div class="pagination">
+    <button id="prevBtn">Previous</button>
+    <button id="nextBtn">Next</button>
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const items = Array.from(document.querySelectorAll('#gallery .gallery-item'));
+  const perPage = 9;
+  let currentPage = 1;
+  const totalPages = Math.ceil(items.length / perPage);
+
+  function renderPage(page) {
+    const start = (page - 1) * perPage;
+    const end = page * perPage;
+    items.forEach((item, idx) => {
+      item.style.display = (idx >= start && idx < end) ? 'block' : 'none';
+    });
+    document.getElementById('prevBtn').disabled = page <= 1;
+    document.getElementById('nextBtn').disabled = page >= totalPages;
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    if (currentPage > 1) renderPage(--currentPage);
+  });
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    if (currentPage < totalPages) renderPage(++currentPage);
+  });
+
+  // 초기 로드
+  renderPage(currentPage);
+});
+</script>
