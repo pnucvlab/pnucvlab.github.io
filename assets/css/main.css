@@ -332,8 +332,7 @@ h3:before {
 .publication {
 	display: flex;
 	align-items: flex-start;
-	margin-bottom: 5px;
-	padding: 0;
+	margin-bottom: 10px;
 	box-sizing: border-box;
   }
   
@@ -364,7 +363,7 @@ h3:before {
 	.publication {
 	  display: block;
 	  width: 100%;
-	  margin-bottom: 5px;
+	  margin-bottom: 10px;
 	}
 	.publication-info {
 	  width: 100%;
