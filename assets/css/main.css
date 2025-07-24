@@ -333,7 +333,6 @@ h3:before {
 	display: flex;
 	align-items: flex-start;
 	margin-bottom: 40px;
-	border: 1px solid #000;
 	padding: 10px;
 	box-sizing: border-box;
   }
