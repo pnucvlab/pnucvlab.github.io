@@ -360,7 +360,7 @@ h3:before {
 	  width: 100%;
 	}
   }
-  
+
 /* Students page responsive layout */
 .student-grid {
 	display: flex;
@@ -374,7 +374,7 @@ h3:before {
 	display: flex;
 	align-items: flex-start;
 	padding: 8px;
-	flex: 0 0 100%;
+	flex: 0 0 calc(50% - 8px);
   }
   
   .profile-card img {
@@ -413,17 +413,9 @@ h3:before {
 	color: #333;
   }
   
-  /* two columns on medium screens */
-  @media (min-width: 600px) {
+  /* on small (mobile) screens: one card per row */
+  @media (max-width: 600px) {
 	.profile-card {
-	  flex: 0 0 calc(50% - 8px);
+	  flex: 0 0 100%;
 	}
   }
-  
-  /* three columns on large screens */
-  @media (min-width: 1024px) {
-	.profile-card {
-	  flex: 0 0 calc(33.333% - 10.666px);
-	}
-  }
-  
