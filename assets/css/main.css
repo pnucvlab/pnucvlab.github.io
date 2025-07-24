@@ -304,13 +304,13 @@ h3:before {
   /* 이미지 float 제거 (flex 환경에 float는 필요없으므로) */
   .bio-section img.professor-image {
 	float: none;
-	width: 180px;
-	max-width: 180px;
+	width: 220px;
+	max-width: 220px;
 	height: auto;
 	margin-right: 20px;
   }
   
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 600px) {
 	.bio-section {
 	  display: block;
 	  width: 100vw;
@@ -319,9 +319,8 @@ h3:before {
   
 	.bio-section img.professor-image {
 	  display: block;
-	  width: 180px;
-	  max-width: 180px;
+	  width: 60vw;
+	  max-width: 60vw;
 	  height: auto;
-	  margin: 0 auto 20px;
 	}
   }
