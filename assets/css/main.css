@@ -294,33 +294,34 @@ h3:before {
     display: block;
 }
 
-/* Biography 섹션이 담긴 부모에 .bio-section 클래스를 추가해주세요 */
 .bio-section {
 	display: flex;
 	align-items: flex-start;
 	margin-bottom: 40px;
   }
-  
-  /* 이미지 float 제거 (flex 환경에 float는 필요없으므로) */
+  	/* Normal prof. img */  
   .bio-section img.professor-image {
 	float: none;
-	width: 250px;
-	max-width: 250px;
+	width: 230px;
+	max-width: 230px;
 	height: auto;
-	margin-right: 40px;
+	margin-right: 30px;
   }
   
   @media screen and (max-width: 1000px) {
+	/* Zoom in biography text */
 	.bio-section {
 	  display: block;
 	  width: 100vw;
 	  margin: 0 auto 20px;
 	}
-  
+	
+  	/* Zoom in prof. img */
 	.bio-section img.professor-image {
 	  display: block;
 	  width: 60vw;
 	  max-width: 60vw;
 	  height: auto;
+	  margin: 0 auto 20px;
 	}
   }
