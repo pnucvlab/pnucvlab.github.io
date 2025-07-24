@@ -16,8 +16,6 @@ permalink: /people/faculty/
   You can find my [Curriculum Vitae]({{ site.baseurl }}/assets/files/cv_srj.pdf) here.<br><br>
 </div>
 
-<p style="font-size: 30px; margin-bottom: 5px;"><strong>Biography</strong></p>
-
 <p style="font-size: 30px; margin-bottom: 5px;"><strong>Education</strong></p>
 * Ph.D. in Electrical and Electronic Engineering, Yonsei University, 2022
 * B.S. in Electrical and Electronic Engineering, Yonsei University, 2016<br><br>
