@@ -212,7 +212,7 @@ h3:before {
     left: -150px;
     width: 150px;
     height: 100vh;
-    background-color: rgba(128, 128, 128);
+    background-color: #ffffff;
     z-index: 1050;
     transition: left 0.3s ease;
     padding-top: 60px;
@@ -234,7 +234,7 @@ h3:before {
 .side-menu .nav > li {
     width: 100%;
     box-sizing: border-box;
-    border-bottom: 2px solid #40a8bf;
+    border-bottom: 2px solid #000;
 }
 
 .side-menu .nav li a {
@@ -245,7 +245,7 @@ h3:before {
 }
 
 .side-menu .nav li a:hover {
-    background-color: #ffffff;
+    background-color: #8bccda;
     color: #000;
 }
 
