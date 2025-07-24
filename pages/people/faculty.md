@@ -12,8 +12,7 @@ permalink: /people/faculty/
     alt="Professor Image"
     class="professor-image"
   />
-  <strong style="font-size:30px; margin-bottom:5px; display:inline-block;">Biography</strong><br/>
-  I am an Assistant Professor in the <a href="https://cse.pusan.ac.kr/cse/index.do">Department of Computer Science and Engineering</a> and the <a href="https://bce.pusan.ac.kr/bce/index.do">College of BioMedical Convergence Engineering</a> at <a href="https://www.pusan.ac.kr/kor/Main.do">Pusan National University</a>. Before joining PNU, I was a Postdoctoral Scholar at UC Berkeley in the EECS Department. I obtained my Ph.D. in Electrical and Electronic Engineering from Yonsei University in 2022 under the guidance of Prof. Kwanghoon Sohn. I received my B.S. in the same department from Yonsei University in 2016. Additionally, I have worked as a research intern at Adobe and have been actively involved in various research collaborations.<br/>
+  <strong style="font-size:30px; margin-bottom:5px; display:inline-block;">Biography</strong><br/> I am an Assistant Professor in the <a href="https://cse.pusan.ac.kr/cse/index.do">Department of Computer Science and Engineering</a> and the <a href="https://bce.pusan.ac.kr/bce/index.do">College of BioMedical Convergence Engineering</a> at <a href="https://www.pusan.ac.kr/kor/Main.do">Pusan National University</a>. Before joining PNU, I was a Postdoctoral Scholar at UC Berkeley in the EECS Department. I obtained my Ph.D. in Electrical and Electronic Engineering from Yonsei University in 2022 under the guidance of Prof. Kwanghoon Sohn. I received my B.S. in the same department from Yonsei University in 2016. Additionally, I have worked as a research intern at Adobe and have been actively involved in various research collaborations.<br/><br/>
   You can find my <a href="{{ site.baseurl }}/assets/files/cv_srjeon.pdf">Curriculum Vitae</a> here.
 </p>
 
