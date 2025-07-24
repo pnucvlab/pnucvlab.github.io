@@ -336,7 +336,8 @@ h3:before {
   }
   
   .publication-image {
-	height: 50px;
+	height: 10px;
+	max-height: 10px;
 	width: auto;
 	margin-right: 20px;
   }
@@ -373,7 +374,8 @@ h3:before {
   
 	.publication-image {
 	  width: auto;
-	  height: 50px;
+	  height: 10px;
+	  max-height: 10px;
 	  margin: 0 auto 20px;
 	}
   
