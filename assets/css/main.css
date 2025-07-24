@@ -308,11 +308,10 @@ h3:before {
   }
   
   @media screen and (max-width: 800px) {
-	/* 세로 스택 전환하되, bio-section은 너비 제한하지 않음 */
 	.bio-section {
 	  display: block;
-	  width: 180px;
-	  max-width: 180px;
+	  width: 100vw;
+	  max-width: 100vw;
 	  margin: 0 auto 20px;
 	}
   
