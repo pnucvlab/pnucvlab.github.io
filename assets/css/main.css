@@ -518,20 +518,19 @@ h3:before {
 	margin-bottom: 2em;
   }
   .event-date {
-	font-size: 30px;
-	font-weight: bold;
+	font-size: 15px;
 	margin: 0 0 0.5em;
 	margin-left: 1ch;
   }
   
-  /* images: 2 per row */
-  .event-images {
+/* images: 3 per row */
+.event-images {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 8px;
   }
   .event-images img {
-	width: calc(50% - 4px); /* two per row with 8px gap */
+	width: calc((100% - 16px) / 3);
 	height: auto;
 	object-fit: cover;
 	display: block;
