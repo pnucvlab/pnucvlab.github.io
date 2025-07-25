@@ -19,18 +19,19 @@ body {
 	overflow: hidden;
 }
 
-/* Notice Image Fit */
+/* Notice Slide Layout */
 .notice-swiper .swiper-slide {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-start;
   }
-  
+
   .notice-image {
 	height: 100%;
 	width: auto;
+	max-width: none; 
 	display: block;
-  }  
+  }
 
 /* Text Container */
 	.notice-content {
