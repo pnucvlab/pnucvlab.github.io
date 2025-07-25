@@ -34,12 +34,15 @@ h3:before {
 }
 
 .jumbotron {
-	background: #8bccda;
-	margin: 0;
-	width: 100%;
-	padding: 1.5em 0;
-	min-height: auto;
-}
+	position: relative;
+	left: 50%;                 /* 뷰포트 중앙으로 이동 */
+	transform: translateX(-50%); /* 다시 반만 왼쪽으로 당겨서 화면전체 정렬 */
+	width: 100vw;               /* 뷰포트 전체 너비 */
+	margin: 0;                  /* 불필요한 외부 여백 제거 */
+	padding: 1.5em 0;           /* 상하 패딩 */
+	background-color: #8bccda;  /* 배경색 */
+	text-align: center;         /* 텍스트 중앙정렬 */
+  }
 
 .jumbotron h1 {
 	color: white;
