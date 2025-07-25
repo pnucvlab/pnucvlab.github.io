@@ -60,7 +60,7 @@ h3:before {
 	border-color: #40a8bf;
 	text-transform: uppercase;
 	font-size: 1.3em;
-	transition: transform 0.25s ease-in-out; /* transition for hide/show */
+	transition: transform 0.25s ease-in-out;
 }
 
 .navbar-default .navbar-header {
@@ -197,9 +197,8 @@ h3:before {
 	display: block !important;
 }
 
-/* Navbar hide on scroll */
 .navbar-default.navbar-hidden {
-	transform: translateY(-100%); /* hide navbar */
+	transform: translateY(-100%);
 }
 
 @media (max-width: 768px) {
@@ -210,11 +209,10 @@ h3:before {
 		display: none !important;
 	}
 	.navbar-default {
-		transition: transform 0.2s ease-in-out; /* mobile transition adjustment */
+		transition: transform 0.2s ease-in-out;
 	}
 }
 
-/* Side bar Option */ 
 .side-menu {
     position: fixed;
     top: 0;
@@ -304,14 +302,12 @@ h3:before {
     display: block;
 }
 
-/* Faculty Page Option */ 
 .bio-section {
 	display: flex;
 	align-items: flex-start;
 	margin-bottom: 40px;
 }
 
-/* Normal prof. img */  
 .bio-section img.professor-image {
 	float: none;
 	width: 230px;
@@ -321,14 +317,11 @@ h3:before {
 }
 
 @media screen and (max-width: 1000px) {
-	/* Zoom in biography text */
 	.bio-section {
 	  display: block;
 	  margin: 0 auto 20px;
 	  padding: 0 20px;
 	}
-	
-	/* Zoom in prof. img */
 	.bio-section img.professor-image {
 	  display: block;
 	  width: 60px;
@@ -338,7 +331,6 @@ h3:before {
 	}
 }
 
-/* Publications Page Option */ 
 .publication {
 	display: flex;
 	align-items: flex-start;
@@ -371,7 +363,6 @@ h3:before {
 	}
 }
 
-/* Students page responsive layout */ 
 .student-grid {
 	display: flex;
 	flex-wrap: wrap;
