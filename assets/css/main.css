@@ -436,7 +436,7 @@ h3:before {
 	}
 }
 
-/* layout */
+/* gallery page */
 .gallery-container {
 	display: flex;
 	gap: 2em;
@@ -463,7 +463,7 @@ h3:before {
 	transition: background-color 0.3s, color 0.3s;
 }
 .year-nav a:hover {
-	background-color: #ddd;
+	background-color: #999;
 	color: #fff;
 }
 
@@ -474,7 +474,7 @@ h3:before {
 
 /* year styling */
 .year-title {
-	font-size: 60px; /* enlarged 4× */
+	font-size: 240px;
 	margin: 0;
 }
 .year-divider {
@@ -485,7 +485,7 @@ h3:before {
 
 /* month grouping */
 .month-group {
-	margin-bottom: 24px;
+	margin-bottom: 100px;
 }
 .month-title {
 	font-size: 12px;
