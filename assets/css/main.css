@@ -474,27 +474,27 @@ h3:before {
 
 /* year styling */
 .year-title {
-	font-size: 100px;
+	font-size: 50px;  /* was 100px, halved */
 	margin: 0;
 }
 .year-divider {
 	border: none;
 	border-top: 1px solid #ccc;
-	margin: 4px 0 16px 0;
+	margin: 2px 0 8px 0;  /* was 4px 0 16px 0, halved */
 }
 
 /* month grouping */
 .month-group {
-	margin-bottom: 100px;
+	margin-bottom: 50px;  /* was 100px, halved */
 }
 .month-title {
-	font-size: 60px;
-	margin: 0 0 4px 1ch; /* indent by one character width */
+	font-size: 30px;  /* was 60px, halved */
+	margin: 0 0 2px 1ch;  /* was 0 0 4px 1ch, halved */
 }
 .month-divider {
 	border: none;
 	border-top: 1px solid #40a8bf;
-	margin: 2px 0 12px 0;
+	margin: 1px 0 6px 0;  /* was 2px 0 12px 0, halved */
 }
 
 /* gallery grid */
