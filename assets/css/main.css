@@ -466,7 +466,6 @@ h3:before {
 	background-color: #40a8bf;
 	color: #fff;
 }
-
 /* content */
 .gallery-content {
 	flex: 1;
@@ -476,25 +475,32 @@ h3:before {
 .year-title {
 	font-size: 50px;
 	margin: 0;
+	padding: 0;
+	line-height: 1;
 }
 .year-divider {
 	border: none;
 	border-top: 1px solid #999;
-	margin: 0 0 1px 0;
+	margin: 0;       /* remove all margins */
+	padding: 0;
 }
 
 /* month grouping */
 .month-group {
-	margin-bottom: 50px;  /* was 100px, halved */
+	margin-bottom: 50px;
 }
 .month-title {
-	font-size: 30px;  /* was 60px, halved */
-	margin: 0 0 2px 1ch;  /* was 0 0 4px 1ch, halved */
+	font-size: 30px;
+	margin: 0;
+	padding: 0;
+	line-height: 1;
+	text-indent: 1ch;
 }
 .month-divider {
 	border: none;
 	border-top: 1px solid #999;
-	margin: 1px 0 4px 0;
+	margin: 0;       /* remove all margins */
+	padding: 0;
 }
 
 /* gallery grid */
@@ -516,23 +522,23 @@ h3:before {
 /* event entry styling */
 .event-entry {
 	margin-bottom: 2em;
-  }
-  .event-date {
+}
+.event-date {
 	font-size: 15px;
-	margin: 0 0 0.5em;
+	margin: 0;
+	padding: 0;
 	margin-left: 2ch;
-  }
-  
+}
+
 /* images: 3 per row */
 .event-images {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 8px;
-  }
-  .event-images img {
+}
+.event-images img {
 	width: calc((100% - 16px) / 3);
 	height: auto;
 	object-fit: cover;
 	display: block;
-  }
-  
+}
