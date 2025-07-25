@@ -1,84 +1,31 @@
 <!doctype html>
 <html lang="en">
-    {% include head.html %}
-    <body>
-        {% include header.html %}
-        
-        <div class="container">
+  {% include head.html %}
+  <body>
+    {% include header.html %}
 
-            {% if page.id %}
-                <p>
-                    <strong>{{ page.published | date: '%B %d, %Y' }}</strong>
-                    (last updated: {{ page.date | date: '%B %d, %Y' }})
-                    <br>
-                    {% for tag in page.tags %}
-                        <a class="label label-default" href="/tags/#{{ tag | slugify }}">{{ tag }}</a>
-                    {% endfor %}
-                </p>
-
-                {% if page.github %}
-                    <p>
-                        <a href="{{ page.github }}" class="btn btn-default">
-                            <i class="fa fa-github fa-2x"></i>
-                            {{ page.github }}
-                        </a>
-                    </p>
-                {% endif %}
-
-                <hr>
-
-                <h1>Abstract</h1>
-            {% endif %}
-
-            {{ content }}
-
-            {% if page.id %}
-                <p>
-                    Originally published {{ page.published | date: '%B %d, %Y' }}
-                    <br>
-                    Latest update {{ page.date | date: '%B %d, %Y' }}
-                </p>
-
-                <p>
-                    <strong>Related posts :</strong>
-                </p>
-
-                <ul>
-                    {% for allpost in site.posts %}
-                        {% for tag in page.tags %}
-                            {% if allpost.tags contains tag and allpost.id != page.id %}
-                                <li>
-                                    <a href="{{ allpost.url }}">{{ allpost.title }}</a>
-                                </li>
-                                {% break %}
-                            {% endif %}
-                        {% endfor %}
-                    {% endfor %}
-                </ul>
-            {% endif %}
-
-        </div>
-
+    <div class="container">
+      {{ content }}
+    </div>
 
     <script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/bootstrap.min.js' | relative_url }}"></script>
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const btn     = document.getElementById('side-menu-toggle');
-            const side    = document.getElementById('side-menu');
-            const overlay = document.getElementById('menu-overlay');
-            if (btn && side && overlay) {
-                btn.addEventListener('click', function() {
-                    side.classList.toggle('active');
-                    overlay.classList.toggle('active');
-                });
-                overlay.addEventListener('click', function() {
-                    side.classList.remove('active');
-                    overlay.classList.remove('active');
-                });
-            }
-        });
+      document.addEventListener('DOMContentLoaded', function() {
+        const btn     = document.getElementById('side-menu-toggle');
+        const side    = document.getElementById('side-menu');
+        const overlay = document.getElementById('menu-overlay');
+        if (btn && side && overlay) {
+          btn.addEventListener('click', function() {
+            side.classList.toggle('active');
+            overlay.classList.toggle('active');
+          });
+          overlay.addEventListener('click', function() {
+            side.classList.remove('active');
+            overlay.classList.remove('active');
+          });
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
