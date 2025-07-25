@@ -480,7 +480,7 @@ h3:before {
 .year-divider {
 	border: none;
 	border-top: 1px solid #999;
-	margin: 2px 0 8px 0;  /* was 4px 0 16px 0, halved */
+	margin: 1px 4 8px 0;
 }
 
 /* month grouping */
@@ -494,7 +494,7 @@ h3:before {
 .month-divider {
 	border: none;
 	border-top: 1px solid #999;
-	margin: 1px 0 6px 0;  /* was 2px 0 12px 0, halved */
+	margin: 1px 0 4px 0;
 }
 
 /* gallery grid */
@@ -518,9 +518,10 @@ h3:before {
 	margin-bottom: 2em;
   }
   .event-date {
-	font-size: 16px;
+	font-size: 30px;
 	font-weight: bold;
 	margin: 0 0 0.5em;
+	margin-left: 1ch;
   }
   
   /* images: 2 per row */
