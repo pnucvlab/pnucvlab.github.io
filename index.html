@@ -8,23 +8,39 @@ permalink: /
 <div class="notice-slider-container">
   <div class="swiper notice-swiper">
     <div class="swiper-wrapper">
+
       <!-- Slide 1 -->
       <div class="swiper-slide notice-slide">
-        <img src="assets/images/gallery/2025-07-02/0.jpg" alt="Notice1" class="notice-image">
+        <div class="notice-image-wrapper">
+          <img
+            src="{{ '/assets/images/gallery/2025-07-02/0.jpg' | relative_url }}"
+            alt="Notice1"
+            class="notice-image"
+          >
+        </div>
         <div class="notice-content">
           <h3>공지 제목 1</h3>
           <p>첫 번째 공지 설명을 여기에 넣으세요.</p>
         </div>
       </div>
+
       <!-- Slide 2 -->
       <div class="swiper-slide notice-slide">
-        <img src="assets/images/gallery/2025-02-28/0.jpg" alt="Notice2" class="notice-image">
+        <div class="notice-image-wrapper">
+          <img
+            src="{{ '/assets/images/gallery/2025-02-28/0.jpg' | relative_url }}"
+            alt="Notice2"
+            class="notice-image"
+          >
+        </div>
         <div class="notice-content">
           <h3>공지 제목 2</h3>
           <p>두 번째 공지 설명을 여기에 넣으세요.</p>
         </div>
       </div>
+
       <!-- 필요 시 더 추가 -->
+
     </div>
     <div class="swiper-pagination"></div>
     <div class="swiper-button-prev"></div>

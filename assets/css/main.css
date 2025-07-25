@@ -17,29 +17,37 @@ body {
 	height: 600px;
 	margin: 0 auto 2em;
 	overflow: hidden;
-}
-
-/* Notice Slide Layout */
-.notice-swiper .swiper-slide {
+  }
+  
+  /* Slide Layout */
+  .notice-swiper .swiper-slide {
 	display: flex;
 	align-items: center;
-	justify-content: flex-start;
   }
-
+  
+  /* Image Wrapper: overflow hidden + centering */
+  .notice-image-wrapper {
+	flex: 0 0 50%;        /* 너비 50% 고정 */
+	height: 100%;         
+	overflow: hidden;     
+	display: flex;
+	justify-content: center; /* 가로 중앙 정렬 */
+  }
+  
+  /* Actual Image: 높이 딱 맞추고 비율 유지 */
   .notice-image {
-	height: 100%;
-	width: auto;
-	max-width: none; 
+	height: 100%;   
+	width: auto;    
 	display: block;
   }
-
-/* Text Container */
-	.notice-content {
-	flex: 0 0 50%;
+  
+  /* Text Container */
+  .notice-content {
+	flex: 1;
 	padding: 1.5em;
 	background: rgba(0, 0, 0, 0.5);
 	color: #fff;
-}
+  }
 
 h1 {
 	counter-reset: h2counter;
