@@ -8,8 +8,8 @@ menu:
     submenu:
       - name: Faculty
         link: /people/faculty
-      - name: Students
-        link: /people/students
+      - name: Members
+        link: /people/members
   - name: Publications
     link: /publications
   - name: Gallery
