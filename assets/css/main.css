@@ -474,13 +474,12 @@ h3:before {
 
 /* year styling */
 .year-title {
-	font-size: 50px;  /* was 100px, halved */
+	font-size: 50px;
 	margin: 0;
 }
 .year-divider {
 	border: none;
 	border-top: 1px solid #999;
-	margin: 1px 4 8px 0;
 }
 
 /* month grouping */
@@ -520,7 +519,7 @@ h3:before {
   .event-date {
 	font-size: 15px;
 	margin: 0 0 0.5em;
-	margin-left: 1ch;
+	margin-left: 2ch;
   }
   
 /* images: 3 per row */
