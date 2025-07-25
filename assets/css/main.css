@@ -512,3 +512,27 @@ h3:before {
 	height: auto;
 	display: block;
 }
+
+/* event entry styling */
+.event-entry {
+	margin-bottom: 2em;
+  }
+  .event-date {
+	font-size: 16px;
+	font-weight: bold;
+	margin: 0 0 0.5em;
+  }
+  
+  /* images: 2 per row */
+  .event-images {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+  }
+  .event-images img {
+	width: calc(50% - 4px); /* two per row with 8px gap */
+	height: auto;
+	object-fit: cover;
+	display: block;
+  }
+  
