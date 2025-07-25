@@ -60,6 +60,7 @@ h3:before {
 	border-color: #40a8bf;
 	text-transform: uppercase;
 	font-size: 1.3em;
+	transition: transform 0.25s ease-in-out; /* transition for hide/show */
 }
 
 .navbar-default .navbar-header {
@@ -196,12 +197,20 @@ h3:before {
 	display: block !important;
 }
 
+/* Navbar hide on scroll */
+.navbar-default.navbar-hidden {
+	transform: translateY(-100%); /* hide navbar */
+}
+
 @media (max-width: 768px) {
 	.navbar-default .navbar-toggle {
 		display: block;
 	}
 	#navbar-collapse-menu {
 		display: none !important;
+	}
+	.navbar-default {
+		transition: transform 0.2s ease-in-out; /* mobile transition adjustment */
 	}
 }
 
@@ -285,7 +294,7 @@ h3:before {
     top: 0;
     left: 0;
     width: 100%;
-   	height: 100%;
+    height: 100%;
     background-color: rgba(0,0,0,0.5);
     z-index: 1040;
     display: none;
@@ -302,6 +311,7 @@ h3:before {
 	margin-bottom: 40px;
 }
 
+/* Normal prof. img */  
 .bio-section img.professor-image {
 	float: none;
 	width: 230px;
@@ -311,12 +321,14 @@ h3:before {
 }
 
 @media screen and (max-width: 1000px) {
+	/* Zoom in biography text */
 	.bio-section {
 	  display: block;
 	  margin: 0 auto 20px;
 	  padding: 0 20px;
 	}
 	
+	/* Zoom in prof. img */
 	.bio-section img.professor-image {
 	  display: block;
 	  width: 60px;
@@ -414,33 +426,5 @@ h3:before {
 @media (max-width: 1000px) {
 	.profile-card {
 	  flex: 0 0 100%;
-	}
-}
-
-/* Navbar hide/show on scroll */
-.navbar-fixed-top {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	z-index: 1000;
-	transition: transform 0.25s ease-in-out;
-}
-
-.headroom--unpinned {
-	transform: translateY(-100%);
-}
-
-.headroom--pinned {
-	transform: translateY(0);
-}
-
-.navbar-hidden {
-	transform: translateY(-100%);
-}
-
-@media (max-width: 768px) {
-	.navbar-fixed-top {
-		transition: transform 0.2s ease-in-out;
 	}
 }
