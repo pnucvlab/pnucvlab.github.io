@@ -35,30 +35,28 @@ h3:before {
 
 .jumbotron {
 	position: relative;
-	left: 50%;                 /* 뷰포트 중앙으로 이동 */
-	transform: translateX(-50%); /* 다시 반만 왼쪽으로 당겨서 화면전체 정렬 */
-	width: 100vw;               /* 뷰포트 전체 너비 */
-	margin: 0;                  /* 불필요한 외부 여백 제거 */
-	padding: 1.5em 0;           /* 상하 패딩 */
-	background-color: #8bccda;  /* 배경색 */
-	text-align: center;         /* 텍스트 중앙정렬 */
+	left: 50%;
+	transform: translateX(-50%);
+	width: 100vw;
+	margin: 0;
+	padding: 1em 0;            /* ↘ 상하 패딩을 1.5em → 1em 으로 축소 */
+	background-color: #8bccda;
+	text-align: center;
   }
-
-.jumbotron h1 {
+  
+  .jumbotron h1 {
 	color: white;
 	font-size: 5em;
-	text-align: center;
-	font-weight: bold;
-	margin: 0.2em;
-	line-height: 1.2;
-}
-
-.jumbotron h1 .highlight {
-	background: transparent;
+	margin: 0;                 /* ↘ 마진을 0.2em → 0 으로 제거 */
+	line-height: 1.1;          /* ↘ 줄 사이를 좀 더 좁게 */
+  }
+  
+  .jumbotron h1 .highlight {
 	color: #40a8bf;
+	background: transparent;
 	font-size: 1em;
 	font-weight: bold;
-}
+  }
 
 .navbar-default {
 	background-color: #8bccda;
