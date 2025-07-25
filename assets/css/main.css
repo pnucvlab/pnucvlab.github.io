@@ -22,13 +22,13 @@ body {
 /* Notice Image Fit */
 .notice-swiper .swiper-slide {
 	display: flex;
-	align-items: center;    /* 세로 중앙 정렬 */
-	justify-content: center;/* 가로 중앙 정렬 */
+	align-items: center;
+	justify-content: center;
   }
   
   .notice-image {
-	height: 100%;  /* 프레임 높이에 맞춰 늘리기 */
-	width: auto;   /* 원본 비율 유지 */
+	height: 100%;
+	width: auto;
 	display: block;
   }  
 
