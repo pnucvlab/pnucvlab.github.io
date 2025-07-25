@@ -543,3 +543,15 @@ h3:before {
 	object-fit: cover;
 	display: block;
 }
+
+/* small screens: stack event images vertically at ≤1000px */
+@media (max-width: 1000px) {
+	.event-images {
+	  flex-direction: column;
+	  gap: 8px;
+	}
+	.event-images img {
+	  width: 100%;
+	  height: auto;
+	}
+  }
