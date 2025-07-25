@@ -435,3 +435,73 @@ h3:before {
 	  flex: 0 0 100%;
 	}
 }
+
+/* layout */
+.gallery-container {
+	display: flex;
+	gap: 2em;
+  }
+  
+  /* year nav */
+  .year-nav {
+	flex: 0 0 100px;
+  }
+  .year-nav ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+  }
+  .year-nav li {
+	margin-bottom: 0.5em;
+  }
+  .year-nav a {
+	text-decoration: none;
+	color: inherit;
+	font-weight: bold;
+  }
+  
+  /* content */
+  .gallery-content {
+	flex: 1;
+  }
+  
+  /* year styling */
+  .year-title {
+	font-size: 15px;
+	margin: 0;
+  }
+  .year-divider {
+	border: none;
+	border-top: 1px solid #ccc;
+	margin: 4px 0 16px 0;
+  }
+  
+  /* month grouping */
+  .month-group {
+	margin-bottom: 24px;
+  }
+  .month-title {
+	font-size: 12px;
+	margin: 0 0 4px 1ch; /* indent by one character width */
+  }
+  .month-divider {
+	border: none;
+	border-top: 1px solid #eee;
+	margin: 2px 0 12px 0;
+  }
+  
+  /* gallery grid */
+  .gallery-grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+  }
+  .gallery-item {
+	flex: 0 0 calc(25% - 16px);
+	box-sizing: border-box;
+  }
+  .gallery-item img {
+	width: 100%;
+	height: auto;
+	display: block;
+  }
