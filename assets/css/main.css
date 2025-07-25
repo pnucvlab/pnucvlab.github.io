@@ -46,9 +46,10 @@ h3:before {
   
   .jumbotron h1 {
 	color: white;
+	font-weight: bold;
 	font-size: 5em;
-	margin: 0;                 /* ↘ 마진을 0.2em → 0 으로 제거 */
-	line-height: 1.1;          /* ↘ 줄 사이를 좀 더 좁게 */
+	margin: 0;
+	line-height: 1.1;
   }
   
   .jumbotron h1 .highlight {
