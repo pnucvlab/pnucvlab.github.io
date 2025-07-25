@@ -35,7 +35,9 @@ h3:before {
 
 .jumbotron {
 	background: #8bccda;
-	padding: 0.1em;
+	margin: 0;
+	width: 100%;
+	padding: 1.5em 0;
 	min-height: auto;
 }
 
