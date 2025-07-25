@@ -409,7 +409,7 @@ h3:before {
 
 .position-text {
 	display: inline-block;
-	margin-left: 20px;
+	margin-left: 30px;
 	font-size: 16px;
 	color: #333;
 	text-decoration: underline;
@@ -417,7 +417,7 @@ h3:before {
 
 .topic-text {
 	display: inline-block;
-	margin-left: 20px;
+	margin-left: 30px;
 	font-size: 16px;
 	color: #333;
 	font-style: italic;
@@ -425,7 +425,7 @@ h3:before {
 
 .email-text {
 	display: inline-block;
-	margin-left: 20px;
+	margin-left: 30px;
 	font-size: 16px;
 	color: #333;
 }
