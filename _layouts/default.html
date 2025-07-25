@@ -8,6 +8,7 @@
       {{ content }}
     </div>
 
+    <!-- 기존 스크립트들 -->
     <script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/bootstrap.min.js' | relative_url }}"></script>
     <script>
@@ -25,6 +26,21 @@
             overlay.classList.remove('active');
           });
         }
+      });
+    </script>
+
+    <!-- Load Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <!-- Initialize Swiper Script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        new Swiper('.notice-swiper', {
+          loop: true,
+          autoplay: { delay: 5000, disableOnInteraction: false },
+          speed: 800,
+          pagination: { el: '.swiper-pagination', clickable: true },
+          navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+        });
       });
     </script>
   </body>
