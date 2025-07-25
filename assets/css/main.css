@@ -366,7 +366,7 @@ h3:before {
 .student-grid {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 16px;
+	gap: 10px;
 	justify-content: space-between;
 }
 
@@ -392,8 +392,8 @@ h3:before {
 
 .profile-info .name {
 	font-weight: bold;
-	font-size: 18px;
-	margin-right: 8px;
+	font-size: 20px;
+	margin-right: 6px;
 }
 
 .profile-info .home-icon {
@@ -407,10 +407,26 @@ h3:before {
 	color: #0056b3;
 }
 
+.position-text {
+	display: inline-block;
+	margin-left: 18px;
+	font-size: 16px;
+	color: #333;
+	text-decoration: underline;
+}
+
+.topic-text {
+	display: inline-block;
+	margin-left: 18px;
+	font-size: 16px;
+	color: #333;
+	font-style: italic;
+}
+
 .email-text {
 	display: inline-block;
-	margin-left: 16px;
-	font-size: 14px;
+	margin-left: 18px;
+	font-size: 16px;
 	color: #333;
 }
 
