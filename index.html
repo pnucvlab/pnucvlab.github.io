@@ -1,0 +1,42 @@
+---
+layout: default
+title: home
+permalink: /
+---
+
+<!-- 1. Bulletin Board (슬라이딩 공지판) -->
+<div id="slider-panel" class="slider-panel">
+  <button id="close-panel" class="close-btn">&times;</button>
+  <h2>공지사항</h2>
+  <ul class="notice-list">
+    <li><a href="#">[2025.07.20] 사이트 리뉴얼 안내</a></li>
+    <li><a href="#">[2025.07.15] 여름 학술대회 안내</a></li>
+    <li><a href="#">[2025.07.01] 신규 프로젝트 모집</a></li>
+  </ul>
+</div>
+
+<!-- 2. Hero Jumbotron -->
+<div class="jumbotron">
+  <h1 class="jumbotron-title">
+    Welcome to <br>
+    <span class="highlight">P</span>usan
+    <span class="highlight">N</span>ational
+    <span class="highlight">U</span>niversity <br>
+    <span class="highlight">C</span>omputer
+    <span class="highlight">V</span>ision
+    <span class="highlight">Lab</span>oratory
+  </h1>
+</div>
+
+<div class="container">
+  <!-- index page 에만 들어갈 추가 콘텐츠 -->
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var panel = document.getElementById('slider-panel');
+  var close = document.getElementById('close-panel');
+  setTimeout(function(){ panel.classList.add('open'); }, 300);
+  close.addEventListener('click', function(){ panel.classList.remove('open'); });
+});
+</script>
