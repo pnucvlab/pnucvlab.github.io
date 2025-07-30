@@ -545,7 +545,7 @@ body {
 /* year nav */
 .year-nav {
 	flex: 0 0 100px;
-	font-size: 1.2em
+	font-size: 100px;
 }
 .year-nav ul {
 	list-style: none;
