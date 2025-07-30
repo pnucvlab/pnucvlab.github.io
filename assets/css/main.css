@@ -26,18 +26,16 @@ body {
   .notice-swiper .notice-slide .notice-title {
 	font-size: 50px;
 	font-weight: 700;
-	margin-bottom: 0.5em;
-	text-align: left;
+	text-align: right;
 	color: #000;
   }
   
   .notice-swiper .notice-slide .notice-text {
 	font-size: 20px;
 	margin: 0;
-	text-align: left;
+	text-align: right;
 	color: #000;
   }
-  
 
   .notice-swiper .swiper-slide .notice-image-wrapper .notice-image {
 	position: absolute;
