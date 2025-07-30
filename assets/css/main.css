@@ -24,16 +24,16 @@ body {
   }
 
   .notice-swiper .notice-slide .notice-title {
-	font-size: 50px;
+	font-size: 40px;
 	font-weight: 700;
 	text-align: right;
 	color: #ffffff;
   }
   
   .notice-swiper .notice-slide .notice-text {
-	font-size: 30px;
+	font-size: 25px;
 	margin: 0;
-	font-weight: 700;
+	font-weight: 600;
 	text-align: right;
 	color: #ffffff;
   }
