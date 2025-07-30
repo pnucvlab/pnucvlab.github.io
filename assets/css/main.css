@@ -139,29 +139,36 @@ h3:before {
 	font-size: 1.3em;
 }
 
+/* Jumbotron 컨테이너는 그대로 */
 .jumbotron {
 	position: relative;
 	left: 50%;
 	transform: translateX(-50%);
 	width: 100vw;
 	margin: 0;
-	padding: 1em 0;            /* ↘ 상하 패딩을 1.5em → 1em 으로 축소 */
+	padding: 1em 0;
 	background-color: #8bccda;
 	text-align: center;
+	/* jumbotron 내부 기본 폰트 크기를 설정해서 모든 상대 단위(em, rem)가 여기 기준으로 동작 */
+	font-size: 1rem; /* 1rem = 브라우저 기본(보통 16px) */
   }
   
-  .jumbotron h1 {
+  /* .jumbotron-title 으로 h1 스타일 대체 */
+  .jumbotron-title {
 	color: white;
 	font-weight: bold;
-	font-size: 5em;
+	/* rem 단위로 지정: jumbotron font-size가 바뀌면 자동으로 비율이 유지됨 */
+	font-size: 5rem; /* 5 × 1rem = 80px */
 	margin: 0;
 	line-height: 1.1;
   }
   
-  .jumbotron h1 .highlight {
+  /* highlight 스팬도 상대 단위(em)로 */
+  .jumbotron-title .highlight {
 	color: #40a8bf;
 	background: transparent;
-	font-size: 1em;
+	/* em 단위로 지정: .jumbotron-title의 font-size 기준으로 비율 유지 */
+	font-size: 0.2em; /* 0.2 × 5rem = 1rem */
 	font-weight: bold;
   }
 
