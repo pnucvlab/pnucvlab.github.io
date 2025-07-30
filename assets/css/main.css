@@ -11,12 +11,11 @@ body {
 	background-color: #ffffff;
 }
 
-/* Swiper 슬라이드 전체를 상대위치로 */
+/* Notice Image Wrapper */
 .notice-swiper .swiper-slide {
 	position: relative;
   }
   
-  /* 1) 이미지 래퍼: full-width, 고정 높이, overflow 숨김 */
   .notice-swiper .swiper-slide .notice-image-wrapper {
 	position: relative;
 	width: 100%;
@@ -24,7 +23,6 @@ body {
 	overflow: hidden;
   }
   
-  /* 2) 이미지: 래퍼에 꽉 차게, 비율 유지 */
   .notice-swiper .swiper-slide .notice-image-wrapper .notice-image {
 	position: absolute;
 	top: 0;
@@ -34,7 +32,6 @@ body {
 	object-fit: cover;
   }
   
-  /* 3) 텍스트 컨테이너: 절대위치, 반투명 배경, 흰 글씨 */
   .notice-swiper .swiper-slide .notice-image-wrapper .notice-content {
 	position: absolute;
 	bottom: 0;
