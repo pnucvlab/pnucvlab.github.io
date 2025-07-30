@@ -19,7 +19,7 @@ body {
   .notice-swiper .swiper-slide .notice-image-wrapper {
 	position: relative;
 	height: 600px;
-	width: auto;
+	width: 1000px;
 	overflow: hidden;
   }
 
