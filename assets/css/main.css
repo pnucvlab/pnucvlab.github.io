@@ -30,8 +30,14 @@ body {
 	margin-right: 2em;
 	text-align: right;
 	color: #ffffff;
+	
   }
-  
+  .notice-swiper .swiper-pagination {
+	position: relative !important;
+	bottom: auto !important;
+	margin: 0.5em auto 0;
+  }
+
   .notice-swiper .notice-slide .notice-text {
 	font-size: 15px;
 	margin-right: 4em;
