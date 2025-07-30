@@ -70,7 +70,9 @@ body {
   }
   
   .notice-slider-container {
-	margin-bottom: 1em;
+	width: 80vw;
+	max-width: 1000px;
+	margin: 0 auto 1em;
   }
 
 /* small screens: stack event images vertically at ≤1000px */
