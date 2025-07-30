@@ -22,7 +22,23 @@ body {
 	height: 600px;
 	overflow: hidden;
   }
+
+  .notice-swiper .notice-slide .notice-title {
+	font-size: 50px;
+	font-weight: 700;
+	margin-bottom: 0.5em;
+	text-align: left;
+	color: #000;
+  }
   
+  .notice-swiper .notice-slide .notice-text {
+	font-size: 20px;
+	margin: 0;
+	text-align: left;
+	color: #000;
+  }
+  
+
   .notice-swiper .swiper-slide .notice-image-wrapper .notice-image {
 	position: absolute;
 	top: 0;
@@ -37,7 +53,7 @@ body {
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	color: rgba(0, 0, 0, 0.5);
+	color: rgba(0, 0, 0, 0.2);
 	padding: 1.5em;
 	box-sizing: border-box;
   }
