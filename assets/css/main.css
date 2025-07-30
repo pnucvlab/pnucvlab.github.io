@@ -46,12 +46,13 @@ body {
 	object-fit: cover;
   }
   
-  .notice-swiper .swiper-slide .notice-image-wrapper .notice-content {
+  .notice-swiper .notice-slide .notice-content {
 	position: absolute;
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	color: rgba(0, 0, 0, 0.2);
+	background-color: rgba(128, 128, 128, 0.2);
+	color: #000;
 	padding: 1.5em;
 	box-sizing: border-box;
   }
