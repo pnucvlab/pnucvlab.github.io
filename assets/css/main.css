@@ -18,14 +18,14 @@ body {
   
   .notice-swiper .swiper-slide .notice-image-wrapper {
 	position: relative;
-	height: 400px;
+	height: 600px;
 	width: auto;
 	background-color: #8bccda;
 	overflow: hidden;
   }
 
   .notice-swiper .notice-slide .notice-title {
-	font-size: 25px;
+	font-size: 30px;
 	font-weight: 700;
 	margin-right: 1em;
 	text-align: right;
@@ -39,7 +39,7 @@ body {
   }
 
   .notice-swiper .notice-slide .notice-text {
-	font-size: 10px;
+	font-size: 15px;
 	margin-right: 2em;
 	font-weight: 600;
 	text-align: right;
@@ -545,7 +545,7 @@ body {
 /* year nav */
 .year-nav {
 	flex: 0 0 100px;
-	font-size: 100px;
+	font-size: 50px;
 }
 .year-nav ul {
 	list-style: none;
