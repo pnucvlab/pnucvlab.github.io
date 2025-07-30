@@ -168,7 +168,7 @@ h3:before {
 	color: #40a8bf;
 	background: transparent;
 	/* em 단위로 지정: .jumbotron-title의 font-size 기준으로 비율 유지 */
-	font-size: 0.2em; /* 0.2 × 5rem = 1rem */
+	font-size: 5rem; /* 0.2 × 5rem = 1rem */
 	font-weight: bold;
   }
 
