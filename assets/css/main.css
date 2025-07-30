@@ -399,7 +399,8 @@ body {
 /* Home Intro Section 스타일 */
 .home-intro {
   padding: 60px 0; 
-  text-align: center; 
+  text-align: center;
+  font-size: 15px;
 }
 
 .bio-section {
