@@ -24,7 +24,7 @@ body {
   }
 
   .notice-swiper .notice-slide .notice-title {
-	font-size: 40px;
+	font-size: 30px;
 	font-weight: 700;
 	margin-right: 2em;
 	text-align: right;
@@ -32,7 +32,7 @@ body {
   }
   
   .notice-swiper .notice-slide .notice-text {
-	font-size: 25px;
+	font-size: 15px;
 	margin-right: 2em;
 	font-weight: 600;
 	text-align: right;
