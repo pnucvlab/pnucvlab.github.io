@@ -32,6 +32,7 @@ body {
 	color: #ffffff;
 
   }
+
   .notice-swiper .swiper-pagination {
 	position: relative !important;
 	bottom: auto !important;
@@ -409,6 +410,12 @@ h3:before {
 
 .menu-overlay.active {
     display: block;
+}
+
+/* Home Intro Section 스타일 */
+.home-intro {
+  padding: 60px 0; 
+  text-align: center; 
 }
 
 .bio-section {
