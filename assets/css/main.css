@@ -99,12 +99,12 @@ body {
   
 	/* 제목·본문 폰트 크기 및 중앙 정렬 */
 	.notice-swiper .notice-slide .notice-title {
-	  font-size: 9px;
+	  font-size: 30px;
 	  margin: 0;
 	  text-align: center;
 	}
 	.notice-swiper .notice-slide .notice-text {
-	  font-size: 6px;
+	  font-size: 15px;
 	  margin: 0;
 	  text-align: center;
 	}
