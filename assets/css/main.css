@@ -37,8 +37,7 @@ body {
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	background: rgba(0, 0, 0, 0.5);
-	color: #ffffff;
+	color: rgba(0, 0, 0, 0.5);
 	padding: 1.5em;
 	box-sizing: border-box;
   }
