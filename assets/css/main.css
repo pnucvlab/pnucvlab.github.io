@@ -18,16 +18,16 @@ body {
   
   .notice-swiper .swiper-slide .notice-image-wrapper {
 	position: relative;
-	height: 780px;
+	height: 400px;
 	width: auto;
 	background-color: #8bccda;
 	overflow: hidden;
   }
 
   .notice-swiper .notice-slide .notice-title {
-	font-size: 50px;
+	font-size: 25px;
 	font-weight: 700;
-	margin-right: 2em;
+	margin-right: 1em;
 	text-align: right;
 	color: #ffffff;
 
@@ -39,8 +39,8 @@ body {
   }
 
   .notice-swiper .notice-slide .notice-text {
-	font-size: 20px;
-	margin-right: 4em;
+	font-size: 10px;
+	margin-right: 2em;
 	font-weight: 600;
 	text-align: right;
 	color: #ffffff;
@@ -62,15 +62,15 @@ body {
 	width: 100%;
 	background-color: rgba(128, 128, 128, 0.5);
 	color: #ffffff;
-	padding: 1em;
+	padding: 0.5em;
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
-	gap: 0.2em;
+	gap: 0.1em;
   }
   
   .notice-slider-container {
-	margin-bottom: 2em;
+	margin-bottom: 1em;
   }
 
 /* small screens: stack event images vertically at ≤1000px */
@@ -97,12 +97,12 @@ body {
   
 	/* 제목·본문 폰트 크기 및 중앙 정렬 */
 	.notice-swiper .notice-slide .notice-title {
-	  font-size: 18px;
+	  font-size: 9px;
 	  margin: 0;
 	  text-align: center;
 	}
 	.notice-swiper .notice-slide .notice-text {
-	  font-size: 12px;
+	  font-size: 6px;
 	  margin: 0;
 	  text-align: center;
 	}
@@ -117,26 +117,8 @@ body {
 	}
   }  
 
-h1 {
-	counter-reset: h2counter;
-}
-
-h2 {
-	counter-reset: h3counter;
-}
-
-h2:before {
-	content: counter(h2counter) ".\0000a0\0000a0";
-	counter-increment: h2counter;
-}
-
-h3:before {
-	content: counter(h2counter) "." counter(h3counter) ".\0000a0\0000a0";
-	counter-increment: h3counter;
-}
-
 .container {
-	font-size: 1.3em;
+	font-size: 0.6em;
 }
 
 .jumbotron {
@@ -148,13 +130,13 @@ h3:before {
 	padding: 1em 0;
 	background-color: #8bccda;
 	text-align: center;
-	font-size: 1em;
+	font-size: 0.5em;
   }
   
   .jumbotron-title {
 	color: white;
 	font-weight: bold;
-	font-size: 5em;
+	font-size: 2.5em;
 	margin: 0;
 	line-height: 1.1;
   }
