@@ -25,21 +25,20 @@ body {
   }
 
   .notice-swiper .notice-slide .notice-title {
-	font-size: 40px;
+	font-size: 50px;
 	font-weight: 700;
 	margin-right: 2em;
 	text-align: right;
 	color: #ffffff;
-	
+
   }
   .notice-swiper .swiper-pagination {
 	position: relative !important;
 	bottom: auto !important;
-	margin: 0.5em auto 0;
   }
 
   .notice-swiper .notice-slide .notice-text {
-	font-size: 15px;
+	font-size: 20px;
 	margin-right: 4em;
 	font-weight: 600;
 	text-align: right;
@@ -102,7 +101,7 @@ body {
 	  text-align: center;
 	}
 	.notice-swiper .notice-slide .notice-text {
-	  font-size: 14px;
+	  font-size: 12px;
 	  margin: 0;
 	  text-align: center;
 	}
