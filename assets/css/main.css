@@ -18,14 +18,14 @@ body {
   
   .notice-swiper .swiper-slide .notice-image-wrapper {
 	position: relative;
-	height: 600px;
+	height: 800px;
 	width: auto;
 	background-color: #8bccda;
 	overflow: hidden;
   }
 
   .notice-swiper .notice-slide .notice-title {
-	font-size: 30px;
+	font-size: 40px;
 	font-weight: 700;
 	margin-right: 1em;
 	text-align: right;
@@ -39,7 +39,7 @@ body {
   }
 
   .notice-swiper .notice-slide .notice-text {
-	font-size: 15px;
+	font-size: 20px;
 	margin-right: 2em;
 	font-weight: 600;
 	text-align: right;
@@ -122,32 +122,6 @@ body {
 .container {
 	font-size: 0.6em;
 }
-
-.jumbotron {
-	position: relative;
-	left: 50%;
-	transform: translateX(-50%);
-	width: 100vw;
-	margin: 0;
-	padding: 1em 0;
-	background-color: #8bccda;
-	text-align: center;
-	font-size: 0.5em;
-  }
-  
-  .jumbotron-title {
-	color: white;
-	font-weight: bold;
-	font-size: 10em;
-	margin: 0;
-	line-height: 1.1;
-  }
-
-  .jumbotron-title .highlight {
-	color: #40a8bf;
-	background: transparent;
-	font-weight: bold;
-  }
 
 .navbar-default {
 	background-color: #8bccda;
