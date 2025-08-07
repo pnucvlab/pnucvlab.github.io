@@ -281,6 +281,27 @@ body {
 	}
 }
 
+.latest-news {
+	text-align: left;
+	margin-top: 2em;
+  }
+  
+  .news-title {
+	font-size: 30px;
+	font-weight: bold;
+	margin-bottom: 0.5em;
+  }
+  
+  .news-list {
+	list-style: disc;
+	padding-left: 1.5em;
+  }
+  
+  .news-list li {
+	font-size: 15px;
+	margin-bottom: 0.3em;
+  }
+
 .side-menu {
     position: fixed;
     top: 0;
