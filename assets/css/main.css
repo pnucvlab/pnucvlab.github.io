@@ -427,6 +427,11 @@ body {
 	  margin: 0 auto 20px;
 	}
 }
+/* ===== Introduction Body Text ===== */
+.introduction-body {
+	font-size: 13px;
+	margin: 15px 0 25px;
+  }
 
 .publication {
 	display: flex;
