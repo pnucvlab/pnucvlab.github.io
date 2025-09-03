@@ -394,7 +394,9 @@ body {
 
 /* Home Intro Section 스타일 */
 .home-intro {
-  padding: 60px 0; 
+  padding: 60px 0;
+  margin-left: -20px;
+  margin-right: -20px;
   text-align: center;
   font-size: 20px;
 }
