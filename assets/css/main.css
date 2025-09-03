@@ -427,12 +427,13 @@ body {
 	  margin: 0 auto 20px;
 	}
 }
-/* ===== Introduction Body Text ===== */
+/* ===== About Text ===== */
 .introduction-body {
 	font-size: 20px;
 	margin: 5px 25px;
+	line-height: 1.2;
+	text-indent: 2em;
   }
-
 .publication {
 	display: flex;
 	align-items: flex-start;
