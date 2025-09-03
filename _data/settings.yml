@@ -2,8 +2,6 @@
 # google-ID: 'UA-91332049-1'
 
 menu: 
-  - name: About
-    link: /about
   - name: People
     submenu:
       - name: Faculty
