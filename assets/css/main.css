@@ -120,8 +120,9 @@ body {
   }  
 
 .container {
-	font-size: 0.6em;
-}
+	text-align: left;
+	margin-top: 2em;
+  }
 
 .navbar-default {
 	background-color: #8bccda;
