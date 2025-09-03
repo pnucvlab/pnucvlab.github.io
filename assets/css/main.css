@@ -431,8 +431,8 @@ body {
 .introduction-body {
 	font-size: 20px;
 	margin: 5px 25px;
-	line-height: 1;
-	text-indent: 2em;
+	line-height: 2;
+	text-indent: 1em;
   }
 .publication {
 	display: flex;
