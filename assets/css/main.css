@@ -394,18 +394,18 @@ body {
 }
 
 /* Home Intro Section 스타일 */
-.home-intro {
-  font-size: 20px;
-  padding: 0 0;
-}
-
 .home-title {
 	font-size: 30px;
 	font-weight: bold;
 	margin-bottom: 0.3em;
-	text-indent: 1em;
-	padding-left: 0px;
   }
+
+.home-text {
+  font-size: 20px;
+  padding: 0 0;
+  text-indent: 1em;
+  padding-left: 0px;
+}
 
 .bio-section {
 	display: flex;
