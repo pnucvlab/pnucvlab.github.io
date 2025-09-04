@@ -295,7 +295,7 @@ body {
   
   .news-list {
 	list-style: disc;
-	padding-left: 4em;
+	padding-left: 2em;
 	list-style-position: outside;
   }
   
@@ -402,9 +402,9 @@ body {
 
 .home-text {
   font-size: 20px;
-  padding: 0 0;
+  line-height: 1.6;
   text-indent: 1em;
-  padding-left: 0px;
+  padding-left: 2em;
 }
 
 .bio-section {
