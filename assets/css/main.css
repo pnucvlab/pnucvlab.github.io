@@ -396,7 +396,7 @@ body {
 /* Home Intro Section 스타일 */
 .home-intro {
   font-size: 20px;
-  padding: 0 60px;
+  padding: 0 0;
 }
 
 .home-title {
