@@ -18,8 +18,9 @@ name: PNU CVLab
 description: 
   This is a blog of someone passionate about technology who wants to share some of the things he knows
   about Application Development, Integration, Cloud, Big Data and Digital Transformation
-baseurl: "/lab_home" # the subpath of your site, e.g. /blog
-github_username:  Decide02
+url: "https://pnucvlab.github.io"
+baseurl: "" # the subpath of your site, e.g. /blog
+github_username: pnucvlab
 
 # jekyll-paginate configuration
 paginate: 10
