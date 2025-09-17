@@ -2,6 +2,8 @@
 # google-ID: 'UA-91332049-1'
 
 menu: 
+  - name: Rersearch
+    link: /research
   - name: People
     submenu:
       - name: Faculty
