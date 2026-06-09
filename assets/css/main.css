@@ -142,11 +142,17 @@ body {
 	height: 50px;
 	display: flex;
 	align-items: center;
+	padding-top: 0;
+	padding-bottom: 0;
+	line-height: 1;
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 .navbar-default .navbar-brand .logo {
 	height: 50px;
 	width: auto;
+	display: block;
 }
 
 .navbar-default .navbar-brand .logo:hover {
@@ -472,7 +478,7 @@ body {
 .publication-info {
 	display: flex;
 	flex-direction: column;
-	gap: 1px;
+	gap: 6px;
 	font-size: 13px;
 }
 
