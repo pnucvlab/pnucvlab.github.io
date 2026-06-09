@@ -300,8 +300,13 @@ body {
   }
   
   .news-list li {
-	font-size: 15px;
+	font-size: 17px;
 	margin-bottom: 0.1em;
+  }
+
+  .news-list li b {
+	color: #000;
+	font-weight: 700;
   }
 
 .side-menu {
