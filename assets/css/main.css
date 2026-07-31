@@ -573,6 +573,47 @@ body {
 	}
 }
 
+.alumni-grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px 40px;
+}
+
+.alumni-card {
+	box-sizing: border-box;
+	flex: 0 0 calc(50% - 20px);
+	padding: 8px 0;
+}
+
+.alumni-name .name {
+	font-weight: bold;
+	font-size: 24px;
+	margin-right: 6px;
+}
+
+.alumni-name .home-icon {
+	font-size: 20px;
+	color: #007bff;
+	text-decoration: none;
+}
+
+.alumni-name .home-icon:hover {
+	color: #0056b3;
+}
+
+.alumni-details {
+	margin-top: 10px;
+	font-size: 16px;
+	color: #000;
+	line-height: 1.8;
+}
+
+@media (max-width: 1000px) {
+	.alumni-card {
+	  flex: 0 0 100%;
+	}
+}
+
 /* gallery page */
 .gallery-container {
 	display: flex;
