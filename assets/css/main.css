@@ -587,12 +587,12 @@ body {
 
 .alumni-name .name {
 	font-weight: bold;
-	font-size: 40px;
-	margin-right: 10px;
+	font-size: 20px;
+	margin-right: 6px;
 }
 
 .alumni-name .home-icon {
-	font-size: 28px;
+	font-size: 20px;
 	color: #007bff;
 	text-decoration: none;
 }
@@ -603,7 +603,7 @@ body {
 
 .alumni-details {
 	margin-top: 14px;
-	font-size: 22px;
+	font-size: 16px;
 	color: #000;
 	line-height: 1.8;
 }
