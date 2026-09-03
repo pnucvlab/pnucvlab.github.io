@@ -55,6 +55,13 @@ body {
 	transform: translateX(-50%);
 	width: auto;
   }
+
+  @media (min-width: 1001px) {
+	.notice-swiper .swiper-slide .notice-image-wrapper .graduation-notice-image {
+	  width: 933.333px;
+	  object-fit: cover;
+	}
+  }
   
   .notice-swiper .notice-slide .notice-content {
 	position: absolute;
