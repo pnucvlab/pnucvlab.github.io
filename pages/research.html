@@ -2,4 +2,129 @@
 layout: default
 title: Research
 permalink: /research/
+custom_css: research
 ---
+
+<div class="research-page">
+  <section class="research-intro">
+    <span class="eyebrow">PNU CVLab · Research</span>
+    <h1>Visual intelligence for open-world understanding and interaction.</h1>
+    <p class="intro-copy">
+      We study how machines can recognize, reconstruct, manipulate, and act in complex visual environments. Our work spans open-ended vision-language recognition, 3D scene understanding, Gaussian-based scene manipulation, and embodied perception for robotic and surgical systems.
+    </p>
+
+    <nav class="topic-index" aria-label="Research themes">
+      <a href="#open-ended-recognition"><span class="num">01</span><span class="label">Open-Ended Recognition</span></a>
+      <a href="#3d-recognition"><span class="num">02</span><span class="label">3D Recognition</span></a>
+      <a href="#3dgs-manipulation"><span class="num">03</span><span class="label">3DGS Manipulation</span></a>
+      <a href="#embodied-vision"><span class="num">04</span><span class="label">Surgical / Embodied Vision</span></a>
+    </nav>
+  </section>
+
+  <section class="research-section" id="open-ended-recognition">
+    <div class="section-heading-row">
+      <div class="section-number">01</div>
+      <div class="section-title">
+        <h2>Open-Ended Recognition</h2>
+        <p>Training-free recognition from internal vision–language evidence.</p>
+      </div>
+      <span class="status-badge">Training-free</span>
+    </div>
+
+    <div class="oe-compact">
+      <div class="oe-compact-copy">
+        <h3>Recognizing Any Region with Frozen VLMs</h3>
+        <p>Given an image and region mask, Retrieve–Augment–Generate recognizes regions without predefined class lists or additional training, using internal evidence from frozen VLMs.</p>
+        <ul class="oe-highlights" aria-label="Key research highlights">
+          <li>Retrieve internal region evidence.</li>
+          <li>Augment with grounded candidate labels.</li>
+          <li>Select through visual–textual alignment.</li>
+        </ul>
+        <a class="oe-explorer-link" href="{{ '/assets/research/retrieve-augment-generate-explorer.html' | relative_url }}?sample=43&amp;mask=1" target="_blank" rel="noopener noreferrer" aria-label="Interactive Explorer (opens in a new tab)">
+          Interactive Explorer <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+      <figure class="oe-compact-figure">
+        <a href="{{ '/assets/research/open-ended-recognition.png' | relative_url }}" target="_blank" rel="noopener noreferrer" aria-label="View representative figure at full size (opens in a new tab)">
+          <img src="{{ '/assets/research/open-ended-recognition.png' | relative_url }}" width="1800" height="1170" alt="Regions labeled as Ron Weasley, Hermione Granger, Harry Potter, Pikachu, Eevee, and Eiffel Tower using frozen vision-language models." decoding="async">
+        </a>
+        <figcaption>Open-ended labels for specific characters and landmarks.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="research-section" id="3d-recognition">
+    <div class="section-heading-row">
+      <div class="section-number">02</div>
+      <div class="section-title">
+        <h2>3D Recognition</h2>
+        <p>Open-world semantic understanding across geometry, views, and language.</p>
+      </div>
+      <span class="status-badge">Research Theme</span>
+    </div>
+
+    <div class="placeholder-grid">
+      <div class="placeholder-copy">
+        <h3>Recognizing objects and regions directly in 3D scenes.</h3>
+        <p>We investigate 3D representations that connect geometry with semantic evidence from modern vision and vision-language models, with an emphasis on generalization beyond fixed training vocabularies.</p>
+        <span class="placeholder-note">Projects and results coming soon</span>
+      </div>
+      <div class="placeholder-visual point-field" aria-hidden="true">
+        <div class="visual-label">3D semantic field</div>
+        <div class="wire"></div>
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        <div class="tag">open-ended 3D label</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="research-section" id="3dgs-manipulation">
+    <div class="section-heading-row">
+      <div class="section-number">03</div>
+      <div class="section-title">
+        <h2>3DGS Manipulation</h2>
+        <p>Controllable editing and generation with explicit 3D Gaussian scene representations.</p>
+      </div>
+      <span class="status-badge">Research Theme</span>
+    </div>
+
+    <div class="placeholder-grid">
+      <div class="placeholder-copy">
+        <h3>Editing scenes while preserving multi-view structure.</h3>
+        <p>We explore 3D Gaussian Splatting as an explicit, editable scene representation for controllable scene manipulation, generation, and dynamic visual content.</p>
+        <span class="placeholder-note">Projects and results coming soon</span>
+      </div>
+      <div class="placeholder-visual gaussian-field" aria-hidden="true">
+        <div class="visual-label">Gaussian scene editing</div>
+        <div class="g"></div><div class="g"></div><div class="g"></div><div class="g"></div><div class="g"></div>
+        <div class="arrow"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="research-section" id="embodied-vision">
+    <div class="section-heading-row">
+      <div class="section-number">04</div>
+      <div class="section-title">
+        <h2>Surgical / Embodied Vision</h2>
+        <p>Perception and multimodal reasoning for systems that must act in the physical world.</p>
+      </div>
+      <span class="status-badge">Research Theme</span>
+    </div>
+
+    <div class="placeholder-grid">
+      <div class="placeholder-copy">
+        <h3>From visual perception to reliable physical interaction.</h3>
+        <p>We study object recognition, tracking, spatial reasoning, and vision-language intelligence for robotic and surgical environments where perception must support real-time decisions and action.</p>
+        <span class="placeholder-note">Projects and results coming soon</span>
+      </div>
+      <div class="placeholder-visual embodied-field" aria-hidden="true">
+        <div class="visual-label">Perceive · reason · act</div>
+        <div class="viewfinder"></div>
+        <div class="tool"></div>
+        <div class="track"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+  </section>
+</div>
