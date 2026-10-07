@@ -442,171 +442,149 @@
 }
 
 /* Surgical and embodied vision ------------------------------------------- */
-.research-page .embodied-intro {
-	padding: 36px;
-	background: #111820;
-	color: #fff;
+.research-page .se-compact {
+	display: grid;
+	grid-template-columns: .88fr 1.12fr;
+	min-height: 360px;
+	border: 1px solid var(--research-line);
+	background: #fff;
 }
 
-.research-page .track-kicker {
-	display: block;
-	margin-bottom: 10px;
-	color: var(--research-accent-soft);
-	font-size: 12px;
-	font-weight: 800;
-	letter-spacing: .14em;
-	text-transform: uppercase;
-}
-
-.research-page .embodied-intro h3,
-.research-page .track-copy h3 {
-	margin: 0 0 12px;
-	font-size: clamp(26px, 3vw, 42px);
-	font-weight: 800;
-	line-height: 1.12;
-	letter-spacing: -.035em;
-}
-
-.research-page .embodied-intro p {
-	max-width: 900px;
-	margin: 0;
-	color: #c8d2d8;
-	font-size: 17px;
-	line-height: 1.7;
-}
-
-.research-page .perception-flow {
+.research-page .se-compact-copy {
 	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	gap: 12px;
-	margin-top: 24px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	padding: 30px 35px;
 }
 
-.research-page .perception-flow span {
-	padding: 8px 12px;
-	border: 1px solid #40515e;
-	color: #e7f6f9;
+.research-page .se-compact-copy h3 {
+	margin: 0 0 12px;
+	font-size: clamp(23px, 2.3vw, 30px);
+	font-weight: 800;
+	line-height: 1.18;
+	letter-spacing: -.025em;
+}
+
+.research-page .se-compact-copy p {
+	margin: 0;
+	color: var(--research-muted);
+	font-size: 16px;
+	line-height: 1.65;
+}
+
+.research-page .se-highlights {
+	display: grid;
+	gap: 6px;
+	margin: 14px 0 16px;
+	padding-left: 18px;
+	color: #424e58;
+	font-size: 14px;
+	line-height: 1.45;
+}
+
+.research-page .se-highlights li::marker {
+	color: var(--research-accent);
+}
+
+.research-page .se-explorer-link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 13px;
+	min-height: 44px;
+	padding: 10px 14px;
+	border: 1px solid #298ba1;
+	background: #298ba1;
+	color: #fff;
+	font-size: 14px;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.research-page .se-explorer-link:hover,
+.research-page .se-explorer-link:focus {
+	background: #217a8d;
+	color: #fff;
+	text-decoration: none;
+}
+
+.research-page .se-explorer-link:focus-visible {
+	outline: 3px solid #267f94;
+	outline-offset: 4px;
+}
+
+.research-page .se-compact-visual {
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1px;
+	min-width: 0;
+	padding-bottom: 52px;
+	border-left: 1px solid var(--research-line);
+	background: var(--research-line);
+}
+
+.research-page .se-preview {
+	position: relative;
+	overflow: hidden;
+	min-width: 0;
+	background: #111820;
+}
+
+.research-page .se-preview img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	min-height: 307px;
+	object-fit: cover;
+}
+
+.research-page .se-preview-embodied img {
+	object-position: 42% center;
+}
+
+.research-page .se-preview::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to top, rgba(9, 18, 25, .78), transparent 48%);
+}
+
+.research-page .se-preview > span {
+	position: absolute;
+	right: 14px;
+	bottom: 14px;
+	left: 14px;
+	z-index: 1;
+	color: #fff;
 	font-size: 12px;
 	font-weight: 800;
 	letter-spacing: .08em;
 	text-transform: uppercase;
 }
 
-.research-page .perception-flow b {
-	color: var(--research-accent-soft);
-	font-size: 18px;
-}
-
-.research-page .research-track {
-	margin-top: 22px;
-	border: 1px solid var(--research-line);
-	background: #fff;
-}
-
-.research-page .surgical-track {
-	display: grid;
-	grid-template-columns: .78fr 1.22fr;
-}
-
-.research-page .track-copy {
+.research-page .se-visual-flow {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
 	display: flex;
-	flex-direction: column;
+	height: 52px;
+	align-items: center;
 	justify-content: center;
-	align-items: flex-start;
-	padding: 34px;
-}
-
-.research-page .track-copy .track-kicker {
-	color: #298ba1;
-}
-
-.research-page .track-copy p {
-	margin: 0;
-	color: var(--research-muted);
-	font-size: 15px;
-	line-height: 1.7;
-}
-
-.research-page .track-capabilities {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 7px;
-	margin: 20px 0 0;
-	padding: 0;
-	list-style: none;
-}
-
-.research-page .track-capabilities li {
-	padding: 6px 9px;
-	border: 1px solid #cfe3e8;
-	background: #f3fafb;
-	color: #356b78;
+	gap: 12px;
+	background: #111820;
+	color: #e7f6f9;
 	font-size: 11px;
-	font-weight: 700;
+	font-weight: 800;
+	letter-spacing: .1em;
+	text-transform: uppercase;
 }
 
-.research-page .surgical-media {
-	display: grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
-	gap: 1px;
-	padding-left: 1px;
-	background: var(--research-line);
-}
-
-.research-page .surgical-media figure,
-.research-page .embodied-media {
-	margin: 0;
-	background: #fff;
-}
-
-.research-page .surgical-media-main {
-	grid-column: 1 / -1;
-}
-
-.research-page .surgical-media img {
-	display: block;
-	width: 100%;
-	height: 180px;
-	object-fit: contain;
-	background: #f2f5f6;
-}
-
-.research-page .surgical-media-main img {
-	height: auto;
-	aspect-ratio: 16 / 9;
-	object-fit: cover;
-}
-
-.research-page .surgical-media figcaption,
-.research-page .embodied-media figcaption {
-	padding: 10px 12px;
-	color: #596771;
-	font-size: 12px;
-	line-height: 1.45;
-}
-
-.research-page .embodied-track .track-copy {
-	max-width: 900px;
-}
-
-.research-page .embodied-media {
-	padding: 18px;
-	border-top: 1px solid var(--research-line);
-	background: var(--research-soft);
-}
-
-.research-page .embodied-media img {
-	display: block;
-	width: 100%;
-	height: auto;
-	background: #fff;
-}
-
-.research-page .embodied-media figcaption {
-	padding-right: 0;
-	padding-bottom: 0;
-	padding-left: 0;
+.research-page .se-visual-flow b {
+	color: var(--research-accent-soft);
+	font-size: 15px;
 }
 
 @media (max-width: 991px) {
@@ -624,6 +602,7 @@
 	}
 
 	.research-page .oe-compact,
+	.research-page .se-compact,
 	.research-page .placeholder-grid {
 		grid-template-columns: 1fr;
 	}
@@ -633,18 +612,15 @@
 		border-left: 0;
 	}
 
+	.research-page .se-compact-visual {
+		border-top: 1px solid var(--research-line);
+		border-left: 0;
+	}
+
 	.research-page .placeholder-visual {
 		min-height: 280px;
 	}
 
-	.research-page .surgical-track {
-		grid-template-columns: 1fr;
-	}
-
-	.research-page .surgical-media {
-		padding-top: 1px;
-		padding-left: 0;
-	}
 }
 
 @media (max-width: 680px) {
@@ -666,6 +642,7 @@
 	}
 
 	.research-page .oe-compact-copy,
+	.research-page .se-compact-copy,
 	.research-page .placeholder-copy {
 		padding: 22px;
 	}
@@ -674,10 +651,6 @@
 		padding: 12px;
 	}
 
-	.research-page .embodied-intro,
-	.research-page .track-copy {
-		padding: 24px;
-	}
 }
 
 @media (max-width: 480px) {
@@ -685,20 +658,15 @@
 		grid-template-columns: 1fr;
 	}
 
-	.research-page .surgical-media {
+	.research-page .se-compact-visual {
 		grid-template-columns: 1fr;
 	}
 
-	.research-page .surgical-media-main {
-		grid-column: auto;
+	.research-page .se-preview img {
+		min-height: 220px;
 	}
 
-	.research-page .surgical-media img {
-		height: auto;
-		max-height: 320px;
-	}
-
-	.research-page .perception-flow b {
-		display: none;
+	.research-page .se-preview-embodied img {
+		object-position: center;
 	}
 }
