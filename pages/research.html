@@ -107,24 +107,67 @@ custom_css: research
       <div class="section-number">04</div>
       <div class="section-title">
         <h2>Surgical / Embodied Vision</h2>
-        <p>Perception and multimodal reasoning for systems that must act in the physical world.</p>
+        <p>Selective perception for systems that must understand and act in the physical world.</p>
       </div>
-      <span class="status-badge">Research Theme</span>
+      <span class="status-badge">Perception to Action</span>
     </div>
 
-    <div class="placeholder-grid">
-      <div class="placeholder-copy">
-        <h3>From visual perception to reliable physical interaction.</h3>
-        <p>We study object recognition, tracking, spatial reasoning, and vision-language intelligence for robotic and surgical environments where perception must support real-time decisions and action.</p>
-        <span class="placeholder-note">Projects and results coming soon</span>
+    <div class="embodied-intro">
+      <span class="track-kicker">Shared research direction</span>
+      <h3>See what matters. Understand where it is. Act with purpose.</h3>
+      <p>Our surgical and embodied vision research connects robust scene perception with action. We develop perception systems for complex operating rooms and efficient visual reasoning for robot manipulation, with a shared focus on the objects, people, and spatial relationships that matter for the next action.</p>
+      <div class="perception-flow" aria-label="Research workflow">
+        <span>Observe</span><b aria-hidden="true">→</b><span>Localize</span><b aria-hidden="true">→</b><span>Reason</span><b aria-hidden="true">→</b><span>Act</span>
       </div>
-      <div class="placeholder-visual embodied-field" aria-hidden="true">
-        <div class="visual-label">Perceive · reason · act</div>
-        <div class="viewfinder"></div>
-        <div class="tool"></div>
-        <div class="track"></div>
-        <div class="dot"></div>
+    </div>
+
+    <div class="research-track surgical-track">
+      <div class="track-copy">
+        <span class="track-kicker">04A · ARPA-H Project</span>
+        <h3>Surgical Scene Intelligence</h3>
+        <p>We are developing a multi-camera perception stack for operating-room assistance. RGB and depth observations support surgical-tool recognition and tracking, 3D position and constrained pose estimation, hand-pose understanding, and temporally consistent bleeding-region tracking. These signals can be aligned in a shared coordinate system for downstream humanoid planning and assistance.</p>
+        <ul class="track-capabilities" aria-label="Surgical vision capabilities">
+          <li>Few-shot tool annotation</li>
+          <li>Tool detection and tracking</li>
+          <li>RGB-D position and pose</li>
+          <li>3D hand understanding</li>
+          <li>Bleeding-region tracking</li>
+          <li>Multi-camera alignment</li>
+        </ul>
       </div>
+      <div class="surgical-media">
+        <figure class="surgical-media-main">
+          <img src="{{ '/assets/research/surgical-tool-pose.jpg' | relative_url }}" width="1280" height="720" alt="RGB-D surgical-tool perception showing detected instruments with estimated 3D position and constrained pose." loading="lazy" decoding="async">
+          <figcaption>Depth-aware tool position and pose estimation.</figcaption>
+        </figure>
+        <figure>
+          <img src="{{ '/assets/research/surgical-hand-pose.png' | relative_url }}" width="933" height="933" alt="Left- and right-hand keypoints with estimated hand orientation above a surgical instrument table." loading="lazy" decoding="async">
+          <figcaption>3D hand-pose understanding.</figcaption>
+        </figure>
+        <figure>
+          <img src="{{ '/assets/research/surgical-blood-pipeline.png' | relative_url }}" width="1920" height="1080" alt="Pipeline combining bleeding-region detection and tracking to estimate a stable region center." loading="lazy" decoding="async">
+          <figcaption>Bleeding-region detection and tracking.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="research-track embodied-track">
+      <div class="track-copy">
+        <span class="track-kicker">04B · Efficient Embodied AI</span>
+        <h3>Object-Centric Spatial Token Pruning</h3>
+        <p>Vision-language-action models process many visual patches that are not equally useful for the current manipulation step. We train a lightweight spatial scorer to retain patches around the robot hand, task objects, goals, and the paths between them. A motion-aware gate restores full visual context near fine-grained interactions, while the underlying policy remains frozen.</p>
+        <ul class="track-capabilities" aria-label="Embodied vision capabilities">
+          <li>Task-aware visual selection</li>
+          <li>Agent and wrist views</li>
+          <li>Object-centric spatial cues</li>
+          <li>Motion-aware token gating</li>
+          <li>Frozen-policy integration</li>
+        </ul>
+      </div>
+      <figure class="embodied-media">
+        <img src="{{ '/assets/research/embodied-token-pruning.jpg' | relative_url }}" width="2148" height="692" alt="Examples across LIBERO manipulation tasks comparing text-attention pruning with object-centric spatial pruning around the robot hand, target object, and goal." loading="lazy" decoding="async">
+        <figcaption>Object-centric pruning preserves visual evidence around the hand, target, and goal across diverse manipulation tasks.</figcaption>
+      </figure>
     </div>
   </section>
 </div>

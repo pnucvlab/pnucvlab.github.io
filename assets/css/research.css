@@ -441,6 +441,174 @@
 	box-shadow: 0 0 0 6px rgba(228, 126, 103, .12);
 }
 
+/* Surgical and embodied vision ------------------------------------------- */
+.research-page .embodied-intro {
+	padding: 36px;
+	background: #111820;
+	color: #fff;
+}
+
+.research-page .track-kicker {
+	display: block;
+	margin-bottom: 10px;
+	color: var(--research-accent-soft);
+	font-size: 12px;
+	font-weight: 800;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+}
+
+.research-page .embodied-intro h3,
+.research-page .track-copy h3 {
+	margin: 0 0 12px;
+	font-size: clamp(26px, 3vw, 42px);
+	font-weight: 800;
+	line-height: 1.12;
+	letter-spacing: -.035em;
+}
+
+.research-page .embodied-intro p {
+	max-width: 900px;
+	margin: 0;
+	color: #c8d2d8;
+	font-size: 17px;
+	line-height: 1.7;
+}
+
+.research-page .perception-flow {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 12px;
+	margin-top: 24px;
+}
+
+.research-page .perception-flow span {
+	padding: 8px 12px;
+	border: 1px solid #40515e;
+	color: #e7f6f9;
+	font-size: 12px;
+	font-weight: 800;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+}
+
+.research-page .perception-flow b {
+	color: var(--research-accent-soft);
+	font-size: 18px;
+}
+
+.research-page .research-track {
+	margin-top: 22px;
+	border: 1px solid var(--research-line);
+	background: #fff;
+}
+
+.research-page .surgical-track {
+	display: grid;
+	grid-template-columns: .78fr 1.22fr;
+}
+
+.research-page .track-copy {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	padding: 34px;
+}
+
+.research-page .track-copy .track-kicker {
+	color: #298ba1;
+}
+
+.research-page .track-copy p {
+	margin: 0;
+	color: var(--research-muted);
+	font-size: 15px;
+	line-height: 1.7;
+}
+
+.research-page .track-capabilities {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 7px;
+	margin: 20px 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.research-page .track-capabilities li {
+	padding: 6px 9px;
+	border: 1px solid #cfe3e8;
+	background: #f3fafb;
+	color: #356b78;
+	font-size: 11px;
+	font-weight: 700;
+}
+
+.research-page .surgical-media {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1px;
+	padding-left: 1px;
+	background: var(--research-line);
+}
+
+.research-page .surgical-media figure,
+.research-page .embodied-media {
+	margin: 0;
+	background: #fff;
+}
+
+.research-page .surgical-media-main {
+	grid-column: 1 / -1;
+}
+
+.research-page .surgical-media img {
+	display: block;
+	width: 100%;
+	height: 180px;
+	object-fit: contain;
+	background: #f2f5f6;
+}
+
+.research-page .surgical-media-main img {
+	height: auto;
+	aspect-ratio: 16 / 9;
+	object-fit: cover;
+}
+
+.research-page .surgical-media figcaption,
+.research-page .embodied-media figcaption {
+	padding: 10px 12px;
+	color: #596771;
+	font-size: 12px;
+	line-height: 1.45;
+}
+
+.research-page .embodied-track .track-copy {
+	max-width: 900px;
+}
+
+.research-page .embodied-media {
+	padding: 18px;
+	border-top: 1px solid var(--research-line);
+	background: var(--research-soft);
+}
+
+.research-page .embodied-media img {
+	display: block;
+	width: 100%;
+	height: auto;
+	background: #fff;
+}
+
+.research-page .embodied-media figcaption {
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-left: 0;
+}
+
 @media (max-width: 991px) {
 	.research-page .topic-index {
 		grid-template-columns: repeat(2, 1fr);
@@ -467,6 +635,15 @@
 
 	.research-page .placeholder-visual {
 		min-height: 280px;
+	}
+
+	.research-page .surgical-track {
+		grid-template-columns: 1fr;
+	}
+
+	.research-page .surgical-media {
+		padding-top: 1px;
+		padding-left: 0;
 	}
 }
 
@@ -496,10 +673,32 @@
 	.research-page .oe-compact-figure {
 		padding: 12px;
 	}
+
+	.research-page .embodied-intro,
+	.research-page .track-copy {
+		padding: 24px;
+	}
 }
 
 @media (max-width: 480px) {
 	.research-page .topic-index {
 		grid-template-columns: 1fr;
+	}
+
+	.research-page .surgical-media {
+		grid-template-columns: 1fr;
+	}
+
+	.research-page .surgical-media-main {
+		grid-column: auto;
+	}
+
+	.research-page .surgical-media img {
+		height: auto;
+		max-height: 320px;
+	}
+
+	.research-page .perception-flow b {
+		display: none;
 	}
 }
