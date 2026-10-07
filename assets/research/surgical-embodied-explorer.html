@@ -196,7 +196,8 @@
       padding: 20px;
       background: var(--soft);
     }
-    .visual-stage img {
+    .visual-stage img,
+    .visual-stage video {
       display: block;
       width: 100%;
       max-height: 470px;
@@ -204,6 +205,7 @@
       object-fit: contain;
       background: var(--white);
     }
+    .visual-stage [hidden] { display: none !important; }
     .visual-copy {
       min-width: 0;
       padding: 28px;
@@ -377,15 +379,16 @@
       <div class="explorer-card" data-explorer>
         <div class="visual-stage">
           <img data-stage-image src="surgical-tool-pose.jpg" alt="RGB-D surgical-tool perception showing detected instruments with estimated 3D position and constrained pose.">
+          <video data-stage-video muted loop playsinline controls hidden aria-label=""></video>
         </div>
         <div class="visual-copy">
           <span class="mode-label">Explore perception modules</span>
           <h3 data-stage-title>Tool position and pose</h3>
           <p class="visual-description" data-stage-description>Tool recognition and tracking are combined with depth to estimate instrument position and constrained orientation in 3D.</p>
           <div class="mode-list">
-            <button class="mode-button" type="button" aria-pressed="true" data-image="surgical-tool-pose.jpg" data-alt="RGB-D surgical-tool perception showing detected instruments with estimated 3D position and constrained pose." data-title="Tool position and pose" data-description="Tool recognition and tracking are combined with depth to estimate instrument position and constrained orientation in 3D."><span>01</span><span>Surgical tools</span></button>
-            <button class="mode-button" type="button" aria-pressed="false" data-image="surgical-hand-pose.png" data-alt="Left- and right-hand keypoints with estimated hand orientation above a surgical instrument table." data-title="3D hand understanding" data-description="Hand keypoints, handedness, state, and depth cues provide 3D position and orientation for human–robot interaction around the instrument table."><span>02</span><span>Hand pose</span></button>
-            <button class="mode-button" type="button" aria-pressed="false" data-image="surgical-blood-pipeline.png" data-alt="Pipeline combining bleeding-region detection and tracking to estimate a stable region center." data-title="Bleeding-region tracking" data-description="Detection and temporal tracking are fused to maintain stable bleeding-region estimates and support downstream suction-arm coordination."><span>03</span><span>Bleeding regions</span></button>
+            <button class="mode-button" type="button" aria-pressed="true" data-type="image" data-source="surgical-tool-pose.jpg" data-alt="RGB-D surgical-tool perception showing detected instruments with estimated 3D position and constrained pose." data-title="Tool position and pose" data-description="Tool recognition and tracking are combined with depth to estimate instrument position and constrained orientation in 3D."><span>01</span><span>Surgical tools</span></button>
+            <button class="mode-button" type="button" aria-pressed="false" data-type="image" data-source="surgical-hand-pose.png" data-alt="Left- and right-hand keypoints with estimated hand orientation above a surgical instrument table." data-title="3D hand understanding" data-description="Hand keypoints, handedness, state, and depth cues provide 3D position and orientation for human–robot interaction around the instrument table."><span>02</span><span>Hand pose</span></button>
+            <button class="mode-button" type="button" aria-pressed="false" data-type="video" data-source="surgical-blood-tracking.mp4" data-alt="Video showing bleeding-region detection and temporal tracking in a surgical scene." data-title="Bleeding-region tracking" data-description="Detection and temporal tracking are fused to maintain stable bleeding-region estimates and support downstream suction-arm coordination."><span>03</span><span>Bleeding regions</span></button>
           </div>
         </div>
       </div>
@@ -418,9 +421,9 @@
           <h3 data-stage-title>Task-relevant visual evidence</h3>
           <p class="visual-description" data-stage-description>Across diverse manipulation tasks, object-centric pruning concentrates the visual budget around the hand, target, goal, and their spatial relationships.</p>
           <div class="mode-list">
-            <button class="mode-button" type="button" aria-pressed="true" data-image="embodied-token-pruning.jpg" data-alt="Examples across LIBERO manipulation tasks comparing attention pruning with object-centric spatial pruning." data-title="Task-relevant visual evidence" data-description="Across diverse manipulation tasks, object-centric pruning concentrates the visual budget around the hand, target, goal, and their spatial relationships."><span>01</span><span>Task examples</span></button>
-            <button class="mode-button" type="button" aria-pressed="false" data-image="embodied-pruning-architecture.jpg" data-alt="Architecture of object-centric spatial pruning using a spatial teacher, learned patch scorer, and motion gate." data-title="Spatial scorer and motion gate" data-description="A lightweight scorer learns patch importance from spatial supervision, while a motion-aware gate keeps full context near precise grasping and placement interactions."><span>02</span><span>Method architecture</span></button>
-            <button class="mode-button" type="button" aria-pressed="false" data-image="embodied-pruning-demo.gif" data-alt="Animated examples of object-centric visual-token pruning during robot manipulation." data-title="Pruning through time" data-description="Dynamic examples show how the retained visual region follows the parts of the scene that matter as the robot progresses through a task."><span>03</span><span>Dynamic behavior</span></button>
+            <button class="mode-button" type="button" aria-pressed="true" data-type="image" data-source="embodied-token-pruning.jpg" data-alt="Examples across LIBERO manipulation tasks comparing attention pruning with object-centric spatial pruning." data-title="Task-relevant visual evidence" data-description="Across diverse manipulation tasks, object-centric pruning concentrates the visual budget around the hand, target, goal, and their spatial relationships."><span>01</span><span>Task examples</span></button>
+            <button class="mode-button" type="button" aria-pressed="false" data-type="image" data-source="embodied-pruning-architecture.jpg" data-alt="Architecture of object-centric spatial pruning using a spatial teacher, learned patch scorer, and motion gate." data-title="Spatial scorer and motion gate" data-description="A lightweight scorer learns patch importance from spatial supervision, while a motion-aware gate keeps full context near precise grasping and placement interactions."><span>02</span><span>Method architecture</span></button>
+            <button class="mode-button" type="button" aria-pressed="false" data-type="image" data-source="embodied-pruning-demo.gif" data-alt="Animated examples of object-centric visual-token pruning during robot manipulation." data-title="Pruning through time" data-description="Dynamic examples show how the retained visual region follows the parts of the scene that matter as the robot progresses through a task."><span>03</span><span>Dynamic behavior</span></button>
           </div>
         </div>
       </div>
@@ -461,6 +464,7 @@
 
     document.querySelectorAll('[data-explorer]').forEach((explorer) => {
       const image = explorer.querySelector('[data-stage-image]');
+      const video = explorer.querySelector('[data-stage-video]');
       const title = explorer.querySelector('[data-stage-title]');
       const description = explorer.querySelector('[data-stage-description]');
       const buttons = [...explorer.querySelectorAll('.mode-button')];
@@ -468,8 +472,24 @@
       buttons.forEach((button) => {
         button.addEventListener('click', () => {
           buttons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
-          image.src = button.dataset.image;
-          image.alt = button.dataset.alt;
+          if (button.dataset.type === 'video' && video) {
+            image.hidden = true;
+            video.hidden = false;
+            video.src = button.dataset.source;
+            video.setAttribute('aria-label', button.dataset.alt);
+            video.load();
+            video.play().catch(() => {});
+          } else {
+            if (video) {
+              video.pause();
+              video.removeAttribute('src');
+              video.load();
+              video.hidden = true;
+            }
+            image.src = button.dataset.source;
+            image.alt = button.dataset.alt;
+            image.hidden = false;
+          }
           title.textContent = button.dataset.title;
           description.textContent = button.dataset.description;
         });
