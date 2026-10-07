@@ -266,6 +266,20 @@
 	letter-spacing: -.035em;
 }
 
+.research-page .research-theme-list {
+	display: grid;
+	gap: 7px;
+	margin: 18px 0 0;
+	padding-left: 18px;
+	color: #424e58;
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+.research-page .research-theme-list li::marker {
+	color: var(--research-accent);
+}
+
 .research-page .placeholder-note {
 	display: inline-flex;
 	align-self: flex-start;
@@ -441,8 +455,66 @@
 	box-shadow: 0 0 0 6px rgba(228, 126, 103, .12);
 }
 
+/* Gaussian reconstruction and relighting -------------------------------- */
+.research-page .gaussian-compact {
+	display: grid;
+	grid-template-columns: .88fr 1.12fr;
+	min-height: 360px;
+	border: 1px solid var(--research-line);
+	background: #fff;
+}
+
+.research-page .gaussian-compact-copy {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	padding: 30px 35px;
+}
+
+.research-page .gaussian-compact-copy h3 {
+	margin: 0 0 12px;
+	font-size: clamp(23px, 2.3vw, 30px);
+	font-weight: 800;
+	line-height: 1.18;
+	letter-spacing: -.025em;
+}
+
+.research-page .gaussian-compact-copy p {
+	margin: 0;
+	color: var(--research-muted);
+	font-size: 15px;
+	line-height: 1.65;
+}
+
+.research-page .gaussian-compact-figure {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 0;
+	padding: 16px;
+	border-left: 1px solid var(--research-line);
+	background: var(--research-soft);
+}
+
+.research-page .gaussian-compact-figure video {
+	display: block;
+	width: 100%;
+	height: auto;
+	max-height: 400px;
+	background: #111820;
+}
+
+.research-page .gaussian-compact-figure figcaption {
+	margin-top: 10px;
+	color: #596771;
+	font-size: 12px;
+	line-height: 1.5;
+}
+
 /* Surgical and embodied vision ------------------------------------------- */
-.research-page .se-explorer-link {
+.research-page .se-explorer-link,
+.research-page .gaussian-explorer-link {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -459,13 +531,16 @@
 }
 
 .research-page .se-explorer-link:hover,
-.research-page .se-explorer-link:focus {
+.research-page .se-explorer-link:focus,
+.research-page .gaussian-explorer-link:hover,
+.research-page .gaussian-explorer-link:focus {
 	background: #217a8d;
 	color: #fff;
 	text-decoration: none;
 }
 
-.research-page .se-explorer-link:focus-visible {
+.research-page .se-explorer-link:focus-visible,
+.research-page .gaussian-explorer-link:focus-visible {
 	outline: 3px solid #267f94;
 	outline-offset: 4px;
 }
@@ -485,11 +560,17 @@
 	}
 
 	.research-page .oe-compact,
+	.research-page .gaussian-compact,
 	.research-page .placeholder-grid {
 		grid-template-columns: 1fr;
 	}
 
 	.research-page .oe-compact-figure {
+		border-top: 1px solid var(--research-line);
+		border-left: 0;
+	}
+
+	.research-page .gaussian-compact-figure {
 		border-top: 1px solid var(--research-line);
 		border-left: 0;
 	}
@@ -519,6 +600,7 @@
 	}
 
 	.research-page .oe-compact-copy,
+	.research-page .gaussian-compact-copy,
 	.research-page .placeholder-copy {
 		padding: 22px;
 	}

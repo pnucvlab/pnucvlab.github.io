@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Research on Gaussian scene reconstruction and relighting through depth estimation, normal estimation, and laser-scanned geometry.">
+  <meta name="color-scheme" content="light">
+  <title>3DGS and 2DGS Scene Reconstruction and Relighting · PNU CVLab</title>
+  <style>
+    :root{--accent:#298ba1;--accent-dark:#206d7e;--ink:#17191c;--muted:#58666f;--line:#dfe5e8;--soft:#f5f8f9;--tint:#edf9fb}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:24px}
+    body{margin:0;background:#fff;color:var(--ink);font-family:Arial,Helvetica,"Noto Sans KR",sans-serif;line-height:1.6}
+    a{color:var(--accent-dark)}
+    a:focus-visible,button:focus-visible,video:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--accent);outline-offset:5px}
+    button{font:inherit}
+    [hidden]{display:none!important}
+    .shell{width:min(1160px,calc(100% - 64px));margin-inline:auto}
+    .skip-link{position:absolute;top:-80px;left:20px;background:#fff;padding:10px 18px;z-index:2}
+    .skip-link:focus{top:10px}
+    .masthead{background:#8bccda;border-bottom:1px solid #40a8bf}
+    .masthead .shell{min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{font-size:21px;letter-spacing:-.5px;font-weight:800;color:#173e48;text-decoration:none}
+    .nav{display:flex;gap:25px}
+    .nav a{color:#173e48;font-size:12px;font-weight:800;letter-spacing:.07em;text-decoration:none;text-transform:uppercase}
+    .nav a:hover{text-decoration:underline;text-underline-offset:5px}
+    .intro{padding:51px 0 34px}
+    .eyebrow{display:flex;align-items:center;gap:10px;color:var(--accent-dark);font-size:11px;font-weight:800;letter-spacing:.17em;text-transform:uppercase}
+    .eyebrow::before{content:"";width:26px;height:2px;background:var(--accent)}
+    h1{margin:15px 0 12px;font-size:clamp(26px,3.25vw,43px);line-height:1.3;font-weight:800;letter-spacing:-.035em;word-break:keep-all}
+    .subtitle{margin:0;color:var(--muted);font-size:clamp(15px,1.6vw,18px)}
+    .research-card{display:grid;grid-template-columns:.88fr 1.12fr;border:1px solid var(--line)}
+    .research-copy{padding:32px 34px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+    h2,h3,p{margin-top:0}
+    .research-copy h2{font-size:29px;line-height:1.17;letter-spacing:-.035em;margin-bottom:17px;max-width:390px}
+    .overview{color:var(--muted);font-size:15px;line-height:1.7;margin-bottom:15px;max-width:430px}
+    .highlights{padding-left:18px;margin:0 0 24px;display:grid;gap:7px;color:#424e58;font-size:13px;line-height:1.55}
+    .highlights li::marker{color:var(--accent)}
+    .action{display:inline-flex;align-items:center;justify-content:center;gap:24px;min-height:44px;background:var(--accent);color:white;text-decoration:none;padding:10px 16px;font-size:13px;font-weight:700}
+    .action:hover{background:var(--accent-dark)}
+    .hero-figure{margin:0;padding:21px;background:var(--soft);border-left:1px solid var(--line);display:flex;flex-direction:column;justify-content:center}
+    .hero-figure video{width:100%;height:auto;display:block;background:#111}
+    .hero-figure figcaption{display:flex;justify-content:space-between;gap:14px;margin-top:12px;color:var(--muted);font-size:11px;line-height:1.5}
+    .explorer{margin-top:56px;padding:40px 0 42px;border-top:1px solid var(--line);scroll-margin-top:22px}
+    .section-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:25px}
+    .section-heading h2{font-size:30px;line-height:1.2;letter-spacing:-.035em;margin-bottom:8px}
+    .section-heading p{font-size:14px;color:var(--muted);margin-bottom:0}
+    .badge{margin-top:4px;display:inline-flex;border:1px solid #b9dfe7;background:var(--tint);color:var(--accent-dark);font-size:10px;font-weight:800;letter-spacing:.08em;padding:5px 10px;border-radius:20px;white-space:nowrap}
+    .tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+    .tab{background:white;border:1px solid var(--line);padding:11px 17px;min-height:44px;font-size:13px;color:var(--muted);cursor:pointer;font-weight:700}
+    .tab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:white}
+    .tab:hover:not([aria-selected="true"]){border-color:var(--accent);color:var(--accent-dark);background:var(--soft)}
+    .panel{display:grid;grid-template-columns:minmax(0,2fr) minmax(250px,.9fr);border:1px solid var(--line)}
+    .media-area{min-width:0;padding:21px;background:var(--soft);display:flex;flex-direction:column;justify-content:center}
+    .comparison-labels{display:grid;grid-template-columns:1fr 1fr;color:var(--muted);font-size:11px;font-weight:700;margin-bottom:10px;text-align:center}
+    .media-area video{display:block;width:100%;height:auto;background:#162129}
+    .media-caption{margin:11px 0 0;font-size:11px;color:var(--muted);line-height:1.6}
+    .panel-copy{padding:27px 25px;border-left:1px solid var(--line);display:flex;flex-direction:column;justify-content:center}
+    .panel-index{color:var(--accent-dark);font-size:10px;letter-spacing:.1em;font-weight:800;text-transform:uppercase;margin-bottom:10px}
+    .panel-copy h3{font-size:22px;line-height:1.25;letter-spacing:-.025em;margin-bottom:13px}
+    .panel-copy>p{font-size:13px;line-height:1.7;color:var(--muted);margin-bottom:18px}
+    .inspect-label{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-dark)}
+    .inspect-list{font-size:12px;color:#424e58;padding-left:17px;margin:8px 0 0;display:grid;gap:6px}
+    .geometry-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .geometry-grid figure{margin:0;min-width:0}
+    .geometry-grid img{width:100%;height:auto;display:block}
+    .geometry-grid figcaption{font-size:11px;color:var(--muted);margin-top:9px;text-align:center}
+    .note{font-size:11px;color:var(--muted);line-height:1.7;margin:16px 0 0;max-width:820px}
+    .footer{border-top:1px solid var(--line);padding:21px 0 28px;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:11px}
+    .footer a{text-decoration:none}
+    .footer a:hover{text-decoration:underline}
+    .media-error{padding:12px;border:1px solid var(--line);background:#fff;font-size:13px;margin-top:10px}
+    @media(max-width:991px){.research-card{grid-template-columns:1fr 1fr}.research-copy{padding:26px}.research-copy h2{font-size:25px}.hero-figure{padding:16px}.panel{grid-template-columns:minmax(0,1.7fr) minmax(220px,1fr)}}
+    @media(max-width:760px){.shell{width:calc(100% - 36px)}.masthead .shell{min-height:58px}.brand{font-size:18px}.nav{gap:15px}.nav a{font-size:10px}.intro{padding:34px 0 25px}.research-card{grid-template-columns:1fr}.research-copy{padding:27px 25px}.research-copy h2{max-width:440px}.overview{max-width:none}.hero-figure{border-left:0;border-top:1px solid var(--line);padding:16px}.panel{grid-template-columns:1fr}.panel-copy{border-left:0;border-top:1px solid var(--line);padding:23px}.explorer{margin-top:35px;padding-top:30px}.section-heading{gap:12px}.section-heading h2{font-size:26px}.badge{font-size:9px;padding:4px 7px}.tab{padding:10px 12px;font-size:12px}.media-area{padding:14px}.footer{flex-wrap:wrap}.geometry-grid{gap:10px}}
+    @media(max-width:390px){.shell{width:calc(100% - 28px)}.section-heading{display:block}.badge{margin-top:10px}.nav{gap:10px}.research-copy{padding:24px 20px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+    @media print{.masthead,.action,.tabs,.footer a{display:none}.shell{width:100%}.panel[hidden]{display:grid!important}.panel{margin-bottom:18px;break-inside:avoid}.explorer{margin-top:24px}.research-card{break-inside:avoid}.intro{padding-top:0}}
+  </style>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to research content</a>
+  <header class="masthead">
+    <div class="shell">
+      <a class="brand" href="/research/" aria-label="PNU CVLab Research page">PNU CVLab</a>
+      <nav class="nav" aria-label="Page navigation"><a href="/research/#3dgs-manipulation">← Back to Research</a><a href="#overview">Overview</a><a href="#explorer">Explorer</a></nav>
+    </div>
+  </header>
+  <main class="shell" id="main">
+    <section id="overview" aria-labelledby="research-title">
+      <header class="intro">
+        <div class="eyebrow">Research · Scene understanding &amp; rendering</div>
+        <h1 id="research-title">3DGS and 2DGS Scene Reconstruction and Relighting</h1>
+        <p class="subtitle">Scene Reconstruction and Relighting with Three-Dimensional and Two-Dimensional Gaussian Splatting</p>
+      </header>
+      <div class="research-card">
+        <div class="research-copy">
+          <h2>Reconstructing surfaces.<br>Exploring light.</h2>
+          <p class="overview">We study how images, depth estimation, normal estimation, and laser-scanned geometry can work together to reconstruct outdoor scenes. Our goal is to align Gaussian representations with scene surfaces and understand how geometry and materials shape their appearance under changing illumination.</p>
+          <ul class="highlights">
+            <li>Combine visual and geometric cues for scene reconstruction.</li>
+            <li>Refine surface structure through joint image, depth, and normal supervision.</li>
+            <li>Explore relighting and diagnose geometry-induced shadow artifacts.</li>
+          </ul>
+          <a class="action" href="#explorer">Interactive Explorer <span aria-hidden="true">↓</span></a>
+        </div>
+        <figure class="hero-figure">
+          <video controls playsinline muted autoplay loop preload="metadata" poster="gaussian-research-assets/reconstruction-hero-poster.jpg" width="960" height="640" aria-label="Recorded Gaussian reconstruction of an outdoor street" aria-describedby="hero-caption">
+            <source src="gaussian-research-assets/reconstruction-hero.mp4" type="video/mp4">
+            Your browser does not support this video. <a href="gaussian-research-assets/reconstruction-hero.mp4">Open the reconstruction recording.</a>
+          </video>
+          <figcaption id="hero-caption">Recorded Gaussian scene reconstruction.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="explorer" id="explorer" aria-labelledby="explorer-title">
+      <header class="section-heading">
+        <div><h2 id="explorer-title">Interactive Explorer</h2><p>Explore scene appearance, surface geometry, and lighting.</p></div>
+        <span class="badge">Research in progress</span>
+      </header>
+      <div class="tabs" role="tablist" aria-label="Research demonstrations">
+        <button class="tab" id="tab-reconstruction" role="tab" aria-selected="true" aria-controls="panel-reconstruction" tabindex="0">Reconstruction</button>
+        <button class="tab" id="tab-geometry" role="tab" aria-selected="false" aria-controls="panel-geometry" tabindex="-1">Surface geometry</button>
+        <button class="tab" id="tab-lighting" role="tab" aria-selected="false" aria-controls="panel-lighting" tabindex="-1">Relighting</button>
+      </div>
+
+      <div class="panel" id="panel-reconstruction" role="tabpanel" aria-labelledby="tab-reconstruction" tabindex="0">
+        <div class="media-area">
+          <div class="comparison-labels" aria-hidden="true"><span>Captured images</span><span>Gaussian reconstruction</span></div>
+          <video controls playsinline muted autoplay loop preload="metadata" poster="gaussian-research-assets/reconstruction-poster.jpg" width="1920" height="640" aria-label="Recorded comparison of captured street images on the left and Gaussian reconstruction on the right" aria-describedby="reconstruction-caption">
+            <source src="gaussian-research-assets/reconstruction.mp4" type="video/mp4">
+            Your browser does not support this video. <a href="gaussian-research-assets/reconstruction.mp4">Open the reconstruction recording.</a>
+          </video>
+          <p class="media-caption" id="reconstruction-caption">Captured images (left) and reconstructed appearance (right). Use the video controls to inspect the sequence.</p>
+        </div>
+        <aside class="panel-copy">
+          <div class="panel-index">01 / Scene appearance</div>
+          <h3>From observations<br>to a scene.</h3>
+          <p>Image observations guide visual appearance, while depth and surface orientation provide complementary constraints on the reconstructed geometry.</p>
+          <span class="inspect-label">What to inspect</span>
+          <ul class="inspect-list"><li>Road and building structure</li><li>Object boundaries and fine details</li><li>Differences from the captured view</li></ul>
+        </aside>
+      </div>
+
+      <div class="panel" id="panel-geometry" role="tabpanel" aria-labelledby="tab-geometry" tabindex="0" hidden>
+        <div class="media-area">
+          <div class="geometry-grid">
+            <figure><a href="gaussian-research-assets/rendered-depth.png" target="_blank" rel="noopener" aria-label="Open rendered depth in a new tab"><img src="gaussian-research-assets/rendered-depth.png" width="496" height="330" loading="lazy" alt="Rendered depth visualization of the reconstructed street."></a><figcaption>Rendered depth</figcaption></figure>
+            <figure><a href="gaussian-research-assets/surface-normals.png" target="_blank" rel="noopener" aria-label="Open rendered surface normals in a new tab"><img src="gaussian-research-assets/surface-normals.png" width="496" height="330" loading="lazy" alt="Surface normal visualization with colors encoding the orientation of reconstructed surfaces."></a><figcaption>Rendered surface normals</figcaption></figure>
+          </div>
+          <p class="media-caption">Intermediate outputs reveal surface structure beyond the final image. Colors in the normal map represent orientation, not material color.</p>
+        </div>
+        <aside class="panel-copy">
+          <div class="panel-index">02 / Surface structure</div>
+          <h3>Look beneath<br>the rendered image.</h3>
+          <p>Depth estimation, normal estimation, and laser-scanned geometry inform our research on surface-consistent reconstruction. Rendered geometry helps reveal where the representation remains inconsistent.</p>
+          <span class="inspect-label">What to inspect</span>
+          <ul class="inspect-list"><li>Surface continuity and depth boundaries</li><li>Orientation of roads and building facades</li><li>Geometric artifacts hidden by appearance</li></ul>
+        </aside>
+      </div>
+
+      <div class="panel" id="panel-lighting" role="tabpanel" aria-labelledby="tab-lighting" tabindex="0" hidden>
+        <div class="media-area">
+          <video controls playsinline muted autoplay loop preload="metadata" poster="gaussian-research-assets/lighting-poster.jpg" width="768" height="552" aria-label="Viewer recording of scene 114 as environment time changes from morning to night with a fixed camera" aria-describedby="lighting-caption">
+            <source src="gaussian-research-assets/lighting-study.mp4" type="video/mp4">
+            Your browser does not support this video. <a href="gaussian-research-assets/lighting-study.mp4">Open the lighting study.</a>
+          </video>
+          <p class="media-caption" id="lighting-caption">Scene 114 · Environment time 06:00–20:00. Recorded in the viewer with a fixed camera and paused scene motion. The clock shows the selected environment time, not the original capture time.</p>
+        </div>
+        <aside class="panel-copy">
+          <div class="panel-index">03 / Lighting &amp; shadows</div>
+          <h3>Study how light<br>reveals geometry.</h3>
+          <p>Relighting makes the relationship between geometry, materials, and visibility easier to inspect. We investigate how surface errors produce irregular shadows and how reconstruction can better support lighting changes.</p>
+          <span class="inspect-label">What to inspect</span>
+          <ul class="inspect-list"><li>Shading across roads and objects</li><li>Shadow shape and surface alignment</li><li>Remaining visibility and surface artifacts</li></ul>
+        </aside>
+      </div>
+      <p class="note">These are recorded research examples, not a live renderer or a controlled comparison between Gaussian representations. Surface and shadow artifacts remain under investigation.</p>
+      <noscript><p class="note">To view all examples without JavaScript, open the <a href="gaussian-research-assets/rendered-depth.png">depth image</a>, <a href="gaussian-research-assets/surface-normals.png">normal image</a>, or <a href="gaussian-research-assets/lighting-study.mp4">lighting recording</a> directly.</p></noscript>
+    </section>
+    <footer class="footer"><span>PNU CVLab · Scene Reconstruction &amp; Relighting</span><a href="#top">Back to top ↑</a></footer>
+  </main>
+  <script>
+    (() => {
+      const tabs = [...document.querySelectorAll('[role="tab"]')];
+      const panels = [...document.querySelectorAll('[role="tabpanel"]')];
+      function updateVideoPlayback() {
+        document.querySelectorAll('video').forEach(video => {
+          if (document.hidden || video.closest('[hidden]')) {
+            video.pause();
+          } else {
+            video.muted = true;
+            video.play().catch(() => {});
+          }
+        });
+      }
+      function selectTab(tab, moveFocus = false) {
+        tabs.forEach(item => {
+          const selected = item === tab;
+          item.setAttribute('aria-selected', String(selected));
+          item.tabIndex = selected ? 0 : -1;
+        });
+        panels.forEach(panel => {
+          panel.hidden = panel.id !== tab.getAttribute('aria-controls');
+        });
+        updateVideoPlayback();
+        if (moveFocus) tab.focus();
+      }
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => selectTab(tab));
+        tab.addEventListener('keydown', event => {
+          let next;
+          if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+          else if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+          else if (event.key === 'Home') next = 0;
+          else if (event.key === 'End') next = tabs.length - 1;
+          else return;
+          event.preventDefault();
+          selectTab(tabs[next], true);
+        });
+      });
+      document.querySelectorAll('video').forEach(video => {
+        video.addEventListener('error', () => {
+          if (video.nextElementSibling && video.nextElementSibling.classList.contains('media-error')) return;
+          const message = document.createElement('p');
+          message.className = 'media-error';
+          message.setAttribute('role', 'status');
+          message.append('This recording could not be loaded. ');
+          const link = document.createElement('a');
+          link.href = video.querySelector('source').getAttribute('src');
+          link.textContent = 'Open the video file directly.';
+          message.append(link);
+          video.after(message);
+        });
+      });
+      document.addEventListener('visibilitychange', updateVideoPlayback);
+      updateVideoPlayback();
+    })();
+  </script>
+</body>
+</html>
