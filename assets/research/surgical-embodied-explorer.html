@@ -56,16 +56,6 @@
     .steps h3{margin:0 0 3px;font-size:15px;line-height:1.35}
     .steps p{margin:0;color:var(--text);font-size:13px;line-height:1.6}
 
-    /* Bleeding pipeline */
-    .pipeline{margin-top:16px;padding:18px 20px;border:1px solid var(--line);background:var(--surface)}
-    .pipeline-label{margin:0 0 12px;color:var(--accent-dark);font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
-    .flow{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap}
-    .node{flex:1 1 130px;display:flex;flex-direction:column;justify-content:center;padding:10px 12px;border:1px solid var(--line);background:var(--soft);font-size:13px;font-weight:700;line-height:1.35}
-    .node small{display:block;margin-top:2px;color:var(--muted);font-size:11px;font-weight:400}
-    .node.model{border-color:#9acbd6;background:var(--tint)}
-    .node.out{border-color:var(--accent);color:var(--accent-dark)}
-    .arrow{flex:none;align-self:center;color:var(--accent);font-weight:800}
-    .note{font-size:11px;color:var(--muted);line-height:1.7;margin:20px 0 0}
 
     .footer{border-top:1px solid var(--line);padding:21px 0 28px;color:var(--muted);font-size:11px}
 
@@ -79,7 +69,6 @@
       .media-area,.panel-copy{padding:16px}
       .topic-head{flex-direction:column;gap:10px}
       .nav{gap:12px}.nav a{font-size:10px}
-      .flow{flex-direction:column}.arrow{transform:rotate(90deg)}
     }
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
@@ -88,7 +77,6 @@
     html[data-theme="dark"] .masthead{background:#163a44;border-bottom-color:#1f5866}
     html[data-theme="dark"] .brand,html[data-theme="dark"] .nav a{color:#e3f4f8}
     html[data-theme="dark"] .badge{border-color:#2f6f7e}
-    html[data-theme="dark"] .node.model{border-color:#2f6f7e}
 
     /* Shown inside the research page's "More details" panel: keep only the topics. */
     html.embedded body{background:transparent!important}
@@ -110,8 +98,8 @@
   <main class="shell">
     <header class="intro">
       <div class="eyebrow">Research · Surgical &amp; Embodied Vision</div>
-      <h1>Seeing the operating room the way a surgical robot needs to.</h1>
-      <p class="subtitle">Three perception modules that turn operating-room video into signals a robot can act on: where each instrument is, what the surgeon's hands are doing, and where bleeding occurs.</p>
+      <h1>Visual perception for surgical robotics.</h1>
+      <p class="subtitle">We develop vision methods that allow robotic systems to understand surgical scenes: recognizing instruments, interpreting hand pose, and detecting bleeding.</p>
     </header>
 
     <div class="topic-nav" role="tablist" aria-label="Topics">
@@ -124,9 +112,9 @@
     <section class="topic" id="tools" role="tabpanel" aria-labelledby="tab-tools">
       <div class="topic-head">
         <div>
-          <div class="topic-index">01 / Surgical tool recognition</div>
-          <h2 id="tools-title">Find, follow, and locate every instrument in 3D.</h2>
-          <p>Starting from only a few labeled examples, the system learns to recognize surgical instruments, track them through the video, and estimate where each one sits in 3D space.</p>
+          <div class="topic-index">01 / Surgical tools</div>
+          <h2 id="tools-title">Surgical tool recognition and tracking.</h2>
+          <p>We recognize and track surgical instruments from only a few labeled examples and estimate their position in 3D.</p>
         </div>
         <span class="badge">Few-shot</span>
       </div>
@@ -143,15 +131,15 @@
               <video playsinline muted autoplay loop preload="metadata" width="1280" height="720" aria-label="Estimated 3D position and orientation of each surgical instrument">
                 <source src="surgical-assets/tool-3d-pose.mp4" type="video/mp4">
               </video>
-              <figcaption>3D position &amp; pose</figcaption>
+              <figcaption>3D localization</figcaption>
             </figure>
           </div>
         </div>
         <aside class="panel-copy">
           <ol class="steps">
-            <li><div><h3>Learn from a few examples</h3><p>A handful of examples per instrument is enough for the model to propose labels on new frames by itself, which people then review.</p></div></li>
-            <li><div><h3>Recognize and track</h3><p>Each instrument type, such as forceps or an electrosurgical pen, is identified and followed from frame to frame.</p></div></li>
-            <li><div><h3>Estimate 3D position and pose</h3><p>2D detections are combined with depth to recover each tool's 3D position and orientation.</p></div></li>
+            <li><div><h3>Few-shot learning</h3><p>Learns to recognize new instruments from only a few labeled examples.</p></div></li>
+            <li><div><h3>Recognize and track</h3><p>Identifies each instrument and tracks it across video frames.</p></div></li>
+            <li><div><h3>3D localization</h3><p>Estimates the position and orientation of each instrument in 3D space.</p></div></li>
           </ol>
         </aside>
       </div>
@@ -161,26 +149,26 @@
     <section class="topic" id="hands" role="tabpanel" aria-labelledby="tab-hands" hidden>
       <div class="topic-head">
         <div>
-          <div class="topic-index">02 / Hand pose recognition</div>
-          <h2 id="hands-title">Read the surgeon's hands in 3D.</h2>
-          <p>The system locates 21 joints on every hand in view, lifts them into 3D, and works out which hand it is and whether it is open, so a robot knows when and where to hand over an instrument.</p>
+          <div class="topic-index">02 / Hand pose</div>
+          <h2 id="hands-title">Hand pose estimation.</h2>
+          <p>We estimate 3D hand pose from operating-room video to support natural interaction between surgical staff and robotic systems.</p>
         </div>
-        <span class="badge">21 keypoints · 6-DoF</span>
+        <span class="badge">3D pose</span>
       </div>
       <div class="panel">
         <div class="media-area">
           <figure>
-            <video playsinline muted autoplay loop preload="metadata" width="960" height="540" aria-label="Hand keypoints, palm pose, and open or closed state tracked on operating-room footage with a depth view">
+            <video playsinline muted autoplay loop preload="metadata" width="960" height="540" aria-label="Hand pose estimated and tracked in an operating-room setting">
               <source src="surgical-assets/hand-pose.mp4" type="video/mp4">
             </video>
-            <figcaption>Hand keypoints, palm pose, and hand state with registered depth</figcaption>
+            <figcaption>Hand pose estimation</figcaption>
           </figure>
         </div>
         <aside class="panel-copy">
           <ol class="steps">
-            <li><div><h3>21 joints, in 3D</h3><p>Hands are detected in operating-room video, 21 joints are located, and depth gives each joint 3D coordinates plus the palm's full 6-DoF pose: position and tilt.</p></div></li>
-            <li><div><h3>Works without a depth camera</h3><p>When no depth sensor is available, depth is estimated from the regular camera image instead, so results stay consistent across equipment setups.</p></div></li>
-            <li><div><h3>Left or right, open or closed</h3><p>Even with several hands in view, each is labeled left or right and open or closed. The output goes directly to the robot controller and has been checked on real surgical footage.</p></div></li>
+            <li><div><h3>3D hand pose</h3><p>Localizes hand keypoints and estimates their positions in 3D.</p></div></li>
+            <li><div><h3>Robust to sensor setup</h3><p>Operates with or without a depth camera.</p></div></li>
+            <li><div><h3>Hand state recognition</h3><p>Distinguishes left from right hands and open from closed states.</p></div></li>
           </ol>
         </aside>
       </div>
@@ -190,44 +178,29 @@
     <section class="topic" id="bleeding" role="tabpanel" aria-labelledby="tab-bleeding" hidden>
       <div class="topic-head">
         <div>
-          <div class="topic-index">03 / Bleeding detection &amp; tracking</div>
-          <h2 id="bleeding-title">Spot bleeding and keep it in view.</h2>
-          <p>A detection model and a tracking model work together so bleeding regions are found reliably and followed smoothly over time, even while the suction arm moves.</p>
+          <div class="topic-index">03 / Bleeding</div>
+          <h2 id="bleeding-title">Bleeding detection and tracking.</h2>
+          <p>We detect and track bleeding regions in surgical video in real time to support situational awareness during procedures.</p>
         </div>
         <span class="badge">Real-time</span>
       </div>
       <div class="panel">
         <div class="media-area">
           <figure>
-            <video playsinline muted autoplay loop preload="metadata" width="848" height="480" aria-label="Bleeding region highlighted in real time on surgical footage while instruments move">
+            <video playsinline muted autoplay loop preload="metadata" width="848" height="480" aria-label="Bleeding area highlighted in surgical video">
               <source src="surgical-assets/bleeding-tracking.mp4" type="video/mp4">
             </video>
-            <figcaption>Bleeding region highlighted in real time</figcaption>
+            <figcaption>Bleeding detection &amp; tracking</figcaption>
           </figure>
         </div>
         <aside class="panel-copy">
           <ol class="steps">
-            <li><div><h3>Detection plus tracking</h3><p>Combining the two models lets each cover the other's gaps, making results more stable and consistent from frame to frame.</p></div></li>
-            <li><div><h3>Live overlay for the surgeon</h3><p>The bleeding region is drawn on screen in real time to help the team stay focused on it.</p></div></li>
-            <li><div><h3>Linked to the suction arm</h3><p>The system works together with the suction arm, keeping the bleeding position steady even as the arm moves.</p></div></li>
+            <li><div><h3>Detect and track</h3><p>Combines detection and tracking to localize bleeding regions over time.</p></div></li>
+            <li><div><h3>Temporal consistency</h3><p>Maintains stable predictions as the scene and instruments move.</p></div></li>
+            <li><div><h3>Real-time visualization</h3><p>Highlights bleeding regions on screen to support surgical monitoring.</p></div></li>
           </ol>
         </aside>
       </div>
-      <div class="pipeline" aria-label="Bleeding detection and tracking pipeline">
-        <p class="pipeline-label">Pipeline</p>
-        <div class="flow">
-          <div class="node">Input video</div>
-          <span class="arrow" aria-hidden="true">→</span>
-          <div class="node model">RF-DETR + Cutie<small>detection model + tracking model</small></div>
-          <span class="arrow" aria-hidden="true">→</span>
-          <div class="node">Fuse results<small>fused output also guides the tracker</small></div>
-          <span class="arrow" aria-hidden="true">→</span>
-          <div class="node">Refine region<small>and find its center</small></div>
-          <span class="arrow" aria-hidden="true">→</span>
-          <div class="node out">Bleeding region &amp; position</div>
-        </div>
-      </div>
-      <p class="note">These are recorded research examples from lab setups and cadaver footage, shown to illustrate work in progress.</p>
     </section>
   </main>
 
