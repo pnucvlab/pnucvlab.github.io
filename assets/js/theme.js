@@ -3,12 +3,11 @@
  * Load this in <head> without defer so the theme is set before the page paints.
  * Any element with a data-theme-toggle attribute becomes an animated day/night switch;
  * its look lives here so it is identical on every page (pages only position it).
- * The visitor's choice is remembered; until they choose, the OS setting is followed.
+ * Pages start in light mode; the visitor's choice is remembered once they switch.
  */
 (function () {
   var KEY = 'pnucvlab-theme';
   var root = document.documentElement;
-  var media = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
 
   /* A slim switch: translucent track (pages may set --tt-track / --tt-line), white knob
      with a line-icon sun that cross-fades to a crescent moon. */
@@ -68,13 +67,8 @@
   }
 
   injectStyle();
-  apply(stored() || (media && media.matches ? 'dark' : 'light'));
-
-  if (media) {
-    var follow = function (e) { if (!stored()) apply(e.matches ? 'dark' : 'light'); };
-    if (media.addEventListener) media.addEventListener('change', follow);
-    else if (media.addListener) media.addListener(follow);
-  }
+  // Light is the default for everyone; night mode only when the visitor turns it on.
+  apply(stored() === 'dark' ? 'dark' : 'light');
 
   document.addEventListener('DOMContentLoaded', syncButtons);
 
