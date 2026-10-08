@@ -19,7 +19,7 @@
   }
 
   function load(iframe) {
-    if (iframe.getAttribute('src')) return;
+    if (!iframe || iframe.getAttribute('src')) return;
     iframe.addEventListener('load', function () {
       iframe.classList.add('is-loaded');
       fit(iframe);
@@ -35,7 +35,7 @@
   // Pause videos in a closed panel and let the explorer resume them when reopened.
   function setPlaying(iframe, playing) {
     try {
-      var doc = iframe.contentDocument;
+      var doc = iframe && iframe.contentDocument;
       if (!doc) return;
       if (playing) doc.dispatchEvent(new Event('visibilitychange'));
       else doc.querySelectorAll('video').forEach(function (v) { v.pause(); });

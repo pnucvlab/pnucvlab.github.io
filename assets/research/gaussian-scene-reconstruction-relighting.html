@@ -91,6 +91,9 @@
     html[data-theme="dark"] .action,html[data-theme="dark"] .tab[aria-selected="true"]{background:#298ba1;border-color:#298ba1;color:#fff}
     html[data-theme="dark"] .action:hover{background:#217a8d}
     @media print{.theme-toggle{display:none}}
+    /* The relighting clip is 3:2; at half width it matches the height of the 3:1 reconstruction video and the paired geometry images. */
+    #panel-lighting .media-area video{width:calc(50% - 7px);margin-inline:auto}
+    @media(max-width:760px){#panel-lighting .media-area video{width:100%}}
     /* Shown inside the research page's "More details" panel: keep only the explorer. */
     html.embedded body{background:transparent!important}
     html.embedded .skip-link,html.embedded .masthead,html.embedded #overview,html.embedded .explorer>.section-heading,html.embedded .footer{display:none}
