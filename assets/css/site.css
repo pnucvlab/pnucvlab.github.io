@@ -216,6 +216,12 @@ body {
 	background-color: var(--site-soft);
 }
 
+/* main.css gives the graduation photo a fixed 933px width, which crops it at this height. */
+.home-page .notice-swiper .swiper-slide .notice-image-wrapper .graduation-notice-image {
+	width: auto;
+	object-fit: contain;
+}
+
 .home-page .notice-swiper .swiper-pagination {
 	margin-top: 10px;
 }
