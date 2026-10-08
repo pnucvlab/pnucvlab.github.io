@@ -3,182 +3,280 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Surgical and Embodied Vision research explorer from PNU CVLab.">
-  <script src="/assets/js/theme.js"></script>
-  <title>Surgical / Embodied Vision Explorer · PNU CVLab</title>
+  <meta name="description" content="Surgical and embodied vision research from PNU CVLab: surgical tool recognition, hand pose recognition, and bleeding detection and tracking.">
+  <script src="/assets/js/theme.js?v=4"></script>
+  <script>if (/[?&]embed=1\b/.test(location.search)) document.documentElement.classList.add('embedded');</script>
+  <title>Surgical / Embodied Vision · PNU CVLab</title>
   <style>
-    :root {
-      --accent: #40a8bf;
-      --accent-dark: #287f93;
-      --ink: #17191c;
-      --muted: #66707a;
-      --line: #dfe5e8;
-      --soft: #f5f8f9;
-      --dark: #111820;
+    :root{--accent:#298ba1;--accent-dark:#206d7e;--ink:#17191c;--text:#424e58;--muted:#58666f;--line:#dfe5e8;--soft:#f5f8f9;--tint:#edf9fb;--surface:#fff}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--surface);color:var(--ink);font-family:Arial,Helvetica,"Noto Sans KR",sans-serif;line-height:1.6}
+    a{color:var(--accent-dark)}
+    [hidden]{display:none!important}
+    .shell{width:min(1160px,calc(100% - 64px));margin-inline:auto}
+    .masthead{background:#8bccda;border-bottom:1px solid #40a8bf}
+    .masthead .shell{min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{font-size:21px;letter-spacing:-.5px;font-weight:800;color:#173e48;text-decoration:none}
+    .nav{display:flex;align-items:center;gap:25px}
+    .nav a{color:#173e48;font-size:12px;font-weight:800;letter-spacing:.07em;text-decoration:none;text-transform:uppercase}
+    .intro{padding:51px 0 30px}
+    .eyebrow{display:flex;align-items:center;gap:10px;color:var(--accent-dark);font-size:11px;font-weight:800;letter-spacing:.17em;text-transform:uppercase}
+    .eyebrow::before{content:"";width:26px;height:2px;background:var(--accent)}
+    h1{margin:15px 0 12px;font-size:clamp(28px,3.4vw,44px);line-height:1.2;font-weight:800;letter-spacing:-.035em}
+    .subtitle{margin:0;max-width:760px;color:var(--muted);font-size:clamp(15px,1.6vw,18px)}
+
+    /* Topic jump links */
+    .topic-nav{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 30px}
+    .topic-nav button{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:9px 16px;border:1px solid var(--line);background:var(--surface);color:var(--text);font:inherit;font-size:13px;font-weight:700;cursor:pointer}
+    .topic-nav button span{color:var(--accent);font-size:11px;letter-spacing:.08em}
+    .topic-nav button:hover:not([aria-selected="true"]){border-color:var(--accent);color:var(--accent-dark)}
+    .topic-nav button[aria-selected="true"]{background:#298ba1;border-color:#298ba1;color:#fff}
+    .topic-nav button[aria-selected="true"] span{color:#d6f3f9}
+    .topic-nav button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+    /* One topic; only the selected one is shown */
+    .topic{padding:4px 0 40px}
+    .topic-head{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:20px}
+    .topic-index{color:var(--accent-dark);font-size:11px;letter-spacing:.12em;font-weight:800;text-transform:uppercase;margin-bottom:8px}
+    .topic-head h2{margin:0 0 8px;font-size:clamp(24px,2.6vw,30px);line-height:1.2;letter-spacing:-.03em}
+    .topic-head p{margin:0;max-width:680px;color:var(--muted);font-size:15px}
+    .badge{flex:none;margin-top:4px;display:inline-flex;border:1px solid #b9dfe7;background:var(--tint);color:var(--accent-dark);font-size:10px;font-weight:800;letter-spacing:.08em;padding:5px 10px;border-radius:20px;white-space:nowrap;text-transform:uppercase}
+
+    .panel{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(250px,1fr);border:1px solid var(--line)}
+    .media-area{min-width:0;padding:20px;background:var(--soft);display:flex;flex-direction:column;justify-content:center;gap:12px}
+    .media-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    figure{margin:0;min-width:0}
+    video{display:block;width:100%;height:auto;background:#162129}
+    figcaption{margin-top:8px;color:var(--muted);font-size:11px;font-weight:700;letter-spacing:.04em;text-align:center}
+    .panel-copy{padding:24px;border-left:1px solid var(--line);display:flex;flex-direction:column;justify-content:center}
+    .steps{list-style:none;margin:0;padding:0;display:grid;gap:16px;counter-reset:step}
+    .steps li{display:grid;grid-template-columns:30px 1fr;gap:10px;counter-increment:step}
+    .steps li::before{content:counter(step,decimal-leading-zero);color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.06em;padding-top:2px}
+    .steps h3{margin:0 0 3px;font-size:15px;line-height:1.35}
+    .steps p{margin:0;color:var(--text);font-size:13px;line-height:1.6}
+
+    /* Bleeding pipeline */
+    .pipeline{margin-top:16px;padding:18px 20px;border:1px solid var(--line);background:var(--surface)}
+    .pipeline-label{margin:0 0 12px;color:var(--accent-dark);font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+    .flow{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap}
+    .node{flex:1 1 130px;display:flex;flex-direction:column;justify-content:center;padding:10px 12px;border:1px solid var(--line);background:var(--soft);font-size:13px;font-weight:700;line-height:1.35}
+    .node small{display:block;margin-top:2px;color:var(--muted);font-size:11px;font-weight:400}
+    .node.model{border-color:#9acbd6;background:var(--tint)}
+    .node.out{border-color:var(--accent);color:var(--accent-dark)}
+    .arrow{flex:none;align-self:center;color:var(--accent);font-weight:800}
+    .note{font-size:11px;color:var(--muted);line-height:1.7;margin:20px 0 0}
+
+    .footer{border-top:1px solid var(--line);padding:21px 0 28px;color:var(--muted);font-size:11px}
+
+    @media(max-width:860px){
+      .panel{grid-template-columns:1fr}
+      .panel-copy{border-left:0;border-top:1px solid var(--line)}
     }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: #fff;
-      color: var(--ink);
-      font-family: Arial, Helvetica, sans-serif;
+    @media(max-width:560px){
+      .shell{width:calc(100% - 28px)}
+      .media-pair{grid-template-columns:1fr}
+      .media-area,.panel-copy{padding:16px}
+      .topic-head{flex-direction:column;gap:10px}
+      .nav{gap:12px}.nav a{font-size:10px}
+      .flow{flex-direction:column}.arrow{transform:rotate(90deg)}
     }
-    .topbar {
-      border-bottom: 1px solid #2d3a44;
-      background: var(--dark);
-      color: #fff;
-    }
-    .topbar-inner {
-      display: flex;
-      width: min(1160px, calc(100% - 32px));
-      min-height: 64px;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      margin: 0 auto;
-    }
-    .brand { font-size: 18px; font-weight: 900; }
-    .back-link {
-      color: #dff5f9;
-      font-size: 13px;
-      font-weight: 700;
-      text-decoration: none;
-    }
-    .shell {
-      width: min(1160px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 64px 0 80px;
-    }
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      color: var(--accent-dark);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-    }
-    .eyebrow::before {
-      content: "";
-      width: 28px;
-      height: 2px;
-      background: var(--accent);
-    }
-    h1 {
-      max-width: 850px;
-      margin: 14px 0 16px;
-      font-size: clamp(38px, 6vw, 72px);
-      line-height: 1;
-      letter-spacing: -.045em;
-    }
-    .lead {
-      max-width: 720px;
-      margin: 0;
-      color: var(--muted);
-      font-size: clamp(17px, 2vw, 21px);
-      line-height: 1.65;
-    }
-    .empty-state {
-      position: relative;
-      min-height: 360px;
-      margin-top: 38px;
-      padding: 38px;
-      border: 1px solid var(--line);
-      background:
-        linear-gradient(rgba(64, 168, 191, .08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(64, 168, 191, .08) 1px, transparent 1px),
-        linear-gradient(145deg, #f7fbfc, #e7f4f7);
-      background-size: 34px 34px, 34px 34px, auto;
-    }
-    .empty-state::before,
-    .empty-state::after {
-      content: "";
-      position: absolute;
-      border: 2px solid rgba(40, 127, 147, .32);
-    }
-    .empty-state::before { inset: 22% 17%; }
-    .empty-state::after {
-      top: 44%;
-      left: 34%;
-      width: 32%;
-      height: 7px;
-      border: 0;
-      border-radius: 999px;
-      background: var(--accent-dark);
-      transform: rotate(-18deg);
-    }
-    .status {
-      position: relative;
-      z-index: 1;
-      display: inline-flex;
-      padding: 7px 10px;
-      border: 1px solid #b9dfe7;
-      border-radius: 999px;
-      background: #edf9fb;
-      color: var(--accent-dark);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-    .topbar-actions { display: flex; align-items: center; gap: 18px; }
-    .theme-toggle {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      padding: 0;
-      border: 1px solid #3a4a56;
-      border-radius: 50%;
-      background: transparent;
-      color: #dff5f9;
-      cursor: pointer;
-    }
-    .theme-toggle:hover { background: #22303a; }
-    .theme-toggle:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
-    html[data-theme="dark"] {
-      --accent: #5cc0d6;
-      --accent-dark: #7fd0e2;
-      --ink: #e3e8eb;
-      --muted: #9eabb4;
-      --line: #2f3b45;
-      --soft: #1a2128;
-    }
-    html[data-theme="dark"] body { background: #12171c; }
-    html[data-theme="dark"] .empty-state {
-      background:
-        linear-gradient(rgba(92, 192, 214, .08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(92, 192, 214, .08) 1px, transparent 1px),
-        linear-gradient(145deg, #172227, #12303a);
-      background-size: 34px 34px, 34px 34px, auto;
-    }
-    html[data-theme="dark"] .status { border-color: #2f6f7e; background: #15333b; color: #8fd7e6; }
-    @media (max-width: 600px) {
-      .shell { width: calc(100% - 22px); padding-top: 42px; }
-      .topbar-inner { width: calc(100% - 22px); }
-      .empty-state { min-height: 280px; padding: 24px; }
-    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+    /* Night mode */
+    html[data-theme="dark"]{--accent:#5cc0d6;--accent-dark:#7fd0e2;--ink:#e3e8eb;--text:#c3ccd2;--muted:#9eabb4;--line:#2f3b45;--soft:#1a2128;--tint:#15333b;--surface:#12171c}
+    html[data-theme="dark"] .masthead{background:#163a44;border-bottom-color:#1f5866}
+    html[data-theme="dark"] .brand,html[data-theme="dark"] .nav a{color:#e3f4f8}
+    html[data-theme="dark"] .badge{border-color:#2f6f7e}
+    html[data-theme="dark"] .node.model{border-color:#2f6f7e}
+
+    /* Shown inside the research page's "More details" panel: keep only the topics. */
+    html.embedded body{background:transparent!important}
+    html.embedded .masthead,html.embedded .intro,html.embedded .footer{display:none}
+    html.embedded .shell{width:100%}
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="brand">PNU CVLab</div>
-      <div class="topbar-actions">
-        <a class="back-link" href="/research/#embodied-vision">← Back to Research</a>
+  <header class="masthead">
+    <div class="shell">
+      <a class="brand" href="/research/">PNU CVLab</a>
+      <nav class="nav" aria-label="Page navigation">
+        <a href="/research/#embodied-vision">← Back to Research</a>
         <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to night mode"></button>
-      </div>
+      </nav>
     </div>
   </header>
+
   <main class="shell">
-    <span class="eyebrow">Interactive Research Explorer</span>
-    <h1>Surgical / Embodied Vision</h1>
-    <p class="lead">Detailed research content will be added here.</p>
-    <div class="empty-state" aria-label="Explorer content coming soon">
-      <span class="status">Coming soon</span>
+    <header class="intro">
+      <div class="eyebrow">Research · Surgical &amp; Embodied Vision</div>
+      <h1>Seeing the operating room the way a surgical robot needs to.</h1>
+      <p class="subtitle">Three perception modules that turn operating-room video into signals a robot can act on: where each instrument is, what the surgeon's hands are doing, and where bleeding occurs.</p>
+    </header>
+
+    <div class="topic-nav" role="tablist" aria-label="Topics">
+      <button type="button" role="tab" id="tab-tools" aria-controls="tools" aria-selected="true"><span>01</span>Surgical tools</button>
+      <button type="button" role="tab" id="tab-hands" aria-controls="hands" aria-selected="false" tabindex="-1"><span>02</span>Hand pose</button>
+      <button type="button" role="tab" id="tab-bleeding" aria-controls="bleeding" aria-selected="false" tabindex="-1"><span>03</span>Bleeding</button>
     </div>
+
+    <!-- 01 Surgical tools -->
+    <section class="topic" id="tools" role="tabpanel" aria-labelledby="tab-tools">
+      <div class="topic-head">
+        <div>
+          <div class="topic-index">01 / Surgical tool recognition</div>
+          <h2 id="tools-title">Find, follow, and locate every instrument in 3D.</h2>
+          <p>Starting from only a few labeled examples, the system learns to recognize surgical instruments, track them through the video, and estimate where each one sits in 3D space.</p>
+        </div>
+        <span class="badge">Few-shot</span>
+      </div>
+      <div class="panel">
+        <div class="media-area">
+          <div class="media-pair">
+            <figure>
+              <video playsinline muted autoplay loop preload="metadata" width="1280" height="720" aria-label="Surgical instruments detected and tracked frame by frame with labeled boxes">
+                <source src="surgical-assets/tool-detection-tracking.mp4" type="video/mp4">
+              </video>
+              <figcaption>Recognition &amp; tracking</figcaption>
+            </figure>
+            <figure>
+              <video playsinline muted autoplay loop preload="metadata" width="1280" height="720" aria-label="Estimated 3D position and orientation of each surgical instrument">
+                <source src="surgical-assets/tool-3d-pose.mp4" type="video/mp4">
+              </video>
+              <figcaption>3D position &amp; pose</figcaption>
+            </figure>
+          </div>
+        </div>
+        <aside class="panel-copy">
+          <ol class="steps">
+            <li><div><h3>Learn from a few examples</h3><p>A handful of examples per instrument is enough for the model to propose labels on new frames by itself, which people then review.</p></div></li>
+            <li><div><h3>Recognize and track</h3><p>Each instrument type, such as forceps or an electrosurgical pen, is identified and followed from frame to frame.</p></div></li>
+            <li><div><h3>Estimate 3D position and pose</h3><p>2D detections are combined with depth to recover each tool's 3D position and orientation.</p></div></li>
+          </ol>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 02 Hand pose -->
+    <section class="topic" id="hands" role="tabpanel" aria-labelledby="tab-hands" hidden>
+      <div class="topic-head">
+        <div>
+          <div class="topic-index">02 / Hand pose recognition</div>
+          <h2 id="hands-title">Read the surgeon's hands in 3D.</h2>
+          <p>The system locates 21 joints on every hand in view, lifts them into 3D, and works out which hand it is and whether it is open, so a robot knows when and where to hand over an instrument.</p>
+        </div>
+        <span class="badge">21 keypoints · 6-DoF</span>
+      </div>
+      <div class="panel">
+        <div class="media-area">
+          <figure>
+            <video playsinline muted autoplay loop preload="metadata" width="960" height="540" aria-label="Hand keypoints, palm pose, and open or closed state tracked on operating-room footage with a depth view">
+              <source src="surgical-assets/hand-pose.mp4" type="video/mp4">
+            </video>
+            <figcaption>Hand keypoints, palm pose, and hand state with registered depth</figcaption>
+          </figure>
+        </div>
+        <aside class="panel-copy">
+          <ol class="steps">
+            <li><div><h3>21 joints, in 3D</h3><p>Hands are detected in operating-room video, 21 joints are located, and depth gives each joint 3D coordinates plus the palm's full 6-DoF pose: position and tilt.</p></div></li>
+            <li><div><h3>Works without a depth camera</h3><p>When no depth sensor is available, depth is estimated from the regular camera image instead, so results stay consistent across equipment setups.</p></div></li>
+            <li><div><h3>Left or right, open or closed</h3><p>Even with several hands in view, each is labeled left or right and open or closed. The output goes directly to the robot controller and has been checked on real surgical footage.</p></div></li>
+          </ol>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 03 Bleeding -->
+    <section class="topic" id="bleeding" role="tabpanel" aria-labelledby="tab-bleeding" hidden>
+      <div class="topic-head">
+        <div>
+          <div class="topic-index">03 / Bleeding detection &amp; tracking</div>
+          <h2 id="bleeding-title">Spot bleeding and keep it in view.</h2>
+          <p>A detection model and a tracking model work together so bleeding regions are found reliably and followed smoothly over time, even while the suction arm moves.</p>
+        </div>
+        <span class="badge">Real-time</span>
+      </div>
+      <div class="panel">
+        <div class="media-area">
+          <figure>
+            <video playsinline muted autoplay loop preload="metadata" width="848" height="480" aria-label="Bleeding region highlighted in real time on surgical footage while instruments move">
+              <source src="surgical-assets/bleeding-tracking.mp4" type="video/mp4">
+            </video>
+            <figcaption>Bleeding region highlighted in real time</figcaption>
+          </figure>
+        </div>
+        <aside class="panel-copy">
+          <ol class="steps">
+            <li><div><h3>Detection plus tracking</h3><p>Combining the two models lets each cover the other's gaps, making results more stable and consistent from frame to frame.</p></div></li>
+            <li><div><h3>Live overlay for the surgeon</h3><p>The bleeding region is drawn on screen in real time to help the team stay focused on it.</p></div></li>
+            <li><div><h3>Linked to the suction arm</h3><p>The system works together with the suction arm, keeping the bleeding position steady even as the arm moves.</p></div></li>
+          </ol>
+        </aside>
+      </div>
+      <div class="pipeline" aria-label="Bleeding detection and tracking pipeline">
+        <p class="pipeline-label">Pipeline</p>
+        <div class="flow">
+          <div class="node">Input video</div>
+          <span class="arrow" aria-hidden="true">→</span>
+          <div class="node model">RF-DETR + Cutie<small>detection model + tracking model</small></div>
+          <span class="arrow" aria-hidden="true">→</span>
+          <div class="node">Fuse results<small>fused output also guides the tracker</small></div>
+          <span class="arrow" aria-hidden="true">→</span>
+          <div class="node">Refine region<small>and find its center</small></div>
+          <span class="arrow" aria-hidden="true">→</span>
+          <div class="node out">Bleeding region &amp; position</div>
+        </div>
+      </div>
+      <p class="note">These are recorded research examples from lab setups and cadaver footage, shown to illustrate work in progress.</p>
+    </section>
   </main>
+
+  <footer class="footer"><div class="shell">PNU CVLab · Surgical &amp; Embodied Vision</div></footer>
+
+  <script>
+    // Topic buttons: show only the selected topic. Videos play only in the visible topic
+    // while the page is visible; the research page also pauses them when its panel closes.
+    (() => {
+      const tabs = [...document.querySelectorAll('[role="tab"]')];
+      const panels = tabs.map(tab => document.getElementById(tab.getAttribute('aria-controls')));
+
+      function update() {
+        document.querySelectorAll('video').forEach(video => {
+          if (document.hidden || video.closest('[hidden]')) video.pause();
+          else { video.muted = true; video.play().catch(() => {}); }
+        });
+      }
+
+      function select(tab, moveFocus) {
+        tabs.forEach((item, i) => {
+          const on = item === tab;
+          item.setAttribute('aria-selected', String(on));
+          item.tabIndex = on ? 0 : -1;
+          panels[i].hidden = !on;
+        });
+        update();
+        if (moveFocus) tab.focus();
+      }
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => select(tab));
+        tab.addEventListener('keydown', event => {
+          let next;
+          if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+          else if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+          else if (event.key === 'Home') next = 0;
+          else if (event.key === 'End') next = tabs.length - 1;
+          else return;
+          event.preventDefault();
+          select(tabs[next], true);
+        });
+      });
+
+      // A link like surgical-embodied-explorer.html#hands opens that topic.
+      const fromHash = tabs.find(tab => '#' + tab.getAttribute('aria-controls') === location.hash);
+      select(fromHash || tabs[0]);
+      document.addEventListener('visibilitychange', update);
+    })();
+  </script>
 </body>
 </html>

@@ -5,36 +5,16 @@
 	position: relative;
 }
 
-.theme-toggle {
+/* The switch's look comes from assets/js/theme.js; here it is only placed in the navbar. */
+.navbar-default .theme-toggle[data-theme-toggle] {
 	position: absolute;
 	top: 50%;
 	right: 15px;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	width: 40px;
-	height: 40px;
-	padding: 0;
-	border: 1px solid rgba(255, 255, 255, .55);
-	border-radius: 50%;
-	background: rgba(255, 255, 255, .18);
-	color: #fff;
-	cursor: pointer;
 	transform: translateY(-50%);
-	transition: background-color .2s ease;
-}
-
-.theme-toggle:hover {
-	background: rgba(255, 255, 255, .32);
-}
-
-.theme-toggle:focus-visible {
-	outline: 3px solid #fff;
-	outline-offset: 2px;
 }
 
 #navbar-collapse-menu {
-	padding-right: 56px;
+	padding-right: 76px;
 }
 
 /* Palette ----------------------------------------------------------------- */
@@ -49,8 +29,31 @@ html[data-theme="dark"] {
 	--night-link: #7fd0e2;
 	--night-bar: #163a44;
 	--night-bar-hover: #1f5866;
+
+	/* Tokens used by assets/css/site.css */
+	--site-accent: var(--night-accent);
+	--site-accent-strong: #298ba1;
+	--site-accent-hover: #217a8d;
+	--site-ink: var(--night-text);
+	--site-text: #c3ccd2;
+	--site-muted: var(--night-muted);
+	--site-line: var(--night-line);
+	--site-soft: var(--night-surface);
+	--site-surface: var(--night-bg);
+	--site-page-bg: var(--night-bg);
+	--site-badge-bg: #15333b;
+	--site-badge-line: #2f6f7e;
+	--site-badge-ink: #8fd7e6;
 }
 
+/* Text links inside redesigned pages use the lighter night accent. */
+html[data-theme="dark"] .page a:not(.button) {
+	color: var(--night-link);
+}
+
+html[data-theme="dark"] .home-page .topic-grid a {
+	color: var(--night-text);
+}
 /* Base -------------------------------------------------------------------- */
 html[data-theme="dark"] body {
 	background-color: var(--night-bg);
@@ -141,10 +144,6 @@ html[data-theme="dark"] .side-menu .nav li .dropdown-menu > li > a:hover {
 }
 
 /* Home -------------------------------------------------------------------- */
-html[data-theme="dark"] .notice-swiper .swiper-slide .notice-image-wrapper {
-	background-color: var(--night-bar);
-}
-
 html[data-theme="dark"] .intro-card,
 html[data-theme="dark"] .news-card-container {
 	background: var(--night-surface);

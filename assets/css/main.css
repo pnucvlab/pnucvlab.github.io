@@ -4,7 +4,6 @@ html {
 }
 
 body {
-	letter-spacing: 0.05em;
 	margin-bottom: 8em;
 	padding-top: 8em;
 	counter-reset: h1counter;
@@ -136,7 +135,8 @@ body {
 	background-color: #8bccda;
 	border-color: #40a8bf;
 	text-transform: uppercase;
-	font-size: 1.3em;
+	font-size: 15px;
+	letter-spacing: .07em;
 	transition: transform 0.25s ease-in-out;
 }
 
@@ -177,7 +177,9 @@ body {
 
 .navbar-default .navbar-nav>li>a {
 	color: #ffffff;
-	font-weight: bold;
+	font-weight: 800;
+	padding-top: 22px;
+	padding-bottom: 22px;
 }
 
 .navbar-default .navbar-nav>li>a:hover,
@@ -284,15 +286,42 @@ body {
 	transform: translateY(-100%);
 }
 
-@media (max-width: 768px) {
+/* Below 992px the full menu no longer fits on one line (tablets in portrait,
+   phones in landscape), so switch to the side menu button. */
+@media (max-width: 991px) {
 	.navbar-default .navbar-toggle {
 		display: block;
+		margin: 0 4px 0 0;
 	}
 	#navbar-collapse-menu {
 		display: none !important;
 	}
 	.navbar-default {
 		transition: transform 0.2s ease-in-out;
+	}
+	.navbar-default .navbar-header {
+		float: none;
+		height: 64px;
+	}
+	body {
+		padding-top: 6.5em;
+	}
+}
+
+@media (max-width: 480px) {
+	.navbar-default .navbar-brand {
+		padding-left: 6px;
+		padding-right: 0;
+	}
+	.navbar-default .navbar-brand .logo {
+		height: 36px;
+	}
+}
+
+/* Phones in landscape: little vertical room, so keep the top gap small. */
+@media (max-height: 500px) and (orientation: landscape) {
+	body {
+		padding-top: 5.5em;
 	}
 }
 
@@ -351,7 +380,6 @@ body {
     z-index: 1050;
     transition: left 0.3s ease;
     padding-top: 60px;
-    box-shadow: 2px 0 5px rgba(0,0,0);
     box-sizing: border-box;
     overflow-x: hidden;
     overflow-y: auto;
@@ -359,6 +387,8 @@ body {
 
 .side-menu.active {
     left: 0;
+    /* Shadow only while open, so no dark strip shows at the screen edge. */
+    box-shadow: 2px 0 12px rgba(0, 0, 0, .25);
 }
 
 .side-menu .nav {

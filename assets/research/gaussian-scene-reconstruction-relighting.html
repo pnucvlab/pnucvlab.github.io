@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Research on Gaussian scene reconstruction and relighting through depth estimation, normal estimation, and laser-scanned geometry.">
   <meta name="color-scheme" content="light">
-  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/theme.js?v=4"></script>
   <script>if (/[?&]embed=1\b/.test(location.search)) document.documentElement.classList.add('embedded');</script>
   <title>3DGS and 2DGS Scene Reconstruction and Relighting · PNU CVLab</title>
   <style>
@@ -78,22 +78,20 @@
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
     @media print{.masthead,.action,.tabs,.footer a{display:none}.shell{width:100%}.panel[hidden]{display:grid!important}.panel{margin-bottom:18px;break-inside:avoid}.explorer{margin-top:24px}.research-card{break-inside:avoid}.intro{padding-top:0}}
     .nav{align-items:center}
-    .theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;padding:0;border:1px solid rgba(23,62,72,.35);border-radius:50%;background:rgba(255,255,255,.25);color:#173e48;cursor:pointer}
-    .theme-toggle:hover{background:rgba(255,255,255,.45)}
     html[data-theme="dark"]{--accent:#5cc0d6;--accent-dark:#7fd0e2;--ink:#e3e8eb;--muted:#9eabb4;--line:#2f3b45;--soft:#1a2128;--tint:#15333b}
     html[data-theme="dark"] body,html[data-theme="dark"] .skip-link,html[data-theme="dark"] .tab,html[data-theme="dark"] .media-error{background:#12171c}
     html[data-theme="dark"] .masthead{background:#163a44;border-bottom-color:#1f5866}
-    html[data-theme="dark"] .brand,html[data-theme="dark"] .nav a,html[data-theme="dark"] .theme-toggle{color:#e3f4f8}
-    html[data-theme="dark"] .theme-toggle{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.08)}
-    html[data-theme="dark"] .theme-toggle:hover{background:rgba(255,255,255,.18)}
+    html[data-theme="dark"] .brand,html[data-theme="dark"] .nav a{color:#e3f4f8}
     html[data-theme="dark"] .highlights,html[data-theme="dark"] .inspect-list{color:#c3ccd2}
     html[data-theme="dark"] .badge{border-color:#2f6f7e}
     html[data-theme="dark"] .action,html[data-theme="dark"] .tab[aria-selected="true"]{background:#298ba1;border-color:#298ba1;color:#fff}
     html[data-theme="dark"] .action:hover{background:#217a8d}
     @media print{.theme-toggle{display:none}}
     /* The relighting clip is 3:2; at half width it matches the height of the 3:1 reconstruction video and the paired geometry images. */
-    #panel-lighting .media-area video{width:calc(50% - 7px);margin-inline:auto}
-    @media(max-width:760px){#panel-lighting .media-area video{width:100%}}
+    /* Relighting: the text column sets the panel height; the video fills that height without growing it. */
+    #panel-lighting .media-area{position:relative;min-height:240px}
+    #panel-lighting .media-area video{position:absolute;inset:21px;margin:auto;width:auto;height:calc(100% - 42px);max-width:calc(100% - 42px);object-fit:contain;background:transparent}
+    @media(max-width:760px){#panel-lighting .media-area{min-height:0}#panel-lighting .media-area video{position:static;width:100%;height:auto;max-width:none}}
     /* Shown inside the research page's "More details" panel: keep only the explorer. */
     html.embedded body{background:transparent!important}
     html.embedded .skip-link,html.embedded .masthead,html.embedded #overview,html.embedded .explorer>.section-heading,html.embedded .footer{display:none}
@@ -168,9 +166,10 @@
 
       <div class="panel" id="panel-geometry" role="tabpanel" aria-labelledby="tab-geometry" tabindex="0" hidden>
         <div class="media-area">
+          <div class="comparison-labels" aria-hidden="true"><span>Rendered depth</span><span>Rendered surface normals</span></div>
           <div class="geometry-grid">
-            <figure><a href="gaussian-research-assets/rendered-depth.png" target="_blank" rel="noopener" aria-label="Open rendered depth in a new tab"><img src="gaussian-research-assets/rendered-depth.png" width="496" height="330" loading="lazy" alt="Rendered depth visualization of the reconstructed street."></a><figcaption>Rendered depth</figcaption></figure>
-            <figure><a href="gaussian-research-assets/surface-normals.png" target="_blank" rel="noopener" aria-label="Open rendered surface normals in a new tab"><img src="gaussian-research-assets/surface-normals.png" width="496" height="330" loading="lazy" alt="Surface normal visualization with colors encoding the orientation of reconstructed surfaces."></a><figcaption>Rendered surface normals</figcaption></figure>
+            <figure><a href="gaussian-research-assets/rendered-depth.png" target="_blank" rel="noopener" aria-label="Open rendered depth in a new tab"><img src="gaussian-research-assets/rendered-depth.png" width="496" height="330" loading="lazy" alt="Rendered depth visualization of the reconstructed street."></a></figure>
+            <figure><a href="gaussian-research-assets/surface-normals.png" target="_blank" rel="noopener" aria-label="Open rendered surface normals in a new tab"><img src="gaussian-research-assets/surface-normals.png" width="496" height="330" loading="lazy" alt="Surface normal visualization with colors encoding the orientation of reconstructed surfaces."></a></figure>
           </div>
           <p class="media-caption">Intermediate outputs reveal surface structure beyond the final image. Colors in the normal map represent orientation, not material color.</p>
         </div>
@@ -185,11 +184,10 @@
 
       <div class="panel" id="panel-lighting" role="tabpanel" aria-labelledby="tab-lighting" tabindex="0" hidden>
         <div class="media-area">
-          <video playsinline muted autoplay loop preload="metadata" width="960" height="640" aria-label="Recorded relighting of the reconstructed outdoor street scene" aria-describedby="lighting-caption">
+          <video playsinline muted autoplay loop preload="metadata" width="960" height="640" aria-label="Recorded relighting of the reconstructed outdoor street scene">
             <source src="gaussian-research-assets/main-scene.mp4?v=2" type="video/mp4">
             Your browser does not support this video. <a href="gaussian-research-assets/main-scene.mp4?v=2">Open the lighting study.</a>
           </video>
-          <p class="media-caption" id="lighting-caption">Recorded relighting of the reconstructed scene.</p>
         </div>
         <aside class="panel-copy">
           <div class="panel-index">03 / Lighting &amp; shadows</div>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/theme.js?v=4"></script>
 <script>if (/[?&]embed=1\b/.test(location.search)) document.documentElement.classList.add('embedded');</script>
 <title>Retrieve–Augment–Generate · Selected Examples</title>
 <style>
@@ -56,8 +56,7 @@ h1{font-size:clamp(21px,3vw,27px);line-height:1.2;letter-spacing:-.025em;margin:
 @media(max-width:720px){.explorer{padding:20px}.workspace{grid-template-columns:1fr;gap:24px}.header{gap:12px}.cases{margin:18px 0}.back{font-size:12px}.footer{margin-top:20px}}
 @media(max-width:380px){.explorer{padding:16px}.header{display:block}.back{display:inline-block;margin-top:8px}.case{padding:9px 10px}.workspace{gap:20px}}
 .header-actions{display:flex;align-items:center;gap:14px}
-.theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;padding:0;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--muted)}
-.theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
+.header-actions .theme-toggle{--tt-track:#eef3f5;--tt-track-hover:#e2ebee;--tt-line:#d3dde2;--tt-focus:#298ba1}
 html[data-theme="dark"]{--ink:#e3e8eb;--muted:#9eabb4;--accent:#5cc0d6;--soft:#1a2128;--line:#2f3b45;--good:#4cc38a}
 html[data-theme="dark"] body,html[data-theme="dark"] .case,html[data-theme="dark"] .region{background:#12171c}
 html[data-theme="dark"] .case[aria-pressed="true"]{background:#298ba1;border-color:#298ba1}

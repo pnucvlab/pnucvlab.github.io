@@ -59,7 +59,7 @@ custom_css: research
         <h2>3D Scene Understanding</h2>
         <p>Understanding 3D environments beyond object categories.</p>
       </div>
-      <span class="status-badge">Research Theme</span>
+      <span class="status-badge">Open-Vocabulary</span>
     </div>
 
     <div class="placeholder-grid">
@@ -80,7 +80,6 @@ custom_css: research
           <source src="{{ '/assets/research/open3dis_scene0011_queries.mp4' | relative_url }}" type="video/mp4">
           <a href="{{ '/assets/research/open3dis_scene0011_queries.mp4' | relative_url }}">Watch the 3D scene understanding demo</a>
         </video>
-        <figcaption>Query-based 3D scene understanding.</figcaption>
       </figure>
     </div>
 
@@ -99,7 +98,7 @@ custom_css: research
         <h2>3DGS / 2DGS Reconstruction &amp; Relighting</h2>
         <p>Scene reconstruction and relighting with Gaussian splatting.</p>
       </div>
-      <span class="status-badge">Research Theme</span>
+      <span class="status-badge">Gaussian Splatting</span>
     </div>
 
     <div class="oe-compact">
@@ -119,7 +118,6 @@ custom_css: research
         <video playsinline muted autoplay loop preload="metadata" width="960" height="640" aria-label="Recorded Gaussian reconstruction of an outdoor street">
           <source src="{{ '/assets/research/gaussian-research-assets/main-scene.mp4' | relative_url }}?v=2" type="video/mp4">
         </video>
-        <figcaption>Recorded Gaussian scene reconstruction.</figcaption>
       </figure>
     </div>
 
@@ -135,30 +133,32 @@ custom_css: research
         <h2>Surgical / Embodied Vision</h2>
         <p>Perception and multimodal reasoning for systems that must act in the physical world.</p>
       </div>
-      <span class="status-badge">Research Theme</span>
+      <span class="status-badge">Surgical Robotics</span>
     </div>
 
     <div class="placeholder-grid">
       <div class="placeholder-copy">
         <h3>From visual perception to reliable physical interaction.</h3>
         <p>We study object recognition, tracking, spatial reasoning, and vision-language intelligence for robotic and surgical environments where perception must support real-time decisions and action.</p>
+        <ul class="research-theme-list" aria-label="Surgical and embodied vision research areas">
+          <li>Surgical tool recognition, tracking &amp; 3D pose</li>
+          <li>Hand pose recognition for instrument handover</li>
+          <li>Bleeding detection &amp; tracking</li>
+        </ul>
         <button class="se-explorer-link details-toggle" type="button" aria-expanded="false" aria-controls="embodied-vision-details">
           <span class="details-label">More details</span> <span class="details-arrow" aria-hidden="true">↓</span>
         </button>
       </div>
       <figure class="oe-compact-figure">
-        <video autoplay muted loop playsinline preload="metadata" aria-label="Surgical instrument annotation proposals">
+        <video autoplay muted loop playsinline preload="metadata" aria-label="Surgical tool recognition">
           <source src="{{ '/assets/research/surgical-instrument-annotation-proposals.mp4' | relative_url }}" type="video/mp4">
         </video>
-        <figcaption>Surgical instrument annotation proposals.</figcaption>
+        <figcaption>Surgical tool recognition.</figcaption>
       </figure>
     </div>
 
     <div class="research-details" id="embodied-vision-details" hidden>
-      <div class="details-coming-soon">
-        <span class="status-badge">Coming soon</span>
-        <p>Detailed results and interactive demos for surgical and embodied vision will be added here.</p>
-      </div>
+      <iframe title="Surgical and embodied vision details" data-src="{{ '/assets/research/surgical-embodied-explorer.html' | relative_url }}?embed=1&amp;v={{ site.time | date: '%s' }}"></iframe>
     </div>
   </section>
 </div>
