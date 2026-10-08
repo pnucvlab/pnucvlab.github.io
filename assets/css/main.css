@@ -286,6 +286,43 @@ body {
 	transform: translateY(-100%);
 }
 
+/* Desktop: logo left, menu centered on the page, theme switch right.
+   Equal side columns keep the menu centered; it only shifts if the logo needs the room. */
+@media (min-width: 992px) {
+	.navbar-default > .container-fluid {
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+		column-gap: 24px;
+		align-items: center;
+	}
+	.navbar-default > .container-fluid::before,
+	.navbar-default > .container-fluid::after {
+		display: none;
+	}
+	.navbar-default .navbar-header {
+		grid-column: 1;
+		float: none;
+		justify-self: start;
+	}
+	.navbar-default #navbar-collapse-menu {
+		grid-column: 2;
+		float: none;
+		padding-right: 0;
+	}
+	.navbar-default .navbar-nav {
+		float: none;
+		margin: 0;
+	}
+}
+
+/* Narrow desktops: slightly tighter menu so it never touches the logo. */
+@media (min-width: 992px) and (max-width: 1199px) {
+	.navbar-default .navbar-nav > li > a {
+		padding-left: 11px;
+		padding-right: 11px;
+	}
+}
+
 /* Below 992px the full menu no longer fits on one line (tablets in portrait,
    phones in landscape), so switch to the side menu button. */
 @media (max-width: 991px) {
