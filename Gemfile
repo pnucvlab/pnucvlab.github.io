@@ -11,6 +11,9 @@ ruby RUBY_VERSION
 # Happy Jekylling!
 gem 'jekyll',"3.8.6"
 
+# Jekyll's Docker 3.8 image uses Ruby 2.6; ffi 1.17+ requires Ruby 3.
+gem "ffi", "< 1.17"
+
 # This is the default theme for new Jekyll sites. You may change this to anything you like.
 gem "minima","2.0"
 
@@ -28,4 +31,3 @@ gem 'jekyll-paginate'
 group :jekyll_plugins do
    gem "jekyll-feed", "~> 0.6"
 end
-
