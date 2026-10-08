@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Research on Gaussian scene reconstruction and relighting through depth estimation, normal estimation, and laser-scanned geometry.">
   <meta name="color-scheme" content="light">
+  <script src="/assets/js/theme.js"></script>
+  <script>if (/[?&]embed=1\b/.test(location.search)) document.documentElement.classList.add('embedded');</script>
   <title>3DGS and 2DGS Scene Reconstruction and Relighting · PNU CVLab</title>
   <style>
     :root{--accent:#298ba1;--accent-dark:#206d7e;--ink:#17191c;--muted:#58666f;--line:#dfe5e8;--soft:#f5f8f9;--tint:#edf9fb}
@@ -75,6 +77,25 @@
     @media(max-width:390px){.shell{width:calc(100% - 28px)}.section-heading{display:block}.badge{margin-top:10px}.nav{gap:10px}.research-copy{padding:24px 20px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
     @media print{.masthead,.action,.tabs,.footer a{display:none}.shell{width:100%}.panel[hidden]{display:grid!important}.panel{margin-bottom:18px;break-inside:avoid}.explorer{margin-top:24px}.research-card{break-inside:avoid}.intro{padding-top:0}}
+    .nav{align-items:center}
+    .theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;padding:0;border:1px solid rgba(23,62,72,.35);border-radius:50%;background:rgba(255,255,255,.25);color:#173e48;cursor:pointer}
+    .theme-toggle:hover{background:rgba(255,255,255,.45)}
+    html[data-theme="dark"]{--accent:#5cc0d6;--accent-dark:#7fd0e2;--ink:#e3e8eb;--muted:#9eabb4;--line:#2f3b45;--soft:#1a2128;--tint:#15333b}
+    html[data-theme="dark"] body,html[data-theme="dark"] .skip-link,html[data-theme="dark"] .tab,html[data-theme="dark"] .media-error{background:#12171c}
+    html[data-theme="dark"] .masthead{background:#163a44;border-bottom-color:#1f5866}
+    html[data-theme="dark"] .brand,html[data-theme="dark"] .nav a,html[data-theme="dark"] .theme-toggle{color:#e3f4f8}
+    html[data-theme="dark"] .theme-toggle{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.08)}
+    html[data-theme="dark"] .theme-toggle:hover{background:rgba(255,255,255,.18)}
+    html[data-theme="dark"] .highlights,html[data-theme="dark"] .inspect-list{color:#c3ccd2}
+    html[data-theme="dark"] .badge{border-color:#2f6f7e}
+    html[data-theme="dark"] .action,html[data-theme="dark"] .tab[aria-selected="true"]{background:#298ba1;border-color:#298ba1;color:#fff}
+    html[data-theme="dark"] .action:hover{background:#217a8d}
+    @media print{.theme-toggle{display:none}}
+    /* Shown inside the research page's "More details" panel: keep only the explorer. */
+    html.embedded body{background:transparent!important}
+    html.embedded .skip-link,html.embedded .masthead,html.embedded #overview,html.embedded .explorer>.section-heading,html.embedded .footer{display:none}
+    html.embedded .shell{width:100%}
+    html.embedded .explorer{margin-top:0;padding:0;border-top:0}
   </style>
 </head>
 <body id="top">
@@ -82,7 +103,7 @@
   <header class="masthead">
     <div class="shell">
       <a class="brand" href="/research/" aria-label="PNU CVLab Research page">PNU CVLab</a>
-      <nav class="nav" aria-label="Page navigation"><a href="/research/#3dgs-manipulation">← Back to Research</a><a href="#overview">Overview</a><a href="#explorer">Explorer</a></nav>
+      <nav class="nav" aria-label="Page navigation"><a href="/research/#3dgs-manipulation">← Back to Research</a><a href="#overview">Overview</a><a href="#explorer">Explorer</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to night mode"></button></nav>
     </div>
   </header>
   <main class="shell" id="main">
@@ -104,9 +125,9 @@
           <a class="action" href="#explorer">Interactive Explorer <span aria-hidden="true">↓</span></a>
         </div>
         <figure class="hero-figure">
-          <video playsinline muted autoplay loop preload="metadata" poster="gaussian-research-assets/reconstruction-hero-poster.jpg" width="960" height="640" aria-label="Recorded Gaussian reconstruction of an outdoor street" aria-describedby="hero-caption">
-            <source src="gaussian-research-assets/reconstruction-hero.mp4" type="video/mp4">
-            Your browser does not support this video. <a href="gaussian-research-assets/reconstruction-hero.mp4">Open the reconstruction recording.</a>
+          <video playsinline muted autoplay loop preload="metadata" width="960" height="640" aria-label="Recorded Gaussian reconstruction of an outdoor street" aria-describedby="hero-caption">
+            <source src="gaussian-research-assets/main-scene.mp4?v=2" type="video/mp4">
+            Your browser does not support this video. <a href="gaussian-research-assets/main-scene.mp4?v=2">Open the reconstruction recording.</a>
           </video>
           <figcaption id="hero-caption">Recorded Gaussian scene reconstruction.</figcaption>
         </figure>
@@ -161,11 +182,11 @@
 
       <div class="panel" id="panel-lighting" role="tabpanel" aria-labelledby="tab-lighting" tabindex="0" hidden>
         <div class="media-area">
-          <video playsinline muted autoplay loop preload="metadata" poster="gaussian-research-assets/lighting-poster.jpg" width="768" height="552" aria-label="Viewer recording of scene 114 as environment time changes from morning to night with a fixed camera" aria-describedby="lighting-caption">
-            <source src="gaussian-research-assets/lighting-study.mp4" type="video/mp4">
-            Your browser does not support this video. <a href="gaussian-research-assets/lighting-study.mp4">Open the lighting study.</a>
+          <video playsinline muted autoplay loop preload="metadata" width="960" height="640" aria-label="Recorded relighting of the reconstructed outdoor street scene" aria-describedby="lighting-caption">
+            <source src="gaussian-research-assets/main-scene.mp4?v=2" type="video/mp4">
+            Your browser does not support this video. <a href="gaussian-research-assets/main-scene.mp4?v=2">Open the lighting study.</a>
           </video>
-          <p class="media-caption" id="lighting-caption">Scene 114 · Environment time 06:00–20:00. Recorded in the viewer with a fixed camera and paused scene motion. The clock shows the selected environment time, not the original capture time.</p>
+          <p class="media-caption" id="lighting-caption">Recorded relighting of the reconstructed scene.</p>
         </div>
         <aside class="panel-copy">
           <div class="panel-index">03 / Lighting &amp; shadows</div>
@@ -176,7 +197,7 @@
         </aside>
       </div>
       <p class="note">These are recorded research examples, not a live renderer or a controlled comparison between Gaussian representations. Surface and shadow artifacts remain under investigation.</p>
-      <noscript><p class="note">To view all examples without JavaScript, open the <a href="gaussian-research-assets/rendered-depth.png">depth image</a>, <a href="gaussian-research-assets/surface-normals.png">normal image</a>, or <a href="gaussian-research-assets/lighting-study.mp4">lighting recording</a> directly.</p></noscript>
+      <noscript><p class="note">To view all examples without JavaScript, open the <a href="gaussian-research-assets/rendered-depth.png">depth image</a>, <a href="gaussian-research-assets/surface-normals.png">normal image</a>, or <a href="gaussian-research-assets/main-scene.mp4?v=2">lighting recording</a> directly.</p></noscript>
     </section>
     <footer class="footer"><span>PNU CVLab · Scene Reconstruction &amp; Relighting</span><a href="#top">Back to top ↑</a></footer>
   </main>

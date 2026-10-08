@@ -1,6 +1,15 @@
 source "https://rubygems.org"
 ruby RUBY_VERSION
 
+# Required explicitly by Jekyll on newer Ruby versions.
+gem "csv"
+gem "base64"
+gem "bigdecimal"
+gem "rexml"
+gem "webrick"
+gem "logger"
+gem "ostruct"
+
 # Hello! This is where you manage which Jekyll version is used to run.
 # When you want to use a different version, change it below, save the
 # file and run `bundle install`. Run Jekyll with `bundle exec`, like so:
@@ -9,7 +18,8 @@ ruby RUBY_VERSION
 #
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
-gem 'jekyll',"3.8.6"
+gem 'jekyll', "~> 3.9.5"
+gem "kramdown-parser-gfm"
 
 # Jekyll's Docker 3.8 image uses Ruby 2.6; ffi 1.17+ requires Ruby 3.
 gem "ffi", "< 1.17"
@@ -19,7 +29,7 @@ gem "minima","2.0"
 
 gem "jekyll-sitemap"
 
-gem 'therubyracer'
+# gem 'therubyracer'
 
 gem 'jekyll-paginate'
 

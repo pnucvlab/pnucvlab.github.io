@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/assets/js/theme.js"></script>
+<script>if (/[?&]embed=1\b/.test(location.search)) document.documentElement.classList.add('embedded');</script>
 <title>Retrieve–Augment–Generate · Selected Examples</title>
 <style>
 :root{color-scheme:light;--ink:#17191c;--muted:#61707a;--accent:#298ba1;--soft:#f4f8f9;--line:#dfe5e8;--good:#197347}
@@ -53,6 +55,23 @@ h1{font-size:clamp(21px,3vw,27px);line-height:1.2;letter-spacing:-.025em;margin:
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @media(max-width:720px){.explorer{padding:20px}.workspace{grid-template-columns:1fr;gap:24px}.header{gap:12px}.cases{margin:18px 0}.back{font-size:12px}.footer{margin-top:20px}}
 @media(max-width:380px){.explorer{padding:16px}.header{display:block}.back{display:inline-block;margin-top:8px}.case{padding:9px 10px}.workspace{gap:20px}}
+.header-actions{display:flex;align-items:center;gap:14px}
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;padding:0;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--muted)}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
+html[data-theme="dark"]{--ink:#e3e8eb;--muted:#9eabb4;--accent:#5cc0d6;--soft:#1a2128;--line:#2f3b45;--good:#4cc38a}
+html[data-theme="dark"] body,html[data-theme="dark"] .case,html[data-theme="dark"] .region{background:#12171c}
+html[data-theme="dark"] .case[aria-pressed="true"]{background:#298ba1;border-color:#298ba1}
+html[data-theme="dark"] .region[aria-pressed="true"]{background:#15333b}
+html[data-theme="dark"] .direct strong{color:#c3ccd2}
+html[data-theme="dark"] .token.used{border-color:#2f6f7e;background:#15333b;color:#8fd7e6}
+html[data-theme="dark"] .candidates td{border-top-color:#26313a}
+html[data-theme="dark"] .candidates .winner{background:#163226}
+@media(max-width:380px){.header-actions{margin-top:8px}}
+/* Shown inside the research page's "More details" panel. */
+html.embedded body{background:transparent!important}
+html.embedded .explorer{max-width:none;padding:0}
+html.embedded .header-actions{display:none}
+html.embedded h1{font-size:21px}
 </style>
 </head>
 <body>
@@ -62,7 +81,10 @@ h1{font-size:clamp(21px,3vw,27px);line-height:1.2;letter-spacing:-.025em;margin:
       <h1>Retrieve · Augment · Generate</h1>
       <p class="intro">Select an example or a highlighted region.</p>
     </div>
-    <a class="back" href="../../research/#open-ended-recognition">Research ↗</a>
+    <div class="header-actions">
+      <a class="back" href="../../research/#open-ended-recognition">Research ↗</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to night mode"></button>
+    </div>
   </header>
   <nav class="cases" aria-label="Selected examples" id="caseButtons"></nav>
   <div class="workspace">

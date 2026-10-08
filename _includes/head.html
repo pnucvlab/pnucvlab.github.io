@@ -6,12 +6,17 @@
   <title>{{ page.title | default: site.title }}</title>
   <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
 
+  {% comment %} Changes on every build so browsers fetch updated CSS/JS instead of a cached copy. {% endcomment %}
+  {% assign asset_version = site.time | date: '%s' %}
+
+  <script src="{{ '/assets/js/theme.js' | relative_url }}?v={{ asset_version }}"></script>
+
   <link rel="stylesheet" href="{{ '/assets/css/bootstrap.min.css' | relative_url }}" />
   <link rel="stylesheet" href="{{ '/assets/css/font-awesome/css/font-awesome.min.css' | relative_url }}" />
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ asset_version }}" />
   <link rel="stylesheet" href="{{ '/assets/css/syntax.css' | relative_url }}" />
   {% if page.custom_css %}
-  <link rel="stylesheet" href="{{ '/assets/css/' | append: page.custom_css | append: '.css' | relative_url }}" />
+  <link rel="stylesheet" href="{{ '/assets/css/' | append: page.custom_css | append: '.css' | relative_url }}?v={{ asset_version }}" />
   {% endif %}
 
   <!-- Swiper CSS -->
@@ -19,4 +24,6 @@
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
   />
+
+  <link rel="stylesheet" href="{{ '/assets/css/theme.css' | relative_url }}?v={{ asset_version }}" />
 </head>

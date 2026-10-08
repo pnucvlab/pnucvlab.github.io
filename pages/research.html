@@ -34,9 +34,9 @@ custom_css: research
             <li>Augment with grounded candidate labels.</li>
             <li>Select through visual–textual alignment.</li>
           </ul>
-          <a class="oe-explorer-link" href="{{ '/assets/research/retrieve-augment-generate-explorer.html' | relative_url }}?sample=43&amp;mask=1" target="_blank" rel="noopener" aria-label="Interactive Explorer (opens in a new tab)">
-            Interactive Explorer <span aria-hidden="true">↗</span>
-          </a>
+          <button class="oe-explorer-link details-toggle" type="button" aria-expanded="false" aria-controls="open-ended-recognition-details">
+            <span class="details-label">More details</span> <span class="details-arrow" aria-hidden="true">↓</span>
+          </button>
         </div>
         <figure class="oe-compact-figure">
           <video width="1240" height="826" autoplay muted loop playsinline preload="metadata" poster="{{ '/assets/research/open-ended-recognition-video-poster.jpg' | relative_url }}" aria-label="Dense scene with 13 selected EntitySAM regions and recorded open-ended labels.">
@@ -45,6 +45,10 @@ custom_css: research
           </video>
           <figcaption>Image → EntitySAM proposals → Open-ended labels.</figcaption>
         </figure>
+      </div>
+
+      <div class="research-details" id="open-ended-recognition-details" hidden>
+        <iframe title="Retrieve–Augment–Generate interactive explorer" data-src="{{ '/assets/research/retrieve-augment-generate-explorer.html' | relative_url }}?sample=43&amp;mask=1&amp;embed=1&amp;v={{ site.time | date: '%s' }}"></iframe>
       </div>
     </section>
 
@@ -97,16 +101,20 @@ custom_css: research
           <li>Refine surfaces with depth and normal supervision.</li>
           <li>Explore relighting and geometry-induced shadows.</li>
         </ul>
-        <a class="oe-explorer-link" href="{{ '/assets/research/gaussian-scene-reconstruction-relighting.html' | relative_url }}" target="_blank" rel="noopener" aria-label="Interactive Explorer (opens in a new tab)">
-          Interactive Explorer <span aria-hidden="true">↗</span>
-        </a>
+        <button class="oe-explorer-link details-toggle" type="button" aria-expanded="false" aria-controls="3dgs-manipulation-details">
+          <span class="details-label">More details</span> <span class="details-arrow" aria-hidden="true">↓</span>
+        </button>
       </div>
       <figure class="oe-compact-figure">
-        <video playsinline muted autoplay loop preload="metadata" poster="{{ '/assets/research/gaussian-research-assets/reconstruction-hero-poster.jpg' | relative_url }}" width="960" height="640" aria-label="Recorded Gaussian reconstruction of an outdoor street">
-          <source src="{{ '/assets/research/gaussian-research-assets/reconstruction-hero.mp4' | relative_url }}" type="video/mp4">
+        <video playsinline muted autoplay loop preload="metadata" width="960" height="640" aria-label="Recorded Gaussian reconstruction of an outdoor street">
+          <source src="{{ '/assets/research/gaussian-research-assets/main-scene.mp4' | relative_url }}?v=2" type="video/mp4">
         </video>
         <figcaption>Recorded Gaussian scene reconstruction.</figcaption>
       </figure>
+    </div>
+
+    <div class="research-details" id="3dgs-manipulation-details" hidden>
+      <iframe title="Gaussian scene reconstruction and relighting explorer" data-src="{{ '/assets/research/gaussian-scene-reconstruction-relighting.html' | relative_url }}?embed=1&amp;v={{ site.time | date: '%s' }}"></iframe>
     </div>
   </section>
 
@@ -124,9 +132,6 @@ custom_css: research
       <div class="placeholder-copy">
         <h3>From visual perception to reliable physical interaction.</h3>
         <p>We study object recognition, tracking, spatial reasoning, and vision-language intelligence for robotic and surgical environments where perception must support real-time decisions and action.</p>
-        <a class="se-explorer-link" href="{{ '/assets/research/surgical-embodied-explorer.html' | relative_url }}" target="_blank" rel="noopener" aria-label="Interactive Explorer (opens in a new tab)">
-          Interactive Explorer <span aria-hidden="true">↗</span>
-        </a>
       </div>
       <figure class="oe-compact-figure">
         <video autoplay muted loop playsinline preload="metadata" aria-label="Surgical instrument annotation proposals">
@@ -137,3 +142,5 @@ custom_css: research
     </div>
   </section>
 </div>
+
+<script src="{{ '/assets/js/research-details.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>

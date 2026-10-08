@@ -1,0 +1,221 @@
+/* Night mode. Loaded after every other stylesheet; the theme is switched by assets/js/theme.js. */
+
+/* Toggle button (both themes) ------------------------------------------- */
+.navbar-default .container-fluid {
+	position: relative;
+}
+
+.theme-toggle {
+	position: absolute;
+	top: 50%;
+	right: 15px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	border: 1px solid rgba(255, 255, 255, .55);
+	border-radius: 50%;
+	background: rgba(255, 255, 255, .18);
+	color: #fff;
+	cursor: pointer;
+	transform: translateY(-50%);
+	transition: background-color .2s ease;
+}
+
+.theme-toggle:hover {
+	background: rgba(255, 255, 255, .32);
+}
+
+.theme-toggle:focus-visible {
+	outline: 3px solid #fff;
+	outline-offset: 2px;
+}
+
+#navbar-collapse-menu {
+	padding-right: 56px;
+}
+
+/* Palette ----------------------------------------------------------------- */
+html[data-theme="dark"] {
+	--night-bg: #12171c;
+	--night-surface: #1a2128;
+	--night-raised: #212a32;
+	--night-line: #2f3b45;
+	--night-text: #e3e8eb;
+	--night-muted: #9eabb4;
+	--night-accent: #5cc0d6;
+	--night-link: #7fd0e2;
+	--night-bar: #163a44;
+	--night-bar-hover: #1f5866;
+}
+
+/* Base -------------------------------------------------------------------- */
+html[data-theme="dark"] body {
+	background-color: var(--night-bg);
+	color: var(--night-text);
+}
+
+html[data-theme="dark"] a {
+	color: var(--night-link);
+}
+
+html[data-theme="dark"] a:hover,
+html[data-theme="dark"] a:focus {
+	color: #a8e2ee;
+}
+
+/* The Bootstrap theme fixes headings at #444. */
+html[data-theme="dark"] h1, html[data-theme="dark"] h2, html[data-theme="dark"] h3,
+html[data-theme="dark"] h4, html[data-theme="dark"] h5, html[data-theme="dark"] h6,
+html[data-theme="dark"] .h1, html[data-theme="dark"] .h2, html[data-theme="dark"] .h3,
+html[data-theme="dark"] .h4, html[data-theme="dark"] .h5, html[data-theme="dark"] .h6 {
+	color: var(--night-text);
+}
+
+html[data-theme="dark"] hr {
+	border-top-color: var(--night-line);
+}
+
+/* Inline color:#000 on publication titles. */
+html[data-theme="dark"] [style*="color:#000"],
+html[data-theme="dark"] [style*="color: #000"] {
+	color: var(--night-text) !important;
+}
+
+/* Navigation -------------------------------------------------------------- */
+html[data-theme="dark"] .navbar-default {
+	background-color: var(--night-bar);
+	border-color: var(--night-bar-hover);
+}
+
+html[data-theme="dark"] .navbar-default .navbar-brand .logo {
+	filter: invert(1) hue-rotate(180deg);
+}
+
+html[data-theme="dark"] .navbar-default .navbar-nav>li>a {
+	color: #fff;
+}
+
+html[data-theme="dark"] .navbar-default .navbar-nav>li>a:hover,
+html[data-theme="dark"] .navbar-default .navbar-nav>li>a:focus,
+html[data-theme="dark"] .navbar-default .navbar-nav>li:hover>a,
+html[data-theme="dark"] .navbar-default .navbar-nav>.open>a,
+html[data-theme="dark"] .navbar-default .navbar-nav>.active>a {
+	background-color: var(--night-bar-hover) !important;
+}
+
+html[data-theme="dark"] .navbar-default .navbar-nav>li>.dropdown-menu {
+	background-color: rgba(26, 33, 40, .96);
+	border-color: var(--night-line);
+}
+
+html[data-theme="dark"] .navbar-default .navbar-nav>li>.dropdown-menu>li>a:hover,
+html[data-theme="dark"] .navbar-default .navbar-nav>li>.dropdown-menu>li>a:focus {
+	background-color: var(--night-bar-hover);
+}
+
+html[data-theme="dark"] .navbar-default .navbar-toggle {
+	background-color: var(--night-bar-hover);
+	border-color: var(--night-line);
+}
+
+html[data-theme="dark"] .side-menu {
+	background-color: var(--night-surface);
+}
+
+html[data-theme="dark"] .side-menu .nav > li {
+	border-bottom-color: var(--night-line);
+}
+
+html[data-theme="dark"] .side-menu .nav li a,
+html[data-theme="dark"] .side-menu .nav li .dropdown-menu > li > a {
+	color: var(--night-text);
+}
+
+html[data-theme="dark"] .side-menu .nav li a:hover,
+html[data-theme="dark"] .side-menu .nav li .dropdown-menu > li > a:hover {
+	background-color: var(--night-bar-hover);
+	color: #fff;
+}
+
+/* Home -------------------------------------------------------------------- */
+html[data-theme="dark"] .notice-swiper .swiper-slide .notice-image-wrapper {
+	background-color: var(--night-bar);
+}
+
+html[data-theme="dark"] .intro-card,
+html[data-theme="dark"] .news-card-container {
+	background: var(--night-surface);
+	border-color: var(--night-line);
+	box-shadow: none;
+}
+
+html[data-theme="dark"] .intro-item-card,
+html[data-theme="dark"] .news-item-card {
+	background: var(--night-raised);
+	border-color: var(--night-line);
+}
+
+html[data-theme="dark"] .news-item-card b {
+	color: var(--night-text);
+}
+
+/* People, gallery --------------------------------------------------------- */
+html[data-theme="dark"] .position-text,
+html[data-theme="dark"] .topic-text,
+html[data-theme="dark"] .email-text,
+html[data-theme="dark"] .alumni-details {
+	color: var(--night-text);
+}
+
+html[data-theme="dark"] .profile-info .home-icon,
+html[data-theme="dark"] .alumni-name .home-icon {
+	color: #6cb4ff;
+}
+
+html[data-theme="dark"] .month-divider {
+	border-top-color: #4a5862;
+}
+
+/* Research page ----------------------------------------------------------- */
+html[data-theme="dark"] .research-page {
+	--research-accent: var(--night-accent);
+	--research-accent-soft: #2f7d8f;
+	--research-ink: var(--night-text);
+	--research-muted: var(--night-muted);
+	--research-line: var(--night-line);
+	--research-soft: var(--night-surface);
+}
+
+html[data-theme="dark"] .research-page a.oe-explorer-link,
+html[data-theme="dark"] .research-page a.se-explorer-link {
+	color: #fff;
+}
+
+html[data-theme="dark"] .research-page .topic-index a,
+html[data-theme="dark"] .research-page .oe-compact,
+html[data-theme="dark"] .research-page .placeholder-grid,
+html[data-theme="dark"] .research-page .point-field .tag {
+	background: var(--night-bg);
+}
+
+html[data-theme="dark"] .research-page .oe-highlights,
+html[data-theme="dark"] .research-page .research-theme-list {
+	color: #c3ccd2;
+}
+
+html[data-theme="dark"] .research-page .oe-compact-figure figcaption {
+	color: var(--night-muted);
+}
+
+html[data-theme="dark"] .research-page .status-badge {
+	border-color: #2f6f7e;
+	background: #15333b;
+	color: #8fd7e6;
+}
+
+html[data-theme="dark"] .research-page .placeholder-visual {
+	background: linear-gradient(145deg, #172227 0%, #12303a 100%);
+}

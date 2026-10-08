@@ -253,7 +253,7 @@
 
 .research-page .oe-compact-figure video {
 	width: 100%;
-	background: #111820;
+	background: var(--research-soft);
 }
 
 .research-page .oe-compact-figure figcaption {
@@ -459,6 +459,55 @@
 	border-radius: 50%;
 	background: #e47e67;
 	box-shadow: 0 0 0 6px rgba(228, 126, 103, .12);
+}
+
+/* More details panels ----------------------------------------------------- */
+.research-page button.details-toggle {
+	font-family: inherit;
+	cursor: pointer;
+}
+
+.research-page .details-arrow {
+	display: inline-block;
+	transition: transform .25s ease;
+}
+
+.research-page .details-toggle[aria-expanded="true"] .details-arrow {
+	transform: rotate(180deg);
+}
+
+.research-page .research-details {
+	padding: 26px 30px 22px;
+	border: 1px solid var(--research-line);
+	border-top: 0;
+	scroll-margin-top: 84px;
+	animation: research-details-in .3s ease;
+}
+
+.research-page .research-details[hidden] {
+	display: none;
+}
+
+.research-page .research-details iframe {
+	display: block;
+	width: 100%;
+	height: 480px;
+	border: 0;
+	background: transparent;
+}
+
+@keyframes research-details-in {
+	from { opacity: 0; transform: translateY(-6px); }
+	to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.research-page .research-details { animation: none; }
+	.research-page .details-arrow { transition: none; }
+}
+
+@media (max-width: 680px) {
+	.research-page .research-details { padding: 18px 14px; }
 }
 
 /* Surgical and embodied vision ------------------------------------------- */
