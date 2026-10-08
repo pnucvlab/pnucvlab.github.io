@@ -10,6 +10,16 @@
   {% assign asset_version = site.time | date: '%s' %}
 
   <script src="{{ '/assets/js/theme.js' | relative_url }}?v={{ asset_version }}"></script>
+  <script>
+    // Scroll-reveal animations (assets/js/site.js). Skipped for reduced motion; if the
+    // script never runs, everything is shown after 2.5s so no content stays hidden.
+    if (!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+      document.documentElement.classList.add('reveal-on');
+      setTimeout(function () {
+        if (!document.documentElement.classList.contains('reveal-ready')) document.documentElement.classList.remove('reveal-on');
+      }, 2500);
+    }
+  </script>
 
   <link rel="stylesheet" href="{{ '/assets/css/bootstrap.min.css' | relative_url }}" />
   <link rel="stylesheet" href="{{ '/assets/css/font-awesome/css/font-awesome.min.css' | relative_url }}" />

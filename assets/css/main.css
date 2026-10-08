@@ -182,11 +182,40 @@ body {
 	padding-bottom: 22px;
 }
 
+/* Hover: a thin underline grows from the center instead of a solid block. */
+.navbar-default .navbar-nav>li>a {
+	position: relative;
+}
+
+.navbar-default .navbar-nav>li>a::after {
+	content: "";
+	position: absolute;
+	left: 12px;
+	right: 12px;
+	bottom: 14px;
+	height: 2px;
+	border-radius: 2px;
+	background: #ffffff;
+	transform: scaleX(0);
+	transition: transform .3s cubic-bezier(.2, .7, .2, 1);
+}
+
 .navbar-default .navbar-nav>li>a:hover,
 .navbar-default .navbar-nav>li>a:focus,
 .navbar-default .navbar-nav>li:hover>a {
 	color: #ffffff;
-	background-color: #40a8bf !important;
+	background-color: transparent !important;
+}
+
+.navbar-default .navbar-nav>li>a:hover::after,
+.navbar-default .navbar-nav>li>a:focus-visible::after,
+.navbar-default .navbar-nav>li:hover>a::after,
+.navbar-default .navbar-nav>.open>a::after {
+	transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.navbar-default .navbar-nav>li>a::after { transition: none; }
 }
 
 .navbar-default .navbar-nav>li>.dropdown-menu {
@@ -229,7 +258,7 @@ body {
 .navbar-default .navbar-nav>.open>a:hover,
 .navbar-default .navbar-nav>.open>a:focus {
 	color: #ffffff;
-	background-color: #40a8bf;
+	background-color: transparent;
 }
 
 .navbar-default .navbar-toggle {

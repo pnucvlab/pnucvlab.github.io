@@ -659,6 +659,22 @@ body {
 	border: 0;
 }
 
+/* Motion -------------------------------------------------------------------- */
+/* Scroll reveal: assets/js/site.js adds .is-visible as elements enter the viewport. */
+/* These rules only apply before and during the reveal; afterwards (.reveal-done) each
+   element's own hover styles and transitions take over again. */
+html.reveal-on :is(.page-intro > *, .page-section, .research-intro > *, .research-section,
+	.topic-grid > a, .member, .alumnus, .year-block, .event, .contact-item, .map, .news-list li):not(.is-visible) {
+	opacity: 0;
+	transform: translateY(18px);
+}
+
+html.reveal-on :is(.page-intro > *, .page-section, .research-intro > *, .research-section,
+	.topic-grid > a, .member, .alumnus, .year-block, .event, .contact-item, .map, .news-list li).is-visible:not(.reveal-done) {
+	transition: opacity .7s cubic-bezier(.2, .7, .2, 1), transform .7s cubic-bezier(.2, .7, .2, 1);
+	transition-delay: var(--reveal-delay, 0ms);
+}
+
 /* Responsive ---------------------------------------------------------------- */
 @media (max-width: 991px) {
 	.home-page .about-grid { grid-template-columns: 1fr; }

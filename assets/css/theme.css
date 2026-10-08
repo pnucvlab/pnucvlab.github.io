@@ -106,7 +106,7 @@ html[data-theme="dark"] .navbar-default .navbar-nav>li>a:focus,
 html[data-theme="dark"] .navbar-default .navbar-nav>li:hover>a,
 html[data-theme="dark"] .navbar-default .navbar-nav>.open>a,
 html[data-theme="dark"] .navbar-default .navbar-nav>.active>a {
-	background-color: var(--night-bar-hover) !important;
+	background-color: transparent !important;
 }
 
 html[data-theme="dark"] .navbar-default .navbar-nav>li>.dropdown-menu {
