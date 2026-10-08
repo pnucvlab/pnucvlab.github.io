@@ -617,7 +617,9 @@ body {
 	.home-page .about-grid { grid-template-columns: 1fr; }
 	.home-page .recruit { border-left: 0; border-top: 1px solid var(--site-line); }
 	.home-page .topic-grid { grid-template-columns: repeat(2, 1fr); }
-	.gallery-page .event-photos { grid-template-columns: repeat(2, 1fr); }
+	/* Tablets and phones: one photo per row at its natural shape, never cropped. */
+	.gallery-page .event-photos { grid-template-columns: 1fr; gap: 12px; }
+	.gallery-page .event-photos img { height: auto; object-fit: initial; }
 }
 
 /* Two cards per row still fit on tablets in portrait; stack only on phones. */
@@ -635,8 +637,6 @@ body {
 	.people-page .cv-grid { grid-template-columns: 1fr; }
 	.pubs-page .year-block,
 	.gallery-page .event { grid-template-columns: 1fr; gap: 10px; }
-	.gallery-page .event-photos { grid-template-columns: repeat(2, 1fr); }
-	.gallery-page .event-photos img { height: 160px; }
 	.home-page .about-copy,
 	.home-page .recruit { padding: 22px; }
 }
@@ -645,5 +645,4 @@ body {
 	.home-page .topic-grid { grid-template-columns: 1fr; }
 	.people-page .member { grid-template-columns: 104px 1fr; }
 	.people-page .member img { width: 104px; height: 136px; }
-	.gallery-page .event-photos { grid-template-columns: 1fr; }
 }
