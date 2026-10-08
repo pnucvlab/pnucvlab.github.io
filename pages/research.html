@@ -16,36 +16,37 @@ custom_css: research
   </section>
 
   <section class="research-section" id="open-ended-recognition">
-    <div class="section-heading-row">
-      <div class="section-number">01</div>
-      <div class="section-title">
-        <h2>Open-Ended Recognition</h2>
-        <p>Training-free recognition from internal vision–language evidence.</p>
+      <div class="section-heading-row">
+        <div class="section-number">01</div>
+        <div class="section-title">
+          <h2>Open-Ended Recognition</h2>
+          <p>Training-free recognition from internal vision–language evidence.</p>
+        </div>
+        <span class="status-badge">Training-free</span>
       </div>
-      <span class="status-badge">Training-free</span>
-    </div>
 
-    <div class="oe-compact">
-      <div class="oe-compact-copy">
-        <h3>Recognizing Any Region with Frozen VLMs</h3>
-        <p>Given an image and region mask, Retrieve–Augment–Generate recognizes regions without predefined class lists or additional training, using internal evidence from frozen VLMs.</p>
-        <ul class="oe-highlights" aria-label="Key research highlights">
-          <li>Retrieve internal region evidence.</li>
-          <li>Augment with grounded candidate labels.</li>
-          <li>Select through visual–textual alignment.</li>
-        </ul>
-        <a class="oe-explorer-link" href="{{ '/assets/research/retrieve-augment-generate-explorer.html' | relative_url }}?sample=43&amp;mask=1" aria-label="Open the Interactive Explorer">
-          Interactive Explorer <span aria-hidden="true">→</span>
-        </a>
+      <div class="oe-compact">
+        <div class="oe-compact-copy">
+          <h3>Recognizing Any Region with Frozen VLMs</h3>
+          <p>Given an image and region mask, Retrieve–Augment–Generate recognizes regions without predefined class lists or additional training, using internal evidence from frozen VLMs.</p>
+          <ul class="oe-highlights" aria-label="Key research highlights">
+            <li>Retrieve internal region evidence.</li>
+            <li>Augment with grounded candidate labels.</li>
+            <li>Select through visual–textual alignment.</li>
+          </ul>
+          <a class="oe-explorer-link" href="{{ '/assets/research/retrieve-augment-generate-explorer.html' | relative_url }}?sample=43&amp;mask=1" target="_blank" rel="noopener" aria-label="Interactive Explorer (opens in a new tab)">
+            Interactive Explorer <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <figure class="oe-compact-figure">
+          <video width="1240" height="826" autoplay muted loop playsinline controls preload="metadata" poster="{{ '/assets/research/open-ended-recognition-video-poster.jpg' | relative_url }}" aria-label="Dense scene with 13 selected EntitySAM regions and recorded open-ended labels.">
+            <source src="{{ '/assets/research/open-ended-recognition-demo.mp4' | relative_url }}" type="video/mp4">
+            <a href="{{ '/assets/research/open-ended-recognition-demo.mp4' | relative_url }}">Watch the recognition demo</a>
+          </video>
+          <figcaption>Image → EntitySAM proposals → Open-ended labels.</figcaption>
+        </figure>
       </div>
-      <figure class="oe-compact-figure">
-        <a href="{{ '/assets/research/open-ended-recognition.png' | relative_url }}" target="_blank" rel="noopener noreferrer" aria-label="View representative figure at full size (opens in a new tab)">
-          <img src="{{ '/assets/research/open-ended-recognition.png' | relative_url }}" width="1800" height="1170" alt="Regions labeled as Ron Weasley, Hermione Granger, Harry Potter, Pikachu, Eevee, and Eiffel Tower using frozen vision-language models." decoding="async">
-        </a>
-        <figcaption>Open-ended labels for specific characters and landmarks.</figcaption>
-      </figure>
-    </div>
-  </section>
+    </section>
 
   <section class="research-section" id="3d-recognition">
     <div class="section-heading-row">
@@ -67,12 +68,13 @@ custom_css: research
           <li>Online Scene Understanding</li>
         </ul>
       </div>
-      <div class="placeholder-visual point-field" aria-hidden="true">
-        <div class="visual-label">3D semantic field</div>
-        <div class="wire"></div>
-        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-        <div class="tag">open-ended 3D label</div>
-      </div>
+      <figure class="oe-compact-figure">
+        <video controls autoplay muted loop playsinline preload="metadata" aria-label="Open3DIS scene 0011 query demonstration">
+          <source src="{{ '/assets/research/open3dis_scene0011_queries.mp4' | relative_url }}" type="video/mp4">
+          <a href="{{ '/assets/research/open3dis_scene0011_queries.mp4' | relative_url }}">Watch the 3D scene understanding demo</a>
+        </video>
+        <figcaption>Query-based 3D scene understanding.</figcaption>
+      </figure>
     </div>
   </section>
 
