@@ -294,18 +294,59 @@ body {
 	background: var(--site-surface);
 	color: var(--site-ink);
 	text-decoration: none;
-	transition: transform .2s ease, border-color .2s ease;
+	position: relative;
+	overflow: hidden;
+	transition: transform .35s ease, border-color .35s ease, background-color .35s ease, box-shadow .35s ease;
 }
 
-.home-page .topic-grid a:hover {
-	transform: translateY(-2px);
-	border-color: var(--site-accent);
+/* Teal bar that grows across the top of the highlighted card. */
+.home-page .topic-grid a::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 3px;
+	background: var(--site-accent);
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform .45s ease;
 }
 
 .home-page .topic-grid a::after {
 	content: "→";
 	color: var(--site-accent);
 	font-weight: 800;
+	transition: transform .35s ease;
+}
+
+/* Highlighted card: hovered/focused, or the one the auto-cycle is on (.is-active). */
+.home-page .topic-grid a:hover,
+.home-page .topic-grid a:focus-visible,
+.home-page .topic-grid a.is-active {
+	transform: translateY(-3px);
+	border-color: var(--site-accent);
+	background: var(--site-soft);
+	box-shadow: 0 10px 24px rgba(30, 70, 82, .08);
+	text-decoration: none;
+}
+
+.home-page .topic-grid a:hover::before,
+.home-page .topic-grid a:focus-visible::before,
+.home-page .topic-grid a.is-active::before {
+	transform: scaleX(1);
+}
+
+.home-page .topic-grid a:hover::after,
+.home-page .topic-grid a:focus-visible::after,
+.home-page .topic-grid a.is-active::after {
+	transform: translateX(6px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.home-page .topic-grid a,
+	.home-page .topic-grid a::before,
+	.home-page .topic-grid a::after { transition: none; }
 }
 
 .home-page .topic-grid .topic-label {

@@ -120,3 +120,39 @@ permalink: /
     </ul>
   </section>
 </div>
+
+<script>
+  // Research cards: a highlight moves through the four cards on its own and stops while
+  // the visitor hovers or focuses a card. Paused off-screen and for reduced motion.
+  (function () {
+    var grid = document.querySelector('.home-page .topic-grid');
+    if (!grid || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+    var cards = grid.querySelectorAll('a');
+    var index = -1, timer = null, onScreen = true, userActive = false;
+
+    function show(i) {
+      for (var k = 0; k < cards.length; k++) cards[k].classList.toggle('is-active', k === i);
+    }
+    function step() { index = (index + 1) % cards.length; show(index); }
+    function start() {
+      if (timer || userActive || !onScreen) return;
+      step();
+      timer = setInterval(step, 1800);
+    }
+    function stop() { clearInterval(timer); timer = null; show(-1); }
+
+    grid.addEventListener('mouseenter', function () { userActive = true; stop(); });
+    grid.addEventListener('mouseleave', function () { userActive = false; start(); });
+    grid.addEventListener('focusin', function () { userActive = true; stop(); });
+    grid.addEventListener('focusout', function () { userActive = false; start(); });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        onScreen = entries[0].isIntersecting;
+        if (onScreen) start(); else { clearInterval(timer); timer = null; }
+      }, { threshold: 0.3 }).observe(grid);
+    } else {
+      start();
+    }
+  })();
+</script>
