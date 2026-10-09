@@ -27,10 +27,10 @@
     .topic{padding:4px 0 40px}
     .panel{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(250px,1fr);border:1px solid var(--line)}
     .viewer-wrap{position:relative;aspect-ratio:1;min-width:0;background:var(--soft)}
-    #viewer{position:absolute;inset:0}
+    #viewer{position:absolute;inset:0;z-index:0}
     #viewer canvas{display:block;width:100%;height:100%}
-    .meter{position:absolute;right:14px;top:50%;z-index:1;display:flex;flex-direction:column;align-items:center;gap:6px;transform:translateY(-50%);color:var(--accent-dark);font-size:11px;font-weight:800;letter-spacing:.04em;text-shadow:0 1px 2px rgba(255,255,255,.8)}
-    .meter-bar{width:14px;height:min(200px,42%);border:1px solid rgba(32,109,126,.25);border-radius:8px;background:linear-gradient(to top,rgb(8,18,48),rgb(40,150,190) 34%,rgb(245,210,40) 67%,rgb(190,30,30))}
+    .meter{position:absolute;right:12px;top:50%;z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;padding:8px 6px;transform:translateY(-50%);border-radius:10px;background:rgba(255,255,255,.88);color:var(--accent-dark);font-size:11px;font-weight:800;letter-spacing:.04em}
+    .meter-bar{width:12px;height:140px;border:1px solid rgba(32,109,126,.28);border-radius:8px;background:linear-gradient(to top,rgb(8,18,48),rgb(40,150,190) 34%,rgb(245,210,40) 67%,rgb(190,30,30))}
     .panel-copy{padding:24px;border-left:1px solid var(--line);display:flex;flex-direction:column;justify-content:center}
     .query-form{display:flex;gap:8px;align-items:center}
     .search{flex:1;display:flex;align-items:center;gap:8px;min-width:0;padding:4px 4px 4px 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
@@ -42,10 +42,9 @@
     .query-form.busy button{opacity:.55}
     #status{min-height:1.4em;margin:8px 0 0;color:var(--muted);font-size:13px}
     #status.is-error{color:#8a1f1f}
-    .panel-copy h2{margin:18px 0 8px;font-size:clamp(22px,2.2vw,28px);line-height:1.2;letter-spacing:-.03em}
-    .explain,.note{margin:0;color:var(--text);font-size:14px}
-    .note{margin-top:14px;color:var(--muted);font-size:13px}
-    .steps{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:14px;counter-reset:step}
+    .panel-copy h2{margin:14px 0 0;font-size:clamp(22px,2.2vw,28px);line-height:1.2;letter-spacing:-.03em}
+    .note{margin:12px 0 0;color:var(--muted);font-size:13px}
+    .steps{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:10px;counter-reset:step}
     .steps li{display:grid;grid-template-columns:30px 1fr;gap:10px;counter-increment:step}
     .steps li::before{content:counter(step,decimal-leading-zero);color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.06em;padding-top:2px}
     .steps h3{margin:0 0 3px;font-size:15px;line-height:1.35}
@@ -66,7 +65,7 @@
     html[data-theme="dark"]{--accent:#5cc0d6;--accent-dark:#7fd0e2;--ink:#e3e8eb;--text:#c3ccd2;--muted:#9eabb4;--line:#2f3b45;--soft:#1a2128;--tint:#15333b;--surface:#12171c}
     html[data-theme="dark"] .masthead{background:#163a44;border-bottom-color:#1f5866}
     html[data-theme="dark"] .brand,html[data-theme="dark"] .nav a{color:#e3f4f8}
-    html[data-theme="dark"] .meter{text-shadow:0 1px 2px rgba(0,0,0,.6)}
+    html[data-theme="dark"] .meter{background:rgba(18,23,28,.88)}
     html[data-theme="dark"] #status.is-error{color:#ffb4b4}
     html.embedded body{background:transparent!important}
     html.embedded .masthead,html.embedded .intro,html.embedded .footer{display:none}
@@ -109,20 +108,19 @@
           <form class="query-form" id="query-form">
             <div class="search">
               <label class="sr-only" for="query-input">Query</label>
-              <input id="query-input" type="text" placeholder='Try "soft", "wash my hands", "wall-mounted TV"' autocomplete="off" enterkeyhint="search">
+              <input id="query-input" type="text" placeholder="Search Anything" autocomplete="off" enterkeyhint="search">
               <button id="query-submit" type="submit">Enter</button>
             </div>
             <button id="reset" type="button">Reset</button>
           </form>
           <p id="status" role="status"></p>
           <h2>Query a 3D scene with free-form text.</h2>
-          <p class="explain">Any phrase — an object, a material, or an action — is compared with every point in the scene, and the matching regions are shown in warmer colors.</p>
           <ol class="steps">
-            <li><div><h3>Encode the query</h3><p>A CLIP text encoder running in the browser turns the phrase into a vector.</p></div></li>
-            <li><div><h3>Score every point</h3><p>Each of the roughly 48,000 points has a 768-dimensional feature. Cosine similarity ranks how well it matches.</p></div></li>
-            <li><div><h3>Paint the heatmap</h3><p>Scores are normalized between the 5th and 95th percentiles, then drawn from blue to red.</p></div></li>
+            <li><div><h3>Write a phrase</h3><p>An object, a material, or an action.</p></div></li>
+            <li><div><h3>Match it to the scene</h3><p>Every point is scored by how well it fits.</p></div></li>
+            <li><div><h3>Show the match</h3><p>Closer points appear in warmer colors.</p></div></li>
           </ol>
-          <p class="note">The first query downloads the text encoder and point features (about 285 MB). Later queries run immediately. Drag the scene to look around. Reset restores the original colors and rotation.</p>
+          <p class="note">Drag to look around. Reset restores the original colors.</p>
         </aside>
       </div>
     </section>
