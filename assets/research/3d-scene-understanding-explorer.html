@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Query a 3D scene with free-form text. The text encoder runs in the browser.">
+  <meta name="description" content="Pick a query and see which parts of a scanned 3D scene match.">
   <script src="/assets/js/theme.js?v=5"></script>
   <script>if (/[?&]embed=1\b/.test(location.search)) document.documentElement.classList.add("embedded");</script>
   <title>3D Scene Understanding Explorer · PNU CVLab</title>
@@ -30,19 +30,16 @@
     #viewer{position:absolute;inset:0;z-index:0}
     #viewer canvas{display:block;width:100%;height:100%}
     .meter{position:absolute;right:12px;top:50%;z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;padding:8px 6px;transform:translateY(-50%);border-radius:10px;background:rgba(255,255,255,.88);color:var(--accent-dark);font-size:11px;font-weight:800;letter-spacing:.04em}
-    .meter-bar{width:12px;height:110px;border:1px solid rgba(32,109,126,.28);border-radius:8px;background:linear-gradient(to top,rgb(37,99,235),rgb(40,150,190) 34%,rgb(245,210,40) 67%,rgb(190,30,30))}
+    .meter-bar{width:12px;height:110px;border:1px solid #fff;border-radius:8px;background:linear-gradient(to top,rgb(37,99,235),rgb(40,150,190) 34%,rgb(245,210,40) 67%,rgb(190,30,30))}
     .panel-copy{padding:24px;border-left:1px solid var(--line);display:flex;flex-direction:column;justify-content:center}
-    .query-form{display:flex;gap:8px;align-items:center}
-    .search{flex:1;display:flex;align-items:center;gap:8px;min-width:0;padding:4px 4px 4px 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
-    #query-input{flex:1;min-width:0;padding:8px 0;border:0;outline:none;background:transparent;color:inherit;font:inherit;font-size:14px}
-    .query-form button{border:1px solid var(--accent);border-radius:999px;background:var(--accent);color:#fff;font:inherit;font-size:13px;font-weight:700;padding:8px 14px;cursor:pointer}
-    .query-form button:hover{background:#217a8d}
-    #reset{background:var(--surface);color:var(--ink);border-color:var(--line)}
-    #reset:hover{border-color:var(--accent);color:var(--accent-dark);background:var(--surface)}
-    .query-form.busy button{opacity:.55}
-    #status{min-height:1.4em;margin:8px 0 0;color:var(--muted);font-size:13px}
+    .queries{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .queries button{border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);font:inherit;font-size:13px;font-weight:700;padding:8px 14px;cursor:pointer}
+    .queries button:hover{border-color:var(--accent);color:var(--accent-dark)}
+    .queries button.is-active{border-color:var(--accent);background:var(--accent);color:#fff}
+    #status{min-height:0;margin:8px 0 0;color:var(--muted);font-size:13px}
+    #status:empty{display:none}
     #status.is-error{color:#8a1f1f}
-    .panel-copy h2{margin:14px 0 0;font-size:clamp(22px,2.2vw,28px);line-height:1.2;letter-spacing:-.03em}
+    .panel-copy h2{margin:0;font-size:clamp(22px,2.2vw,28px);line-height:1.2;letter-spacing:-.03em}
     .note{margin:12px 0 0;color:var(--muted);font-size:13px}
     .steps{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:10px;counter-reset:step}
     .steps li{display:grid;grid-template-columns:30px 1fr;gap:10px;counter-increment:step}
@@ -59,7 +56,6 @@
     @media(max-width:560px){
       .shell{width:calc(100% - 28px)}
       .panel-copy{padding:16px}
-      .query-form{flex-wrap:wrap}
       .nav{gap:12px}.nav a{font-size:10px}
     }
     html[data-theme="dark"]{--accent:#5cc0d6;--accent-dark:#7fd0e2;--ink:#e3e8eb;--text:#c3ccd2;--muted:#9eabb4;--line:#2f3b45;--soft:#1a2128;--tint:#15333b;--surface:#12171c}
@@ -91,7 +87,7 @@
     <header class="intro">
       <div class="eyebrow">Research · 3D Scene Understanding</div>
       <h1>Query a scanned scene in your browser.</h1>
-      <p class="subtitle">A free-form phrase is compared with every point in the scene. Matching regions turn warmer colors.</p>
+      <p class="subtitle">Pick a query. Matching regions turn warmer colors.</p>
     </header>
 
     <section class="topic">
@@ -105,24 +101,17 @@
           </div>
         </div>
         <aside class="panel-copy">
-          <form class="query-form" id="query-form">
-            <div class="search">
-              <label class="sr-only" for="query-input">Query</label>
-              <input id="query-input" type="text" placeholder="Search" autocomplete="off" enterkeyhint="search">
-              <button id="query-submit" type="submit">Enter</button>
-            </div>
-            <button id="reset" type="button">Reset</button>
-          </form>
-          <p id="status" role="status"></p>
-          <h2>Interactive demo with a lightweight model.</h2>
+          <h2>Interactive demo</h2>
           <ol class="steps">
-            <li><div><h3>Write a phrase</h3><p>An object, a material, or an action.</p></div></li>
+            <li><div><h3>Pick a query</h3><p>Choose one of the buttons below.</p></div></li>
             <li><div><h3>Match it to the scene</h3><p>Every point is scored by how well it fits.</p></div></li>
             <li><div><h3>Show the match</h3><p>Closer points appear in warmer colors.</p></div></li>
           </ol>
-          <p class="note">Search Anything. Drag to look around.</p>
+          <p class="note">Drag to look around.</p>
         </aside>
       </div>
+      <div class="queries" id="queries" role="group" aria-label="Queries"></div>
+      <p id="status" role="status"></p>
     </section>
   </main>
 
@@ -133,25 +122,18 @@
     import { OrbitControls } from "./3d-scene-assets/OrbitControls.js";
 
     const ASSET = "3d-scene-assets";
-    const DIM = 768;
     const LOW = [37, 99, 235];
     const MID = [40, 150, 190];
     const HIGH = [245, 210, 40];
     const HOT = [190, 30, 30];
-    const TOKEN_RE = /<\|startoftext\|>|<\|endoftext\|>|'s|'t|'re|'ve|'m|'ll|'d|[\p{L}]+|[\p{N}]|[^\s\p{L}\p{N}]+/gu;
-
-    const form = document.getElementById("query-form");
-    const input = document.getElementById("query-input");
-    const resetButton = document.getElementById("reset");
+    const queryBar = document.getElementById("queries");
     const status = document.getElementById("status");
     const viewerEl = document.getElementById("viewer");
 
     const api = {
       pointCount: 0,
-      lastEmbedding: null,
       lastScores: null,
-      applyQuery,
-      embed,
+      showQuery,
       azimuth: () => (controls ? controls.azimuth() : null),
       isSpinning: () => (controls ? controls.isSpinning() : false),
     };
@@ -160,20 +142,12 @@
     let viewer = null;
     let controls = null;
     let cloud = null;
-    let resolveCloud = () => {};
-    const cloudReady = new Promise((resolve) => { resolveCloud = resolve; });
-    let packed = null;
-    let tokenizer = null;
-    let textModel = null;
-    let ready = null;
-    const cache = new Map();
-    let requestId = 0;
-    let rankCache = null;
+    let queryScores = null;
+    let active = -1;
 
     function setStatus(text, kind) {
       status.textContent = text || "";
       status.classList.toggle("is-error", kind === "error");
-      form.classList.toggle("busy", kind === "busy");
     }
 
     function parsePoints(buffer) {
@@ -190,19 +164,6 @@
       offset += count * 3;
       const valid = new Uint8Array(buffer.slice(offset, offset + count));
       return { count, positions, rgb, valid };
-    }
-
-    function parseFeatures(buffer, count) {
-      const view = new DataView(buffer);
-      const magic = String.fromCharCode(view.getUint8(0), view.getUint8(1), view.getUint8(2), view.getUint8(3));
-      if (magic !== "PNU8") throw new Error("Could not read point features.");
-      const version = view.getUint32(4, true);
-      const n = view.getUint32(8, true);
-      const dim = view.getUint32(12, true);
-      if (version !== 1 || n !== count || dim !== DIM) throw new Error("Point features do not match this scene.");
-      const scale = new Float32Array(buffer.slice(16, 16 + dim * 4));
-      const features = new Int8Array(buffer.slice(16 + dim * 4, 16 + dim * 4 + n * dim));
-      return { scale, features };
     }
 
     function whenSized(element) {
@@ -348,207 +309,35 @@
       return { resetCamera, isSpinning: () => spinning, azimuth: () => orbit.getAzimuthalAngle() };
     }
 
-    function encoderPrefetch() {
-      try {
-        if (window.parent && window.parent !== window && window.parent.sceneEncoderPrefetch) {
-          return window.parent.sceneEncoderPrefetch;
-        }
-      } catch (error) {
-        return null;
+    function parseScores(buffer, count) {
+      const view = new DataView(buffer);
+      const magic = String.fromCharCode(view.getUint8(0), view.getUint8(1), view.getUint8(2), view.getUint8(3));
+      if (magic !== "PNUQ") throw new Error("Could not read the queries.");
+      const version = view.getUint32(4, true);
+      const n = view.getUint32(8, true);
+      const nQuery = view.getUint32(12, true);
+      if (version !== 1 || n !== count) throw new Error("Queries do not match this scene.");
+      const out = [];
+      let offset = 16;
+      for (let q = 0; q < nQuery; q += 1) {
+        out.push(new Float32Array(buffer.slice(offset, offset + count * 4)));
+        offset += count * 4;
       }
-      return null;
-    }
-
-    async function fetchBytes(url, onChunk) {
-      const response = await fetch(url);
-      if (!response.ok) throw new Error("Could not load " + url.split("/").pop() + ".");
-      const reader = response.body.getReader();
-      const chunks = [];
-      let size = 0;
-      let pending = 0;
-      let lastPaint = 0;
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        chunks.push(value);
-        size += value.length;
-        pending += value.length;
-        const now = performance.now();
-        if (now - lastPaint > 200) {
-          onChunk(pending);
-          pending = 0;
-          lastPaint = now;
-        }
-      }
-      if (pending) onChunk(pending);
-      const out = new Uint8Array(size);
-      let offset = 0;
-      chunks.forEach((chunk) => { out.set(chunk, offset); offset += chunk.length; });
       return out;
     }
 
-    function loadScript(src) {
-      return new Promise((resolve, reject) => {
-        const script = document.createElement("script");
-        script.src = src;
-        script.onload = () => resolve();
-        script.onerror = () => reject(new Error("Could not load " + src.split("/").pop() + "."));
-        document.head.appendChild(script);
-      });
-    }
-
-    function ensureReady() {
-      if (!ready) ready = loadEncoder();
-      return ready;
-    }
-
-    function encoderLabel(state) {
-      const total = state.total || 0;
-      if (!total) return "Loading the text encoder…";
-      const totalMb = Math.max(1, Math.round(total / 1e6));
-      const gotMb = Math.min(totalMb, Math.round((state.got || 0) / 1e6));
-      return "Loading the text encoder… " + gotMb + " / " + totalMb + " MB";
-    }
-
-    async function loadEncoder() {
-      const shared = encoderPrefetch();
-      const files = [
-        ASSET + "/features.bin",
-        ASSET + "/clip-tokenizer.json",
-        ASSET + "/ort-wasm-simd.wasm",
-      ];
-      for (let i = 0; i < 5; i += 1) files.push(ASSET + "/text-model.part" + i);
-      let got = 0;
-      let declared = 0;
-      const paintLocal = () => {
-        setStatus(encoderLabel({ got, total: declared || got }), "busy");
-      };
-      const scriptReady = loadScript(ASSET + "/ort.wasm.min.js");
-      let bytes;
-      if (shared) {
-        const timer = setInterval(() => setStatus(encoderLabel(shared), "busy"), 200);
-        setStatus(encoderLabel(shared), "busy");
-        try {
-          bytes = await shared.files;
-          setStatus(encoderLabel(shared), "busy");
-        } finally {
-          clearInterval(timer);
-        }
-      } else {
-        const downloads = Promise.all(files.map((url) => fetchBytes(url, (n) => {
-          got += n;
-          paintLocal();
-        })));
-        bytes = await downloads;
-        declared = got;
-      }
-      await cloudReady;
-      if (!cloud) throw new Error("Could not load the scene.");
-      const [featureBytes, tokenizerBytes, wasmBytes, ...modelParts] = bytes;
-      packed = parseFeatures(featureBytes.buffer, cloud.count);
-      tokenizer = JSON.parse(new TextDecoder().decode(tokenizerBytes));
-      await scriptReady;
-      const ort = window.ort;
-      if (!ort) throw new Error("The text encoder did not load.");
-      const wasmUrl = URL.createObjectURL(new Blob([wasmBytes], { type: "application/wasm" }));
-      ort.env.wasm.numThreads = 1;
-      ort.env.wasm.simd = true;
-      ort.env.wasm.wasmPaths = { "ort-wasm-simd.wasm": wasmUrl, "ort-wasm.wasm": wasmUrl };
-      let modelSize = 0;
-      modelParts.forEach((part) => { modelSize += part.length; });
-      const model = new Uint8Array(modelSize);
-      let offset = 0;
-      modelParts.forEach((part) => { model.set(part, offset); offset += part.length; });
-      setStatus("Preparing the text encoder…", "busy");
-      textModel = await ort.InferenceSession.create(model, {
-        executionProviders: ["wasm"],
-        graphOptimizationLevel: "disabled",
-      });
-      if (!requestId) setStatus("");
-    }
-
-    function clipRanks(pack) {
-      if (!rankCache) rankCache = new Map(pack.merges.map((merge, index) => [merge, index]));
-      return rankCache;
-    }
-
-    function clipTokenIds(text, pack) {
-      const ranks = clipRanks(pack);
-      const vocab = pack.vocab;
-      const parts = text.normalize("NFC").replace(/\s+/g, " ").trim().toLowerCase().match(TOKEN_RE) || [];
-      const ids = [49406];
-      parts.forEach((part) => {
-        const symbols = Array.from(part);
-        symbols[symbols.length - 1] += "</w>";
-        let pieces = symbols;
-        while (pieces.length > 1) {
-          let best = -1;
-          let bestRank = Infinity;
-          for (let i = 0; i < pieces.length - 1; i += 1) {
-            const rank = ranks.get(pieces[i] + " " + pieces[i + 1]);
-            if (rank !== undefined && rank < bestRank) {
-              bestRank = rank;
-              best = i;
-            }
-          }
-          if (best < 0) break;
-          pieces = pieces.slice(0, best).concat([pieces[best] + pieces[best + 1]], pieces.slice(best + 2));
-        }
-        pieces.forEach((token) => ids.push(vocab[token] ?? 49407));
-      });
-      ids.push(49407);
-      if (ids.length > 77) {
-        ids.length = 76;
-        ids.push(49407);
-      }
-      return ids;
-    }
-
-    async function embed(text) {
-      const query = text.trim();
-      if (!query) return null;
-      if (cache.has(query)) return cache.get(query);
-      await ensureReady();
-      setStatus("Encoding “" + query + "”…", "busy");
-      const ids = clipTokenIds(query, tokenizer);
-      const ort = window.ort;
-      const tensor = new ort.Tensor("int64", BigInt64Array.from(ids, (id) => BigInt(id)), [1, ids.length]);
-      const outputs = await textModel.run({ input_ids: tensor });
-      const vector = Float32Array.from(outputs.text_embeds.data);
-      if (vector.length !== DIM) throw new Error("The text embedding has " + vector.length + " dimensions.");
-      let norm = 0;
-      for (let i = 0; i < vector.length; i += 1) norm += vector[i] * vector[i];
-      norm = Math.sqrt(norm) || 1;
-      for (let i = 0; i < vector.length; i += 1) vector[i] /= norm;
-      cache.set(query, vector);
-      api.lastEmbedding = vector;
-      return vector;
-    }
-
-    function scoreAndPaint(vector) {
-      const { features, scale } = packed;
+    function paintScores(values) {
       const { valid, rgb } = cloud;
-      const count = valid.length;
-      const qs = new Float32Array(DIM);
-      for (let k = 0; k < DIM; k += 1) qs[k] = vector[k] * scale[k];
-      const scores = new Float32Array(count);
       const ranked = [];
-      for (let i = 0; i < count; i += 1) {
-        if (!valid[i]) continue;
-        let score = 0;
-        const offset = i * DIM;
-        for (let k = 0; k < DIM; k += 1) score += features[offset + k] * qs[k];
-        scores[i] = score;
-        ranked.push(score);
-      }
+      for (let i = 0; i < valid.length; i += 1) if (valid[i]) ranked.push(values[i]);
       ranked.sort((a, b) => a - b);
       const low = percentile(ranked, 0.05);
       const high = percentile(ranked, 0.95);
       const span = Math.max(high - low, 1e-6);
       const next = new Uint8Array(rgb);
-      for (let i = 0; i < count; i += 1) {
+      for (let i = 0; i < valid.length; i += 1) {
         if (!valid[i]) continue;
-        const t = Math.min(1, Math.max(0, (scores[i] - low) / span));
+        const t = Math.min(1, Math.max(0, (values[i] - low) / span));
         const [r, g, b] = heatColor(t);
         next[i * 3] = r;
         next[i * 3 + 1] = g;
@@ -556,25 +345,25 @@
       }
       viewer.setColors(next);
       viewer.render();
-      api.lastScores = scores;
+      api.lastScores = values;
     }
 
-    async function applyQuery(query) {
-      const text = query.trim();
-      if (!text) return false;
-      const id = ++requestId;
-      try {
-        const vector = await embed(text);
-        if (id !== requestId || !vector) return false;
-        scoreAndPaint(vector);
-        setStatus("");
-        return true;
-      } catch (error) {
-        if (id !== requestId) return false;
-        if (!textModel) ready = null;
-        setStatus(error instanceof Error ? error.message : "Could not encode the query.", "error");
-        return false;
+    function showQuery(index) {
+      if (!viewer || !cloud || !queryScores) return false;
+      active = active === index ? -1 : index;
+      if (active < 0) {
+        viewer.setColors(cloud.rgb);
+        viewer.render();
+        api.lastScores = null;
+      } else {
+        paintScores(queryScores[index]);
       }
+      queryBar.querySelectorAll("button").forEach((button, i) => {
+        const on = i === active;
+        button.classList.toggle("is-active", on);
+        button.setAttribute("aria-pressed", String(on));
+      });
+      return active === index;
     }
 
     function percentile(sorted, p) {
@@ -600,37 +389,32 @@
       ];
     }
 
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      applyQuery(input.value);
-    });
-    resetButton.addEventListener("click", () => {
-      requestId += 1;
-      input.value = "";
-      if (viewer && cloud) {
-        viewer.setColors(cloud.rgb);
-        viewer.render();
-      }
-      if (controls) controls.resetCamera();
-      api.lastScores = null;
-      setStatus("");
-    });
-
-    api.encoderReady = ensureReady();
-    api.encoderReady.catch((error) => {
-      setStatus(error instanceof Error ? error.message : "Could not load the text encoder.", "error");
-    });
     try {
-      const response = await fetch(ASSET + "/points.bin");
-      if (!response.ok) throw new Error("Could not load the scene.");
-      cloud = parsePoints(await response.arrayBuffer());
+      const [pointsRes, namesRes, scoreRes] = await Promise.all([
+        fetch(ASSET + "/points.bin"),
+        fetch(ASSET + "/queries.json"),
+        fetch(ASSET + "/queries.bin"),
+      ]);
+      if (!pointsRes.ok || !namesRes.ok || !scoreRes.ok) throw new Error("Could not load the scene.");
+      cloud = parsePoints(await pointsRes.arrayBuffer());
+      const names = await namesRes.json();
+      queryScores = parseScores(await scoreRes.arrayBuffer(), cloud.count);
+      if (!Array.isArray(names) || names.length !== queryScores.length) throw new Error("Queries do not match this scene.");
+      const order = names.map((name, index) => ({ name, index })).sort((a, b) => a.name.localeCompare(b.name));
+      order.forEach(({ name, index }, buttonIndex) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = name;
+        button.setAttribute("aria-pressed", "false");
+        button.addEventListener("click", () => showQuery(buttonIndex));
+        queryBar.appendChild(button);
+      });
+      queryScores = order.map(({ index }) => queryScores[index]);
       api.pointCount = cloud.count;
-      resolveCloud();
       await whenSized(viewerEl);
       viewer = createViewer(viewerEl, cloud.positions, cloud.rgb);
       controls = createControls(viewer.camera, viewer.domElement, viewer.render);
     } catch (error) {
-      resolveCloud();
       setStatus(error instanceof Error ? error.message : "Could not load the scene.", "error");
     }
   </script>
