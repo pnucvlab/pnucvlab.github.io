@@ -80,78 +80,7 @@
       panelFor(target).scrollIntoView({ block: 'start' });
     }
   }
-  function startEncoderPrefetch(dataSrc) {
-    var base = new URL('3d-scene-assets/', new URL(dataSrc, location.href)).href;
-    var names = ['features.bin', 'clip-tokenizer.json', 'ort-wasm-simd.wasm'];
-    var state = { got: 0, total: 0, urls: [], files: null };
-    for (var i = 0; i < 5; i++) names.push('text-model.part' + i);
-    state.urls = names.map(function (name) { return base + name; });
-
-    function concat(chunks, size) {
-      var out = new Uint8Array(size);
-      var offset = 0;
-      for (var n = 0; n < chunks.length; n++) {
-        out.set(chunks[n], offset);
-        offset += chunks[n].length;
-      }
-      return out;
-    }
-
-    function fromNetwork(url) {
-      return fetch(url).then(function (response) {
-        if (!response.ok || !response.body) throw new Error('Could not load ' + url.split('/').pop() + '.');
-        var declared = Number(response.headers.get('Content-Length')) || 0;
-        if (declared) state.total += declared;
-        var reader = response.body.getReader();
-        var chunks = [];
-        var size = 0;
-        function read() {
-          return reader.read().then(function (result) {
-            if (result.done) {
-              var out = concat(chunks, size);
-              if (!declared) state.total += size;
-              if (window.caches) setTimeout(function () {
-                caches.open('pnu-3d-encoder-v1').then(function (cache) {
-                  return cache.put(url, new Response(out.slice()));
-                }).catch(function () {});
-              }, 8000);
-              return out;
-            }
-            chunks.push(result.value);
-            size += result.value.length;
-            state.got += result.value.length;
-            return read();
-          });
-        }
-        return read();
-      });
-    }
-
-    function loadOne(url) {
-      if (!window.caches) return fromNetwork(url);
-      var lookup = caches.open('pnu-3d-encoder-v1').then(function (cache) {
-        return cache.match(url);
-      });
-      var giveUp = new Promise(function (resolve) { setTimeout(function () { resolve('timeout'); }, 300); });
-      return Promise.race([lookup, giveUp]).then(function (hit) {
-        if (!hit || hit === 'timeout') return fromNetwork(url);
-        return hit.arrayBuffer().then(function (buffer) {
-          var out = new Uint8Array(buffer);
-          state.got += out.length;
-          state.total += out.length;
-          return out;
-        });
-      }).catch(function () { return fromNetwork(url); });
-    }
-
-    state.files = Promise.all(state.urls.map(loadOne));
-    return state;
-  }
-
-  // Download the 3D text encoder while the research page is open, before More details.
-  var encoderPanel = document.getElementById('3d-recognition-details');
-  var encoderFrame = encoderPanel && encoderPanel.querySelector('iframe');
-  if (encoderFrame) window.sceneEncoderPrefetch = startEncoderPrefetch(encoderFrame.getAttribute('data-src'));
+  if (window.caches) caches.delete('pnu-3d-encoder-v1');
 
   openFromHash();
   window.addEventListener('hashchange', openFromHash);
