@@ -32,8 +32,11 @@
     .meter{position:absolute;right:12px;top:50%;z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;padding:8px 6px;transform:translateY(-50%);border-radius:10px;background:rgba(255,255,255,.88);color:var(--accent-dark);font-size:11px;font-weight:800;letter-spacing:.04em}
     .meter-bar{width:12px;height:110px;border:1px solid #fff;border-radius:8px;background:linear-gradient(to top,rgb(37,99,235),rgb(40,150,190) 34%,rgb(245,210,40) 67%,rgb(190,30,30))}
     .panel-copy{padding:24px;border-left:1px solid var(--line);display:flex;flex-direction:column;justify-content:center}
-    .queries{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-    .queries button{border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);font:inherit;font-size:13px;font-weight:700;padding:8px 14px;cursor:pointer}
+    .query-rows{display:grid;gap:8px;margin-top:12px}
+    .query-row{display:grid;grid-template-columns:108px minmax(0,1fr);gap:10px;align-items:center}
+    .query-label{margin:0;font-size:13px;font-weight:800}
+    .queries{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+    .queries button{border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);font:inherit;font-size:13px;font-weight:700;padding:8px 10px;cursor:pointer}
     .queries button:hover{border-color:var(--accent);color:var(--accent-dark)}
     .queries button.is-active{border-color:var(--accent);background:var(--accent);color:#fff}
     #status{min-height:0;margin:8px 0 0;color:var(--muted);font-size:13px}
@@ -52,6 +55,7 @@
       .panel{grid-template-columns:1fr}
       .panel-copy{border-left:0;border-top:1px solid var(--line)}
       .viewer-wrap{aspect-ratio:2/1;min-height:240px}
+      .query-row{grid-template-columns:1fr}
     }
     @media(max-width:560px){
       .shell{width:calc(100% - 28px)}
@@ -110,7 +114,44 @@
           <p class="note">Drag to look around.</p>
         </aside>
       </div>
-      <div class="queries" id="queries" role="group" aria-label="Queries"></div>
+      <div class="query-rows">
+        <div class="query-row">
+          <p class="query-label">Object</p>
+          <div class="queries" role="group" aria-label="Object">
+            <button type="button">Query 1</button>
+            <button type="button">Query 2</button>
+            <button type="button">Query 3</button>
+            <button type="button">Query 4</button>
+          </div>
+        </div>
+        <div class="query-row">
+          <p class="query-label">Material</p>
+          <div class="queries" role="group" aria-label="Material">
+            <button type="button">Query 1</button>
+            <button type="button">Query 2</button>
+            <button type="button">Query 3</button>
+            <button type="button">Query 4</button>
+          </div>
+        </div>
+        <div class="query-row">
+          <p class="query-label">Property</p>
+          <div class="queries" role="group" aria-label="Property">
+            <button type="button">Query 1</button>
+            <button type="button">Query 2</button>
+            <button type="button">Query 3</button>
+            <button type="button">Query 4</button>
+          </div>
+        </div>
+        <div class="query-row">
+          <p class="query-label">Affordance</p>
+          <div class="queries" role="group" aria-label="Affordance">
+            <button type="button">Query 1</button>
+            <button type="button">Query 2</button>
+            <button type="button">Query 3</button>
+            <button type="button">Query 4</button>
+          </div>
+        </div>
+      </div>
       <p id="status" role="status"></p>
     </section>
   </main>
@@ -122,18 +163,11 @@
     import { OrbitControls } from "./3d-scene-assets/OrbitControls.js";
 
     const ASSET = "3d-scene-assets";
-    const LOW = [37, 99, 235];
-    const MID = [40, 150, 190];
-    const HIGH = [245, 210, 40];
-    const HOT = [190, 30, 30];
-    const queryBar = document.getElementById("queries");
     const status = document.getElementById("status");
     const viewerEl = document.getElementById("viewer");
 
     const api = {
       pointCount: 0,
-      lastScores: null,
-      showQuery,
       azimuth: () => (controls ? controls.azimuth() : null),
       isSpinning: () => (controls ? controls.isSpinning() : false),
     };
@@ -142,8 +176,6 @@
     let viewer = null;
     let controls = null;
     let cloud = null;
-    let queryScores = null;
-    let active = -1;
 
     function setStatus(text, kind) {
       status.textContent = text || "";
@@ -212,7 +244,7 @@
         const vHalf = (50 * Math.PI / 180) / 2;
         const hHalf = Math.atan(Math.tan(vHalf) * camera.aspect);
         const radius = 0.5 * Math.hypot(size.x, size.y, size.z);
-        const dist = (radius / Math.min(Math.sin(vHalf), Math.sin(hHalf))) * 1.08;
+        const dist = (radius / Math.min(Math.sin(vHalf), Math.sin(hHalf))) * 1.08 / 3;
         camera.position.set(0.62, 0.28, 0.62).normalize().multiplyScalar(dist);
         camera.lookAt(0, 0, 0);
         camera.updateProjectionMatrix();
@@ -309,107 +341,10 @@
       return { resetCamera, isSpinning: () => spinning, azimuth: () => orbit.getAzimuthalAngle() };
     }
 
-    function parseScores(buffer, count) {
-      const view = new DataView(buffer);
-      const magic = String.fromCharCode(view.getUint8(0), view.getUint8(1), view.getUint8(2), view.getUint8(3));
-      if (magic !== "PNUQ") throw new Error("Could not read the queries.");
-      const version = view.getUint32(4, true);
-      const n = view.getUint32(8, true);
-      const nQuery = view.getUint32(12, true);
-      if (version !== 1 || n !== count) throw new Error("Queries do not match this scene.");
-      const out = [];
-      let offset = 16;
-      for (let q = 0; q < nQuery; q += 1) {
-        out.push(new Float32Array(buffer.slice(offset, offset + count * 4)));
-        offset += count * 4;
-      }
-      return out;
-    }
-
-    function paintScores(values) {
-      const { valid, rgb } = cloud;
-      const ranked = [];
-      for (let i = 0; i < valid.length; i += 1) if (valid[i]) ranked.push(values[i]);
-      ranked.sort((a, b) => a - b);
-      const low = percentile(ranked, 0.05);
-      const high = percentile(ranked, 0.95);
-      const span = Math.max(high - low, 1e-6);
-      const next = new Uint8Array(rgb);
-      for (let i = 0; i < valid.length; i += 1) {
-        if (!valid[i]) continue;
-        const t = Math.min(1, Math.max(0, (values[i] - low) / span));
-        const [r, g, b] = heatColor(t);
-        next[i * 3] = r;
-        next[i * 3 + 1] = g;
-        next[i * 3 + 2] = b;
-      }
-      viewer.setColors(next);
-      viewer.render();
-      api.lastScores = values;
-    }
-
-    function showQuery(index) {
-      if (!viewer || !cloud || !queryScores) return false;
-      active = active === index ? -1 : index;
-      if (active < 0) {
-        viewer.setColors(cloud.rgb);
-        viewer.render();
-        api.lastScores = null;
-      } else {
-        paintScores(queryScores[index]);
-      }
-      queryBar.querySelectorAll("button").forEach((button, i) => {
-        const on = i === active;
-        button.classList.toggle("is-active", on);
-        button.setAttribute("aria-pressed", String(on));
-      });
-      return active === index;
-    }
-
-    function percentile(sorted, p) {
-      if (sorted.length === 0) return 0;
-      const index = (sorted.length - 1) * p;
-      const low = Math.floor(index);
-      const high = Math.ceil(index);
-      if (low === high) return sorted[low];
-      return sorted[low] * (high - index) + sorted[high] * (index - low);
-    }
-
-    function heatColor(t) {
-      const stops = [LOW, MID, HIGH, HOT];
-      const scaled = t * (stops.length - 1);
-      const index = Math.min(stops.length - 2, Math.floor(scaled));
-      const mix = scaled - index;
-      const a = stops[index];
-      const b = stops[index + 1];
-      return [
-        Math.round(a[0] + (b[0] - a[0]) * mix),
-        Math.round(a[1] + (b[1] - a[1]) * mix),
-        Math.round(a[2] + (b[2] - a[2]) * mix),
-      ];
-    }
-
     try {
-      const [pointsRes, namesRes, scoreRes] = await Promise.all([
-        fetch(ASSET + "/points.bin"),
-        fetch(ASSET + "/queries.json"),
-        fetch(ASSET + "/queries.bin"),
-      ]);
-      if (!pointsRes.ok || !namesRes.ok || !scoreRes.ok) throw new Error("Could not load the scene.");
+      const pointsRes = await fetch(ASSET + "/points.bin");
+      if (!pointsRes.ok) throw new Error("Could not load the scene.");
       cloud = parsePoints(await pointsRes.arrayBuffer());
-      const names = await namesRes.json();
-      queryScores = parseScores(await scoreRes.arrayBuffer(), cloud.count);
-      if (!Array.isArray(names) || names.length !== queryScores.length) throw new Error("Queries do not match this scene.");
-      const order = names.map((name, index) => ({ name, index })).sort((a, b) => a.name.localeCompare(b.name));
-      order.forEach(({ name, index }, buttonIndex) => {
-        const button = document.createElement("button");
-        button.type = "button";
-        button.textContent = name;
-        button.setAttribute("aria-pressed", "false");
-        button.addEventListener("click", () => showQuery(buttonIndex));
-        queryBar.appendChild(button);
-      });
-      queryScores = order.map(({ index }) => queryScores[index]);
       api.pointCount = cloud.count;
       await whenSized(viewerEl);
       viewer = createViewer(viewerEl, cloud.positions, cloud.rgb);
