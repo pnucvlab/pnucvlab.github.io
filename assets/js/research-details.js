@@ -14,7 +14,11 @@
   function fit(iframe) {
     try {
       var body = iframe.contentDocument && iframe.contentDocument.body;
-      if (body) iframe.style.height = Math.ceil(body.getBoundingClientRect().height) + 'px';
+      if (body) {
+        var doc = iframe.contentDocument.documentElement;
+        var height = Math.max(body.scrollHeight, body.offsetHeight, doc.scrollHeight, doc.offsetHeight);
+        iframe.style.height = Math.ceil(height) + 'px';
+      }
     } catch (e) {}
   }
 

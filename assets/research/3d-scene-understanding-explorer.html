@@ -25,8 +25,8 @@
     h1{margin:15px 0 12px;font-size:clamp(28px,3.4vw,44px);line-height:1.2;font-weight:800;letter-spacing:-.035em}
     .subtitle{margin:0;max-width:760px;color:var(--muted);font-size:clamp(15px,1.6vw,18px)}
     .topic{padding:4px 0 40px}
-    .panel{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(250px,1fr);border:1px solid var(--line)}
-    .viewer-wrap{position:relative;aspect-ratio:2/1;min-width:0;background:var(--soft)}
+    .panel{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(250px,1fr);align-items:stretch;border:1px solid var(--line)}
+    .viewer-wrap{position:relative;min-width:0;align-self:stretch;background:var(--soft)}
     #viewer{position:absolute;inset:0;z-index:0}
     #viewer canvas{display:block;width:100%;height:100%}
     .meter{position:absolute;right:12px;top:50%;z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;padding:8px 6px;transform:translateY(-50%);border-radius:10px;background:rgba(255,255,255,.88);color:var(--accent-dark);font-size:11px;font-weight:800;letter-spacing:.04em}
@@ -54,7 +54,7 @@
     @media(max-width:860px){
       .panel{grid-template-columns:1fr}
       .panel-copy{border-left:0;border-top:1px solid var(--line)}
-      .viewer-wrap{max-height:70vh}
+      .viewer-wrap{aspect-ratio:2/1;min-height:240px}
     }
     @media(max-width:560px){
       .shell{width:calc(100% - 28px)}
@@ -242,11 +242,20 @@
       scene.add(points);
 
       const camera = new THREE.PerspectiveCamera(50, 1, 0.01, extent * 40);
-      const fit = Math.max(size.y, size.z) * 0.55;
-      const dist = fit / Math.tan((50 * Math.PI / 180) / 2);
-      camera.position.set(dist * 0.62, dist * 0.28, dist * 0.62);
-      camera.lookAt(0, 0, 0);
       camera.up.set(0, 1, 0);
+      let moved = false;
+      function frameCamera() {
+        const width = Math.max(container.clientWidth, 1);
+        const height = Math.max(container.clientHeight, 1);
+        camera.aspect = width / height;
+        const vHalf = (50 * Math.PI / 180) / 2;
+        const hHalf = Math.atan(Math.tan(vHalf) * camera.aspect);
+        const radius = 0.5 * Math.hypot(size.x, size.y, size.z);
+        const dist = (radius / Math.min(Math.sin(vHalf), Math.sin(hHalf))) * 1.08;
+        camera.position.set(0.62, 0.28, 0.62).normalize().multiplyScalar(dist);
+        camera.lookAt(0, 0, 0);
+        camera.updateProjectionMatrix();
+      }
 
       const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
       renderer.setClearColor(0x000000, 0);
@@ -256,10 +265,14 @@
       function resize() {
         const width = container.clientWidth;
         const height = container.clientHeight;
-        camera.aspect = width / Math.max(height, 1);
-        camera.updateProjectionMatrix();
         renderer.setSize(width, height, false);
+        if (!moved && width > 1 && height > 1) frameCamera();
+        else {
+          camera.aspect = width / Math.max(height, 1);
+          camera.updateProjectionMatrix();
+        }
       }
+      container.addEventListener("pointerdown", () => { moved = true; });
       function render() { renderer.render(scene, camera); }
       function setColors(nextRgb) {
         writeRgb(colors, nextRgb);
