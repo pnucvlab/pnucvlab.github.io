@@ -26,11 +26,11 @@
     .subtitle{margin:0;max-width:760px;color:var(--muted);font-size:clamp(15px,1.6vw,18px)}
     .topic{padding:4px 0 40px}
     .panel{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(250px,1fr);border:1px solid var(--line)}
-    .viewer-wrap{position:relative;aspect-ratio:1;min-width:0;background:var(--soft)}
+    .viewer-wrap{position:relative;aspect-ratio:2/1;min-width:0;background:var(--soft)}
     #viewer{position:absolute;inset:0;z-index:0}
     #viewer canvas{display:block;width:100%;height:100%}
     .meter{position:absolute;right:12px;top:50%;z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;padding:8px 6px;transform:translateY(-50%);border-radius:10px;background:rgba(255,255,255,.88);color:var(--accent-dark);font-size:11px;font-weight:800;letter-spacing:.04em}
-    .meter-bar{width:12px;height:140px;border:1px solid rgba(32,109,126,.28);border-radius:8px;background:linear-gradient(to top,rgb(8,18,48),rgb(40,150,190) 34%,rgb(245,210,40) 67%,rgb(190,30,30))}
+    .meter-bar{width:12px;height:110px;border:1px solid rgba(32,109,126,.28);border-radius:8px;background:linear-gradient(to top,rgb(37,99,235),rgb(40,150,190) 34%,rgb(245,210,40) 67%,rgb(190,30,30))}
     .panel-copy{padding:24px;border-left:1px solid var(--line);display:flex;flex-direction:column;justify-content:center}
     .query-form{display:flex;gap:8px;align-items:center}
     .search{flex:1;display:flex;align-items:center;gap:8px;min-width:0;padding:4px 4px 4px 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
@@ -70,7 +70,7 @@
     html.embedded body{background:transparent!important}
     html.embedded .masthead,html.embedded .intro,html.embedded .footer{display:none}
     html.embedded .shell{width:100%}
-    html.embedded .topic{padding-bottom:0}
+    html.embedded .topic{padding:0}
   </style>
   <script type="importmap">
     { "imports": { "three": "./3d-scene-assets/three.module.js" } }
@@ -114,13 +114,13 @@
             <button id="reset" type="button">Reset</button>
           </form>
           <p id="status" role="status"></p>
-          <h2>Query a 3D scene with free-form text.</h2>
+          <h2>Interactive demo with a lightweight model.</h2>
           <ol class="steps">
             <li><div><h3>Write a phrase</h3><p>An object, a material, or an action.</p></div></li>
             <li><div><h3>Match it to the scene</h3><p>Every point is scored by how well it fits.</p></div></li>
             <li><div><h3>Show the match</h3><p>Closer points appear in warmer colors.</p></div></li>
           </ol>
-          <p class="note">Drag to look around. Reset restores the original colors.</p>
+          <p class="note">Search Anything. Drag to look around.</p>
         </aside>
       </div>
     </section>
@@ -134,7 +134,7 @@
 
     const ASSET = "3d-scene-assets";
     const DIM = 768;
-    const LOW = [8, 18, 48];
+    const LOW = [37, 99, 235];
     const MID = [40, 150, 190];
     const HIGH = [245, 210, 40];
     const HOT = [190, 30, 30];
@@ -160,6 +160,8 @@
     let viewer = null;
     let controls = null;
     let cloud = null;
+    let resolveCloud = () => {};
+    const cloudReady = new Promise((resolve) => { resolveCloud = resolve; });
     let packed = null;
     let tokenizer = null;
     let textModel = null;
@@ -203,6 +205,19 @@
       return { scale, features };
     }
 
+    function whenSized(element) {
+      if (element.clientWidth > 0 && element.clientHeight > 0) return Promise.resolve();
+      return new Promise((resolve) => {
+        const observer = new ResizeObserver(() => {
+          if (element.clientWidth > 0 && element.clientHeight > 0) {
+            observer.disconnect();
+            resolve();
+          }
+        });
+        observer.observe(element);
+      });
+    }
+
     function createViewer(container, positions, rgb) {
       const scene = new THREE.Scene();
       const geometry = new THREE.BufferGeometry();
@@ -211,6 +226,10 @@
       writeRgb(colors, rgb);
       const colorAttr = new THREE.BufferAttribute(colors, 3);
       geometry.setAttribute("color", colorAttr);
+      geometry.computeBoundingBox();
+      const center = new THREE.Vector3();
+      geometry.boundingBox.getCenter(center);
+      geometry.translate(-center.x, -center.y, -center.z);
       geometry.computeBoundingBox();
       const size = new THREE.Vector3();
       geometry.boundingBox.getSize(size);
@@ -223,8 +242,9 @@
       scene.add(points);
 
       const camera = new THREE.PerspectiveCamera(50, 1, 0.01, extent * 40);
-      const radius = extent * 1.15;
-      camera.position.set(radius * 0.85, radius * 0.55, radius * 0.85);
+      const fit = Math.max(size.y, size.z) * 0.55;
+      const dist = fit / Math.tan((50 * Math.PI / 180) / 2);
+      camera.position.set(dist * 0.62, dist * 0.28, dist * 0.62);
       camera.lookAt(0, 0, 0);
       camera.up.set(0, 1, 0);
 
@@ -315,19 +335,39 @@
       return { resetCamera, isSpinning: () => spinning, azimuth: () => orbit.getAzimuthalAngle() };
     }
 
+    function encoderPrefetch() {
+      try {
+        if (window.parent && window.parent !== window && window.parent.sceneEncoderPrefetch) {
+          return window.parent.sceneEncoderPrefetch;
+        }
+      } catch (error) {
+        return null;
+      }
+      return null;
+    }
+
     async function fetchBytes(url, onChunk) {
       const response = await fetch(url);
       if (!response.ok) throw new Error("Could not load " + url.split("/").pop() + ".");
       const reader = response.body.getReader();
       const chunks = [];
       let size = 0;
+      let pending = 0;
+      let lastPaint = 0;
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
         chunks.push(value);
         size += value.length;
-        onChunk(value.length);
+        pending += value.length;
+        const now = performance.now();
+        if (now - lastPaint > 200) {
+          onChunk(pending);
+          pending = 0;
+          lastPaint = now;
+        }
       }
+      if (pending) onChunk(pending);
       const out = new Uint8Array(size);
       let offset = 0;
       chunks.forEach((chunk) => { out.set(chunk, offset); offset += chunk.length; });
@@ -349,7 +389,16 @@
       return ready;
     }
 
+    function encoderLabel(state) {
+      const total = state.total || 0;
+      if (!total) return "Loading the text encoder…";
+      const totalMb = Math.max(1, Math.round(total / 1e6));
+      const gotMb = Math.min(totalMb, Math.round((state.got || 0) / 1e6));
+      return "Loading the text encoder… " + gotMb + " / " + totalMb + " MB";
+    }
+
     async function loadEncoder() {
+      const shared = encoderPrefetch();
       const files = [
         ASSET + "/features.bin",
         ASSET + "/clip-tokenizer.json",
@@ -357,14 +406,31 @@
       ];
       for (let i = 0; i < 5; i += 1) files.push(ASSET + "/text-model.part" + i);
       let got = 0;
-      const total = 285;
-      const onChunk = (n) => {
-        got += n;
-        setStatus("Loading the text encoder… " + Math.min(total, Math.round(got / 1e6)) + " / " + total + " MB", "busy");
+      let declared = 0;
+      const paintLocal = () => {
+        setStatus(encoderLabel({ got, total: declared || got }), "busy");
       };
-      const downloads = Promise.all(files.map((url) => fetchBytes(url, onChunk)));
       const scriptReady = loadScript(ASSET + "/ort.wasm.min.js");
-      const bytes = await downloads;
+      let bytes;
+      if (shared) {
+        const timer = setInterval(() => setStatus(encoderLabel(shared), "busy"), 200);
+        setStatus(encoderLabel(shared), "busy");
+        try {
+          bytes = await shared.files;
+          setStatus(encoderLabel(shared), "busy");
+        } finally {
+          clearInterval(timer);
+        }
+      } else {
+        const downloads = Promise.all(files.map((url) => fetchBytes(url, (n) => {
+          got += n;
+          paintLocal();
+        })));
+        bytes = await downloads;
+        declared = got;
+      }
+      await cloudReady;
+      if (!cloud) throw new Error("Could not load the scene.");
       const [featureBytes, tokenizerBytes, wasmBytes, ...modelParts] = bytes;
       packed = parseFeatures(featureBytes.buffer, cloud.count);
       tokenizer = JSON.parse(new TextDecoder().decode(tokenizerBytes));
@@ -381,7 +447,11 @@
       let offset = 0;
       modelParts.forEach((part) => { model.set(part, offset); offset += part.length; });
       setStatus("Preparing the text encoder…", "busy");
-      textModel = await ort.InferenceSession.create(model, { executionProviders: ["wasm"] });
+      textModel = await ort.InferenceSession.create(model, {
+        executionProviders: ["wasm"],
+        graphOptimizationLevel: "disabled",
+      });
+      if (!requestId) setStatus("");
     }
 
     function clipRanks(pack) {
@@ -426,6 +496,7 @@
       if (!query) return null;
       if (cache.has(query)) return cache.get(query);
       await ensureReady();
+      setStatus("Encoding “" + query + "”…", "busy");
       const ids = clipTokenIds(query, tokenizer);
       const ort = window.ort;
       const tensor = new ort.Tensor("int64", BigInt64Array.from(ids, (id) => BigInt(id)), [1, ids.length]);
@@ -479,12 +550,11 @@
       const text = query.trim();
       if (!text) return false;
       const id = ++requestId;
-      setStatus("Encoding “" + text + "”…", "busy");
       try {
         const vector = await embed(text);
         if (id !== requestId || !vector) return false;
         scoreAndPaint(vector);
-        setStatus("Showing “" + text + "”. Drag to look around.");
+        setStatus("");
         return true;
       } catch (error) {
         if (id !== requestId) return false;
@@ -533,16 +603,21 @@
       setStatus("");
     });
 
+    api.encoderReady = ensureReady();
+    api.encoderReady.catch((error) => {
+      setStatus(error instanceof Error ? error.message : "Could not load the text encoder.", "error");
+    });
     try {
-      setStatus("Loading the scene…", "busy");
       const response = await fetch(ASSET + "/points.bin");
       if (!response.ok) throw new Error("Could not load the scene.");
       cloud = parsePoints(await response.arrayBuffer());
       api.pointCount = cloud.count;
+      resolveCloud();
+      await whenSized(viewerEl);
       viewer = createViewer(viewerEl, cloud.positions, cloud.rgb);
       controls = createControls(viewer.camera, viewer.domElement, viewer.render);
-      setStatus("");
     } catch (error) {
+      resolveCloud();
       setStatus(error instanceof Error ? error.message : "Could not load the scene.", "error");
     }
   </script>

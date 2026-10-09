@@ -511,6 +511,10 @@
 	background: transparent;
 }
 
+.research-page #3d-recognition-details {
+	padding: 12px 30px;
+}
+
 .research-page button.se-explorer-link {
 	font-family: inherit;
 	cursor: pointer;
@@ -528,6 +532,7 @@
 
 @media (max-width: 680px) {
 	.research-page .research-details { padding: 18px 14px; }
+	.research-page #3d-recognition-details { padding: 10px 14px; }
 }
 
 /* Surgical and embodied vision ------------------------------------------- */
