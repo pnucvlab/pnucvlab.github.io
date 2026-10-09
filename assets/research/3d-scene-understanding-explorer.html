@@ -37,14 +37,14 @@
     .query-row{display:grid;grid-template-columns:140px minmax(0,1fr);gap:10px;align-items:center}
     .query-label{margin:0;font-size:16px;font-weight:800}
     .queries{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-    .queries button{border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);font:inherit;font-size:14.3px;font-weight:700;padding:8px 10px;cursor:pointer}
+    .queries button{justify-self:center;width:90%;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);font:inherit;font-size:14.3px;font-weight:700;padding:8px 10px;cursor:pointer}
     .queries button:hover{border-color:var(--accent);color:var(--accent-dark)}
     .queries button.is-active,.queries button.is-active:hover{border-color:#fff;background:var(--accent);color:#fff;box-shadow:0 0 0 1px var(--accent)}
     #status{min-height:0;margin:8px 0 0;color:var(--muted);font-size:13px}
     #status:empty{display:none}
     #status.is-error{color:#8a1f1f}
     .panel-copy h2{margin:0;font-size:clamp(22px,2.2vw,28px);line-height:1.2;letter-spacing:-.03em}
-    #reset{border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);font:inherit;font-size:13px;font-weight:700;padding:8px 14px;cursor:pointer}
+    #reset{position:absolute;top:12px;right:12px;z-index:2;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);font:inherit;font-size:13px;font-weight:700;padding:8px 14px;cursor:pointer}
     #reset:hover{border-color:var(--accent);color:var(--accent-dark)}
     .note{margin:12px 0 0;color:var(--muted);font-size:13px}
     .steps{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:10px;counter-reset:step}
@@ -101,8 +101,8 @@
       <div class="panel">
         <div class="viewer-wrap">
           <div id="viewer" role="img" aria-label="Rotating 3D point cloud of a scanned room. Drag to look around."></div>
+          <button id="reset" type="button">Reset</button>
           <div class="viewer-tools">
-            <button id="reset" type="button">Reset</button>
             <div class="meter" aria-hidden="true">
               <span>high</span>
               <div class="meter-bar"></div>
