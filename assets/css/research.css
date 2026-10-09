@@ -511,22 +511,6 @@
 	background: transparent;
 }
 
-.research-page .details-coming-soon {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: 12px;
-	min-height: 160px;
-	text-align: center;
-}
-
-.research-page .details-coming-soon p {
-	margin: 0;
-	color: var(--research-muted);
-	font-size: 15px;
-}
-
 .research-page button.se-explorer-link {
 	font-family: inherit;
 	cursor: pointer;
