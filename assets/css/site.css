@@ -216,10 +216,13 @@ body {
 	background-color: var(--site-soft);
 }
 
-/* main.css gives the graduation photo a fixed 933px width, which crops it at this height. */
-.home-page .notice-swiper .swiper-slide .notice-image-wrapper .graduation-notice-image {
-	width: auto;
-	object-fit: contain;
+/* Desktop only: main.css gives the graduation photo a fixed 933px width there, which crops
+   it at this height. Below 1001px the photo already fits the screen width, so leave it alone. */
+@media (min-width: 1001px) {
+	.home-page .notice-swiper .swiper-slide .notice-image-wrapper .graduation-notice-image {
+		width: auto;
+		object-fit: contain;
+	}
 }
 
 .home-page .notice-swiper .swiper-pagination {
